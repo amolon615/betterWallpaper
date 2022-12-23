@@ -48,8 +48,12 @@ struct ContentView: View {
     @State var isShowingSettings = false
     @State var isShowingInfo = false
     
-    @State var isStrokeSelected = false
-    @State var isFilledSelected = false
+    let strokeOrFill = ["Stroke", "Fill"]
+    @State var strokeOrFillSelected = "Stroke"
+    
+    let solidOrGradient = ["Solid fill", "Gradient fill"]
+    @State var solidOrGradientSelected = "Solid fill"
+    
     
     @State var radiusCorner: CGFloat = 40
     @State var paddingEdits: CGFloat = 10
@@ -59,10 +63,10 @@ struct ContentView: View {
     @State var settingsButtonAnimated = false
     @State var infoButtonAnimated = false
     
-    @State var pickedColor: Color = .blue
+    @State var pickedColor: Color = .orange
     
-    @State var pickedGradientColor1: Color = .yellow
-    @State var pickedGradientColor2: Color = .blue
+    @State var pickedGradientColor1: Color = .orange
+    @State var pickedGradientColor2: Color = .red
     
     var body: some View {
         GeometryReader { geometry in
@@ -71,14 +75,18 @@ struct ContentView: View {
             let screenHeight = screenSize.height
             ZStack(alignment: .bottom){
                 
-                if isFilledSelected {
-                    FilledView
-                        .ignoresSafeArea()
-                        .drawingGroup()
+                if strokeOrFillSelected == "Fill" {
+                    withAnimation{
+                        FilledView
+                            .ignoresSafeArea()
+                            .drawingGroup()
+                    }
                 } else {
-                    myView
-                        .ignoresSafeArea()
-                        .drawingGroup()
+                    withAnimation{
+                        myView
+                            .ignoresSafeArea()
+                            .drawingGroup()
+                    }
                 }
                 
                 ZStack{
@@ -95,7 +103,7 @@ struct ContentView: View {
                         
                         Button {
                             
-                            if isFilledSelected {
+                            if strokeOrFillSelected == "Fill" {
                                 let highresImage = FilledView.asImage(size: CGSize(width: cgWidth, height: cgHeight))
                                 UIImageWriteToSavedPhotosAlbum(highresImage, nil, nil, nil)
                             } else {
@@ -161,78 +169,31 @@ struct ContentView: View {
                 .foregroundColor(.black)
                 .clipShape(RoundedRectangle(cornerRadius: 30))
                 .padding()
-                             
+                
+                
+                                //edit image view
                              .sheet(isPresented: $isShowingEdits) {
                                  ZStack{
-                                     VStack{
-                                         Toggle(isStrokeSelected ? "Gradient stroke" : "Filled stroke", isOn: $isStrokeSelected)
+                                     ScrollView{
+                                         Picker("Select amount of minutes", selection: $strokeOrFillSelected) {
+                                             withAnimation{
+                                                 ForEach(strokeOrFill, id:\.self) {
+                                                     Text("\($0)")
+                                             }
+                                             }
+                                         }.pickerStyle(.segmented)
                                              .padding()
-                                         Toggle(isFilledSelected ? "Gradient view" : "Filled view ", isOn: $isFilledSelected)
+                                         
+                                         Picker("Select amount of minutes", selection: $solidOrGradientSelected) {
+                                             withAnimation{
+                                                 ForEach(solidOrGradient, id:\.self) {
+                                                     Text("\($0)")
+                                             }
+                                             }
+                                         }.pickerStyle(.segmented)
                                              .padding()
-                                         if isStrokeSelected {
-                                         Text("Slide to edit stroke width")
-                                             .padding()
-                                         Slider(value: $paddingEdits, in: 1...10)
-                                             .padding()
-                                         Text("Slide to edit corner radius")
-                                             .padding()
-                                         Slider(value: $radiusCorner, in: 30...50)
-                                             .padding()
-                                         Text("Choose your color")
-                                         HStack{
-                                             Circle()
-                                                 .fill(.red)
-                                                 .frame(width: 50, height: 50)
-                                                 .onTapGesture {
-                                                     pickedColor = .red
-                                                 }
-                                             Circle()
-                                                 .fill(.blue)
-                                                 .frame(width: 50, height: 50)
-                                                 .onTapGesture {
-                                                     pickedColor = .blue
-                                                 }
-                                             Circle()
-                                                 .fill(.yellow)
-                                                 .frame(width: 50, height: 50)
-                                                 .onTapGesture {
-                                                     pickedColor = .yellow
-                                                 }
-                                             Circle()
-                                                 .fill(.green)
-                                                 .frame(width: 50, height: 50)
-                                                 .onTapGesture {
-                                                     pickedColor = .green
-                                                 }
-                                             
-                                         }
-                                         HStack{
-                                             Circle()
-                                                 .fill(.purple)
-                                                 .frame(width: 50, height: 50)
-                                                 .onTapGesture {
-                                                     pickedColor = .purple
-                                                 }
-                                             Circle()
-                                                 .fill(.orange)
-                                                 .frame(width: 50, height: 50)
-                                                 .onTapGesture {
-                                                     pickedColor = .orange
-                                                 }
-                                             Circle()
-                                                 .fill(.pink)
-                                                 .frame(width: 50, height: 50)
-                                                 .onTapGesture {
-                                                     pickedColor = .pink
-                                                 }
-                                             Circle()
-                                                 .fill(.gray)
-                                                 .frame(width: 50, height: 50)
-                                                 .onTapGesture {
-                                                     pickedColor = .gray
-                                                 }
-                                         }
-                                         } else {
+                                         
+                                         if strokeOrFillSelected == "Stroke" {
                                              Text("Slide to edit stroke width")
                                                  .padding()
                                              Slider(value: $paddingEdits, in: 1...10)
@@ -241,116 +202,358 @@ struct ContentView: View {
                                                  .padding()
                                              Slider(value: $radiusCorner, in: 30...50)
                                                  .padding()
-                                             Text("First gradient color")
-                                             HStack{
-                                                 Circle()
-                                                     .fill(.red)
-                                                     .frame(width: 50, height: 50)
-                                                     .onTapGesture {
-                                                         pickedGradientColor1 = .red
+                                             Text("Choose your colors")
+                                             
+                                             
+                                             if solidOrGradientSelected == "Solid fill" {
+        
+                                                     HStack{
+                                                         Circle()
+                                                             .fill(.red)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedColor = .red
+                                                             }
+                                                         Circle()
+                                                             .fill(.blue)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedColor = .blue
+                                                             }
+                                                         Circle()
+                                                             .fill(.yellow)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedColor = .yellow
+                                                             }
+                                                         Circle()
+                                                             .fill(.green)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedColor = .green
+                                                             }
+                                                         
                                                      }
-                                                 Circle()
-                                                     .fill(.blue)
-                                                     .frame(width: 50, height: 50)
-                                                     .onTapGesture {
-                                                         pickedGradientColor1 = .blue
+                                                     HStack{
+                                                         Circle()
+                                                             .fill(.purple)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedColor = .purple
+                                                             }
+                                                         Circle()
+                                                             .fill(.orange)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedColor = .orange
+                                                             }
+                                                         Circle()
+                                                             .fill(.pink)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedColor = .pink
+                                                             }
+                                                         Circle()
+                                                             .fill(.gray)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedColor = .gray
+                                                             }
                                                      }
-                                                 Circle()
-                                                     .fill(.yellow)
-                                                     .frame(width: 50, height: 50)
-                                                     .onTapGesture {
-                                                         pickedGradientColor1 = .yellow
+    
+                                             } else {
+                                                 VStack{
+                                                     Text("Select 1st color")
+                                                         .padding()
+                                                     HStack{
+                                                         Circle()
+                                                             .fill(.red)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor1 = .red
+                                                                 print("red color tapped")
+                                                             }
+                                                         Circle()
+                                                             .fill(.blue)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor1 = .blue
+                                                             }
+                                                         Circle()
+                                                             .fill(.yellow)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor1 = .yellow
+                                                             }
+                                                         Circle()
+                                                             .fill(.green)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor1 = .green
+                                                             }
+                                                         
                                                      }
-                                                 Circle()
-                                                     .fill(.green)
-                                                     .frame(width: 50, height: 50)
-                                                     .onTapGesture {
-                                                         pickedGradientColor1 = .green
+                                                     HStack{
+                                                         Circle()
+                                                             .fill(.purple)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor1 = .purple
+                                                             }
+                                                         Circle()
+                                                             .fill(.orange)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor1 = .orange
+                                                             }
+                                                         Circle()
+                                                             .fill(.pink)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor1 = .pink
+                                                             }
+                                                         Circle()
+                                                             .fill(.gray)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor1 = .gray
+                                                             }
                                                      }
-                                                 
+                                                     Text("Select 2snd color")
+                                                         .padding()
+                                                     HStack{
+                                                         Circle()
+                                                             .fill(.red)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor2 = .red
+                                                             }
+                                                         Circle()
+                                                             .fill(.blue)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor2 = .blue
+                                                             }
+                                                         Circle()
+                                                             .fill(.yellow)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor2 = .yellow
+                                                             }
+                                                         Circle()
+                                                             .fill(.green)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor2 = .green
+                                                             }
+                                                         
+                                                     }
+                                                     HStack{
+                                                         Circle()
+                                                             .fill(.purple)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor2 = .purple
+                                                             }
+                                                         Circle()
+                                                             .fill(.orange)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor2 = .orange
+                                                             }
+                                                         Circle()
+                                                             .fill(.pink)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor2 = .pink
+                                                             }
+                                                         Circle()
+                                                             .fill(.gray)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor2 = .gray
+                                                             }
+                                                     }
+                                                 }
                                              }
-                                             HStack{
-                                                 Circle()
-                                                     .fill(.purple)
-                                                     .frame(width: 50, height: 50)
-                                                     .onTapGesture {
-                                                         pickedGradientColor1 = .purple
+                                         } else {
+                                             Text("Choose your color")
+                                             
+                                             if solidOrGradientSelected == "Solid fill" {
+                                                 VStack{
+                                                     HStack{
+                                                         Circle()
+                                                             .fill(.red)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedColor = .red
+                                                             }
+                                                         Circle()
+                                                             .fill(.blue)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedColor = .blue
+                                                             }
+                                                         Circle()
+                                                             .fill(.yellow)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedColor = .yellow
+                                                             }
+                                                         Circle()
+                                                             .fill(.green)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedColor = .green
+                                                             }
+                                                         
                                                      }
-                                                 Circle()
-                                                     .fill(.orange)
-                                                     .frame(width: 50, height: 50)
-                                                     .onTapGesture {
-                                                         pickedGradientColor1 = .orange
+                                                     HStack{
+                                                         Circle()
+                                                             .fill(.purple)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedColor = .purple
+                                                             }
+                                                         Circle()
+                                                             .fill(.orange)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedColor = .orange
+                                                             }
+                                                         Circle()
+                                                             .fill(.pink)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedColor = .pink
+                                                             }
+                                                         Circle()
+                                                             .fill(.gray)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedColor = .gray
+                                                             }
                                                      }
-                                                 Circle()
-                                                     .fill(.pink)
-                                                     .frame(width: 50, height: 50)
-                                                     .onTapGesture {
-                                                         pickedGradientColor1 = .pink
+                                                 }
+                                             } else {
+                                                 VStack{
+                                                     Text("Select 1st color")
+                                                         .padding()
+                                                     HStack{
+                                                         Circle()
+                                                             .fill(.red)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor1 = .red
+                                                                 print("red color tapped")
+                                                             }
+                                                         Circle()
+                                                             .fill(.blue)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor1 = .blue
+                                                             }
+                                                         Circle()
+                                                             .fill(.yellow)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor1 = .yellow
+                                                             }
+                                                         Circle()
+                                                             .fill(.green)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor1 = .green
+                                                             }
+                                                         
                                                      }
-                                                 Circle()
-                                                     .fill(.gray)
-                                                     .frame(width: 50, height: 50)
-                                                     .onTapGesture {
-                                                         pickedGradientColor1 = .gray
+                                                     HStack{
+                                                         Circle()
+                                                             .fill(.purple)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor1 = .purple
+                                                             }
+                                                         Circle()
+                                                             .fill(.orange)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor1 = .orange
+                                                             }
+                                                         Circle()
+                                                             .fill(.pink)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor1 = .pink
+                                                             }
+                                                         Circle()
+                                                             .fill(.gray)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor1 = .gray
+                                                             }
                                                      }
+                                                     Text("Select 2snd color")
+                                                         .padding()
+                                                     HStack{
+                                                         Circle()
+                                                             .fill(.red)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor2 = .red
+                                                             }
+                                                         Circle()
+                                                             .fill(.blue)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor2 = .blue
+                                                             }
+                                                         Circle()
+                                                             .fill(.yellow)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor2 = .yellow
+                                                             }
+                                                         Circle()
+                                                             .fill(.green)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor2 = .green
+                                                             }
+                                                         
+                                                     }
+                                                     HStack{
+                                                         Circle()
+                                                             .fill(.purple)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor2 = .purple
+                                                             }
+                                                         Circle()
+                                                             .fill(.orange)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor2 = .orange
+                                                             }
+                                                         Circle()
+                                                             .fill(.pink)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor2 = .pink
+                                                             }
+                                                         Circle()
+                                                             .fill(.gray)
+                                                             .frame(width: 50, height: 50)
+                                                             .onTapGesture {
+                                                                 pickedGradientColor2 = .gray
+                                                             }
+                                                     }
+                                                 }
                                              }
-                                             Text("Second gradient color")
-                                                 .padding()
-                                             HStack{
-                                                 Circle()
-                                                     .fill(.red)
-                                                     .frame(width: 50, height: 50)
-                                                     .onTapGesture {
-                                                         pickedGradientColor2 = .red
-                                                     }
-                                                 Circle()
-                                                     .fill(.blue)
-                                                     .frame(width: 50, height: 50)
-                                                     .onTapGesture {
-                                                         pickedGradientColor2 = .blue
-                                                     }
-                                                 Circle()
-                                                     .fill(.yellow)
-                                                     .frame(width: 50, height: 50)
-                                                     .onTapGesture {
-                                                         pickedGradientColor2 = .yellow
-                                                     }
-                                                 Circle()
-                                                     .fill(.green)
-                                                     .frame(width: 50, height: 50)
-                                                     .onTapGesture {
-                                                         pickedGradientColor2 = .green
-                                                     }
-                                                 
-                                             }
-                                             HStack{
-                                                 Circle()
-                                                     .fill(.purple)
-                                                     .frame(width: 50, height: 50)
-                                                     .onTapGesture {
-                                                         pickedGradientColor2 = .purple
-                                                     }
-                                                 Circle()
-                                                     .fill(.orange)
-                                                     .frame(width: 50, height: 50)
-                                                     .onTapGesture {
-                                                         pickedGradientColor2 = .orange
-                                                     }
-                                                 Circle()
-                                                     .fill(.pink)
-                                                     .frame(width: 50, height: 50)
-                                                     .onTapGesture {
-                                                         pickedGradientColor2 = .pink
-                                                     }
-                                                 Circle()
-                                                     .fill(.gray)
-                                                     .frame(width: 50, height: 50)
-                                                     .onTapGesture {
-                                                         pickedGradientColor2 = .gray
-                                                     }
-                                             }
+                                             
                                          }
+                                         
+
                                  }
                              }
                                  .presentationDetents([.large, .fraction(0.9)])
@@ -363,7 +566,7 @@ struct ContentView: View {
     
     var myView: some View {
         ZStack {
-           if isStrokeSelected == true{
+           if solidOrGradientSelected == "Solid fill"{
                 pickedColor
                     .ignoresSafeArea()
                 Rectangle()
@@ -372,7 +575,7 @@ struct ContentView: View {
                     .padding(paddingEdits)
                     .ignoresSafeArea()
            } else {
-               LinearGradient(gradient: Gradient(colors: [pickedGradientColor1, pickedGradientColor2]), startPoint: .leading, endPoint: .trailing)
+               LinearGradient(gradient: Gradient(colors: [pickedGradientColor1, pickedGradientColor2]), startPoint: .center, endPoint: .trailing)
                    .ignoresSafeArea()
                Rectangle()
                    .fill(.black)
@@ -386,7 +589,7 @@ struct ContentView: View {
     
     var FilledView: some View {
         ZStack {
-           if isStrokeSelected == true{
+           if solidOrGradientSelected == "Solid fill" {
                 pickedColor
                     .ignoresSafeArea()
            } else {
