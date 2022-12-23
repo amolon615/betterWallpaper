@@ -11,12 +11,18 @@ import UIKit
 import SystemConfiguration
 
 struct ContentView: View {
+    
+    @State private var feedback = UINotificationFeedbackGenerator()
+    
+    
     let device =  UIDevice.modelName
     
     var cgWidth: CGFloat
     var cgHeight: CGFloat
     
     init() {
+        UISegmentedControl.appearance().selectedSegmentTintColor = .orange
+        
             switch device {
             case "iPhone X": cgWidth = 375 ; cgHeight = 812
             case "iPhone XS": cgWidth = 375 ; cgHeight = 812
@@ -42,6 +48,7 @@ struct ContentView: View {
             default: cgWidth = 300 ; cgHeight = 500
             }
         }
+    
 
     //menu controls
     @State var isShowingEdits = false
@@ -49,10 +56,10 @@ struct ContentView: View {
     @State var isShowingInfo = false
     
     let strokeOrFill = ["Stroke", "Fill"]
-    @State var strokeOrFillSelected = "Stroke"
+    @State var strokeOrFillSelected = "Fill"
     
     let solidOrGradient = ["Solid fill", "Gradient fill"]
-    @State var solidOrGradientSelected = "Solid fill"
+    @State var solidOrGradientSelected = "Gradient fill"
     
     
     @State var radiusCorner: CGFloat = 40
@@ -77,12 +84,18 @@ struct ContentView: View {
                         FilledView
                             .ignoresSafeArea()
                             .drawingGroup()
+                            .onTapGesture {
+                            isShowingEdits = true
+                        }
                     }
                 } else {
                     withAnimation{
                         myView
                             .ignoresSafeArea()
                             .drawingGroup()
+                            .onTapGesture {
+                                isShowingEdits = true
+                            }
                     }
                 }
                 
@@ -90,11 +103,13 @@ struct ContentView: View {
                     HStack{
                         Button{
                             isShowingEdits = true
+                            feedback.notificationOccurred(.success)
+                            editButtonAnimated = true
                         } label: {
                             Image(systemName: "slider.vertical.3")
                         }
                         .frame(width: 70, height: 70)
-                        .background(.black.opacity(0.7))
+                        .background(editButtonAnimated ? .black.opacity(0.3) : .black.opacity(0.7))
                         .clipShape(RoundedRectangle(cornerRadius: editButtonAnimated ? 50 : 15))
                         .foregroundColor(.white)
                         .scaleEffect(editButtonAnimated ? 0.8 : 1)
@@ -106,7 +121,7 @@ struct ContentView: View {
                         })
                         
                         Button {
-                            
+                            feedback.notificationOccurred(.success)
                             if strokeOrFillSelected == "Fill" {
                                 let highresImage = FilledView.asImage(size: CGSize(width: cgWidth, height: cgHeight))
                                 UIImageWriteToSavedPhotosAlbum(highresImage, nil, nil, nil)
@@ -115,12 +130,13 @@ struct ContentView: View {
                                 UIImageWriteToSavedPhotosAlbum(highresImage, nil, nil, nil)
                                 }
                             saveButtonAnimated = true
+                            
                         } label: {
                             Image(systemName: "square.and.arrow.down")
                         }
                         
                         .frame(width: 70, height: 70)
-                        .background(saveButtonAnimated ? .black.opacity(0.3) : .black.opacity(0.7))
+                        .background(saveButtonAnimated ? .black.opacity(0.2) : .black.opacity(0.7))
                         .clipShape(RoundedRectangle(cornerRadius: saveButtonAnimated ? 50 : 15))
                         .foregroundColor(.white)
                         .scaleEffect(saveButtonAnimated ? 0.8 : 1)
@@ -134,11 +150,12 @@ struct ContentView: View {
                         Button{
                            
                             settingsButtonAnimated = true
+                            feedback.notificationOccurred(.success)
                         } label: {
                             Image(systemName: "gear")
                         }
                         .frame(width: 70, height: 70)
-                        .background(settingsButtonAnimated ? .black.opacity(0.3) : .black.opacity(0.7))
+                        .background(settingsButtonAnimated ? .black.opacity(0.2) : .black.opacity(0.7))
                         .clipShape(RoundedRectangle(cornerRadius: settingsButtonAnimated ? 50 : 15))
                         .foregroundColor(.white)
                         .scaleEffect(settingsButtonAnimated ? 0.8 : 1)
@@ -151,6 +168,9 @@ struct ContentView: View {
                         
                                 
                         }
+                    .onAppear {
+                        feedback.prepare()
+                    }
                 }
                 .frame(width: 250, height: 90)
                 .background(.thinMaterial)
@@ -170,6 +190,7 @@ struct ContentView: View {
                                              }
                                              }
                                          }.pickerStyle(.segmented)
+                                             .frame(width: 250)
                                              .padding()
                                          
                                          Picker("Select amount of minutes", selection: $solidOrGradientSelected) {
@@ -179,16 +200,19 @@ struct ContentView: View {
                                              }
                                              }
                                          }.pickerStyle(.segmented)
+                                             .frame(width: 250)
                                              .padding()
                                          
                                          if strokeOrFillSelected == "Stroke" {
                                              Text("Slide to edit stroke width")
                                                  .padding()
                                              Slider(value: $paddingEdits, in: 1...10)
+                                                 .frame(width: 250)
                                                  .padding()
                                              Text("Slide to edit corner radius")
                                                  .padding()
                                              Slider(value: $radiusCorner, in: 30...50)
+                                                 .frame(width: 250)
                                                  .padding()
                                              Text("Choose your color")
                                              
