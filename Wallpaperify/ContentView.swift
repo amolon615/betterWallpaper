@@ -92,11 +92,16 @@ struct ContentView: View {
     @State var isShowingSettings = false
     @State var isShowingInfo = false
     
-    @State var isStrokeFilled = false
+    @State var isStrokeSelected = false
+    @State var isFilledSelected = false
     
     @State var radiusCorner: CGFloat = 40
     @State var paddingEdits: CGFloat = 10
     
+    @State var editButtonAnimated = false
+    @State var saveButtonAnimated = false
+    @State var settingsButtonAnimated = false
+    @State var infoButtonAnimated = false
     
     @State var pickedColor: Color = .blue
     
@@ -128,41 +133,58 @@ struct ContentView: View {
                         
                         Button{
                             let highresImage = myView.asImage(size: CGSize(width: cgWidth, height: cgHeight))
-                            
-                            print("width is \(screenWidth)")
-                            print("height is \(screenHeight)")
-                            print("width set is \(cgWidth)")
-                            print("height set is \(cgHeight)")
-                            print(device)
-                           
                             UIImageWriteToSavedPhotosAlbum(highresImage, nil, nil, nil)
+                            saveButtonAnimated = true
                         } label: {
                             Image(systemName: "square.and.arrow.down")
                         }
+                        
                         .frame(width: 50, height: 50)
-                        .background(.black.opacity(0.7))
+                        .background(saveButtonAnimated ? .black.opacity(0.3) : .black.opacity(0.7))
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .foregroundColor(.white)
+                        .scaleEffect(saveButtonAnimated ? 1.1 : 1)
+                        
+                        .onChange(of: saveButtonAnimated, perform: { newValue in
+                            withAnimation(.easeInOut(duration: 0.3)){
+                                saveButtonAnimated = false
+                            }
+                        })
                         
                         Button{
-                            isShowingEdits = true
+                           
+                            settingsButtonAnimated = true
                         } label: {
                             Image(systemName: "gear")
                         }
                         .frame(width: 50, height: 50)
-                        .background(.black.opacity(0.7))
+                        .background(settingsButtonAnimated ? .black.opacity(0.3) : .black.opacity(0.7))
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .foregroundColor(.white)
+                        .scaleEffect(settingsButtonAnimated ? 1.2 : 1)
+                        
+                        .onChange(of: settingsButtonAnimated, perform: { newValue in
+                            withAnimation(.easeInOut(duration: 0.3)){
+                                settingsButtonAnimated = false
+                            }
+                        })
                         
                         Button{
-                            isShowingEdits = true
+                            infoButtonAnimated = true
                         } label: {
                             Image(systemName: "info.circle")
                         }
                         .frame(width: 50, height: 50)
-                        .background(.black.opacity(0.7))
+                        .background(infoButtonAnimated ? .black.opacity(0.3) : .black.opacity(0.7))
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .foregroundColor(.white)
+                        .scaleEffect(infoButtonAnimated ? 1.2 : 1)
+                        
+                        .onChange(of: infoButtonAnimated, perform: { newValue in
+                            withAnimation(.easeInOut(duration: 0.3)){
+                                infoButtonAnimated = false
+                            }
+                        })
                                 
                         }
                 }
@@ -175,9 +197,9 @@ struct ContentView: View {
                              .sheet(isPresented: $isShowingEdits) {
                                  ZStack{
                                      VStack{
-                                         Toggle(isStrokeFilled ? "Filled stroke" : "Gradient", isOn: $isStrokeFilled)
+                                         Toggle(isStrokeSelected ? "Gradient stroke" : "Filled stroke", isOn: $isStrokeSelected)
                                              .padding()
-                                         if isStrokeFilled {
+                                         if isStrokeSelected {
                                          Text("Slide to edit stroke width")
                                              .padding()
                                          Slider(value: $paddingEdits, in: 1...10)
@@ -371,7 +393,7 @@ struct ContentView: View {
     
     var myView: some View {
         ZStack {
-           if isStrokeFilled == true{
+           if isStrokeSelected == true{
                 pickedColor
                     .ignoresSafeArea()
                 Rectangle()
