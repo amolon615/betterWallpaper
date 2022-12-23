@@ -1,6 +1,6 @@
 //
-//  testAppApp.swift
-//  testApp
+//  WallpaperifyApp.swift
+//  Wallpaperify
 //
 //  Created by Artem on 14/12/2022.
 //
@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct testAppApp: App {
+struct WallpaperifyApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
