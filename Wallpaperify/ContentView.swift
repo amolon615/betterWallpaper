@@ -18,72 +18,28 @@ struct ContentView: View {
     
     init() {
             switch device {
-            case "iPhone X":
-                cgWidth = 375
-                cgHeight = 812
-            case "iPhone XS":
-                cgWidth = 375
-                cgHeight = 812
-            case "iPhone XS Max":
-                cgWidth = 414
-                cgHeight = 896
-            case "iPhone XR":
-                cgWidth = 414
-                cgHeight = 896
-            case "iPhone 11":
-                cgWidth = 414
-                cgHeight = 896
-            case "iPhone 11 Pro":
-                cgWidth = 375
-                cgHeight = 812
-            case "iPhone 11 Pro Max":
-                cgWidth = 414
-                cgHeight = 896
-            case "iPhone SE (2nd generation)":
-                cgWidth = 375
-                cgHeight = 667
-            case "iPhone 12 mini":
-                cgWidth = 360
-                cgHeight = 780
-            case "iPhone 12":
-                cgWidth = 390
-                cgHeight = 844
-            case "iPhone 12 Pro":
-                cgWidth = 390
-                cgHeight = 844
-            case "iPhone 12 Pro Max":
-                cgWidth = 428
-                cgHeight = 926
-            case "iPhone 13 mini":
-                cgWidth = 375
-                cgHeight = 812
-            case "iPhone 13":
-                cgWidth = 390
-                cgHeight = 844
-            case "iPhone 13 Pro":
-                cgWidth = 390
-                cgHeight = 844
-            case "iPhone 13 Pro Max":
-                cgWidth = 428
-                cgHeight = 926
-            case "iPhone SE (3rd generation)":
-                cgWidth = 320
-                cgHeight = 568
-            case "iPhone 14":
-                cgWidth = 390
-                cgHeight = 844
-            case "iPhone 14 Plus":
-                cgWidth = 428
-                cgHeight = 926
-            case "iPhone 14 Pro":
-                cgWidth = 393
-                cgHeight = 852
-            case "iPhone 14 Pro Max":
-                cgWidth = 430
-                cgHeight = 932
-            default:
-                cgWidth = 300
-                cgHeight = 500
+            case "iPhone X": cgWidth = 375 ; cgHeight = 812
+            case "iPhone XS": cgWidth = 375 ; cgHeight = 812
+            case "iPhone XS Max": cgWidth = 414 ; cgHeight = 896
+            case "iPhone XR": cgWidth = 414 ; cgHeight = 896
+            case "iPhone 11": cgWidth = 414 ; cgHeight = 896
+            case "iPhone 11 Pro": cgWidth = 375 ; cgHeight = 812
+            case "iPhone 11 Pro Max": cgWidth = 414 ; cgHeight = 896
+            case "iPhone SE (2nd generation)": cgWidth = 375 ; cgHeight = 667
+            case "iPhone 12 mini": cgWidth = 360 ; cgHeight = 780
+            case "iPhone 12": cgWidth = 390 ;  cgHeight = 844
+            case "iPhone 12 Pro": cgWidth = 390 ; cgHeight = 844
+            case "iPhone 12 Pro Max":  cgWidth = 428 ; cgHeight = 926
+            case "iPhone 13 mini": cgWidth = 375 ; cgHeight = 812
+            case "iPhone 13": cgWidth = 390 ; cgHeight = 844
+            case "iPhone 13 Pro": cgWidth = 390 ; cgHeight = 844
+            case "iPhone 13 Pro Max": cgWidth = 428 ; cgHeight = 926
+            case "iPhone SE (3rd generation)":cgWidth = 320 ; cgHeight = 568
+            case "iPhone 14": cgWidth = 390 ; cgHeight = 844
+            case "iPhone 14 Plus": cgWidth = 428 ; cgHeight = 926
+            case "iPhone 14 Pro": cgWidth = 393 ; cgHeight = 852
+            case "iPhone 14 Pro Max": cgWidth = 430 ; cgHeight = 932
+            default: cgWidth = 300 ; cgHeight = 500
             }
         }
 
@@ -115,9 +71,15 @@ struct ContentView: View {
             let screenHeight = screenSize.height
             ZStack(alignment: .bottom){
                 
-               myView
-                    .ignoresSafeArea()
-                    .drawingGroup()
+                if isFilledSelected {
+                    FilledView
+                        .ignoresSafeArea()
+                        .drawingGroup()
+                } else {
+                    myView
+                        .ignoresSafeArea()
+                        .drawingGroup()
+                }
                 
                 ZStack{
                     HStack{
@@ -131,9 +93,15 @@ struct ContentView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .foregroundColor(.white)
                         
-                        Button{
-                            let highresImage = myView.asImage(size: CGSize(width: cgWidth, height: cgHeight))
-                            UIImageWriteToSavedPhotosAlbum(highresImage, nil, nil, nil)
+                        Button {
+                            
+                            if isFilledSelected {
+                                let highresImage = FilledView.asImage(size: CGSize(width: cgWidth, height: cgHeight))
+                                UIImageWriteToSavedPhotosAlbum(highresImage, nil, nil, nil)
+                            } else {
+                                let highresImage = myView.asImage(size: CGSize(width: cgWidth, height: cgHeight))
+                                UIImageWriteToSavedPhotosAlbum(highresImage, nil, nil, nil)
+                                }
                             saveButtonAnimated = true
                         } label: {
                             Image(systemName: "square.and.arrow.down")
@@ -198,6 +166,8 @@ struct ContentView: View {
                                  ZStack{
                                      VStack{
                                          Toggle(isStrokeSelected ? "Gradient stroke" : "Filled stroke", isOn: $isStrokeSelected)
+                                             .padding()
+                                         Toggle(isFilledSelected ? "Gradient view" : "Filled view ", isOn: $isFilledSelected)
                                              .padding()
                                          if isStrokeSelected {
                                          Text("Slide to edit stroke width")
@@ -408,6 +378,19 @@ struct ContentView: View {
                    .fill(.black)
                    .cornerRadius(radiusCorner)
                    .padding(paddingEdits)
+                   .ignoresSafeArea()
+           }
+        }
+       
+    }
+    
+    var FilledView: some View {
+        ZStack {
+           if isStrokeSelected == true{
+                pickedColor
+                    .ignoresSafeArea()
+           } else {
+               LinearGradient(gradient: Gradient(colors: [pickedGradientColor1, pickedGradientColor2]), startPoint: .leading, endPoint: .trailing)
                    .ignoresSafeArea()
            }
         }
