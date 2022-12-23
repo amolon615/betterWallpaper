@@ -69,10 +69,7 @@ struct ContentView: View {
     @State var pickedGradientColor2: Color = .red
     
     var body: some View {
-        GeometryReader { geometry in
-            let screenSize = calculateScreenSize(geometry: geometry)
-            let screenWidth = screenSize.width
-            let screenHeight = screenSize.height
+
             ZStack(alignment: .bottom){
                 
                 if strokeOrFillSelected == "Fill" {
@@ -96,10 +93,17 @@ struct ContentView: View {
                         } label: {
                             Image(systemName: "slider.vertical.3")
                         }
-                        .frame(width: 50, height: 50)
+                        .frame(width: 70, height: 70)
                         .background(.black.opacity(0.7))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .clipShape(RoundedRectangle(cornerRadius: editButtonAnimated ? 50 : 15))
                         .foregroundColor(.white)
+                        .scaleEffect(editButtonAnimated ? 0.8 : 1)
+                        
+                        .onChange(of: editButtonAnimated, perform: { newValue in
+                            withAnimation(.easeInOut(duration: 0.3)){
+                                editButtonAnimated = false
+                            }
+                        })
                         
                         Button {
                             
@@ -115,11 +119,11 @@ struct ContentView: View {
                             Image(systemName: "square.and.arrow.down")
                         }
                         
-                        .frame(width: 50, height: 50)
+                        .frame(width: 70, height: 70)
                         .background(saveButtonAnimated ? .black.opacity(0.3) : .black.opacity(0.7))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .clipShape(RoundedRectangle(cornerRadius: saveButtonAnimated ? 50 : 15))
                         .foregroundColor(.white)
-                        .scaleEffect(saveButtonAnimated ? 1.1 : 1)
+                        .scaleEffect(saveButtonAnimated ? 0.8 : 1)
                         
                         .onChange(of: saveButtonAnimated, perform: { newValue in
                             withAnimation(.easeInOut(duration: 0.3)){
@@ -133,11 +137,11 @@ struct ContentView: View {
                         } label: {
                             Image(systemName: "gear")
                         }
-                        .frame(width: 50, height: 50)
+                        .frame(width: 70, height: 70)
                         .background(settingsButtonAnimated ? .black.opacity(0.3) : .black.opacity(0.7))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .clipShape(RoundedRectangle(cornerRadius: settingsButtonAnimated ? 50 : 15))
                         .foregroundColor(.white)
-                        .scaleEffect(settingsButtonAnimated ? 1.2 : 1)
+                        .scaleEffect(settingsButtonAnimated ? 0.8 : 1)
                         
                         .onChange(of: settingsButtonAnimated, perform: { newValue in
                             withAnimation(.easeInOut(duration: 0.3)){
@@ -145,26 +149,10 @@ struct ContentView: View {
                             }
                         })
                         
-                        Button{
-                            infoButtonAnimated = true
-                        } label: {
-                            Image(systemName: "info.circle")
-                        }
-                        .frame(width: 50, height: 50)
-                        .background(infoButtonAnimated ? .black.opacity(0.3) : .black.opacity(0.7))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .foregroundColor(.white)
-                        .scaleEffect(infoButtonAnimated ? 1.2 : 1)
-                        
-                        .onChange(of: infoButtonAnimated, perform: { newValue in
-                            withAnimation(.easeInOut(duration: 0.3)){
-                                infoButtonAnimated = false
-                            }
-                        })
                                 
                         }
                 }
-                .frame(width: 250, height: 70)
+                .frame(width: 250, height: 90)
                 .background(.thinMaterial)
                 .foregroundColor(.black)
                 .clipShape(RoundedRectangle(cornerRadius: 30))
@@ -202,7 +190,7 @@ struct ContentView: View {
                                                  .padding()
                                              Slider(value: $radiusCorner, in: 30...50)
                                                  .padding()
-                                             Text("Choose your colors")
+                                             Text("Choose your color")
                                              
                                              
                                              if solidOrGradientSelected == "Solid fill" {
@@ -561,7 +549,7 @@ struct ContentView: View {
      
             }.ignoresSafeArea()
     
-        }
+        
     }
     
     var myView: some View {
