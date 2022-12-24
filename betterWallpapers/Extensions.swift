@@ -1,6 +1,6 @@
 //
 //  ColorExtension.swift
-//  testApp
+//  betterWallpapers
 //
 //  Created by Artem on 23/12/2022.
 //

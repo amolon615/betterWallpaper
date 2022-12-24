@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  testApp
+//  betterWallpapers
 //
 //  Created by Artem on 14/12/2022.
 //
@@ -9,9 +9,11 @@ import SwiftUI
 import PhotosUI
 import UIKit
 import SystemConfiguration
+import StoreKit
 
 struct ContentView: View {
     
+    @Environment(\.requestReview) var requestReview
     
     @State private var feedback = UINotificationFeedbackGenerator()
     @State private var showingAlert = false

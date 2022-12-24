@@ -1,17 +1,18 @@
 //
-//  WallpaperifyApp.swift
-//  Wallpaperify
+//  BetterWallpapersApp.swift
+//  betterWallpapers
 //
 //  Created by Artem on 14/12/2022.
 //
 
 import SwiftUI
 
+
 @main
-struct WallpaperifyApp: App {
+struct BetterWallpapers: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ViewFlows()
         }
     }
 }

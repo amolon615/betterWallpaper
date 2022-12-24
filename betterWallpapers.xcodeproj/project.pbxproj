@@ -7,20 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AC2DD352294A7D7600E64523 /* Wallpaperify.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2DD351294A7D7600E64523 /* Wallpaperify.swift */; };
+		AC2DD352294A7D7600E64523 /* betterWallpapers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2DD351294A7D7600E64523 /* betterWallpapers.swift */; };
 		AC2DD354294A7D7600E64523 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2DD353294A7D7600E64523 /* ContentView.swift */; };
 		AC2DD356294A7D7700E64523 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC2DD355294A7D7700E64523 /* Assets.xcassets */; };
 		AC2DD359294A7D7700E64523 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC2DD358294A7D7700E64523 /* Preview Assets.xcassets */; };
+		AC7428652957946B007E83F7 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7428642957946B007E83F7 /* Onboarding.swift */; };
+		AC7428672957A14D007E83F7 /* ViewFlows.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7428662957A14D007E83F7 /* ViewFlows.swift */; };
 		ACC0F10129561E2A00264A0A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC0F10029561E2A00264A0A /* Settings.swift */; };
 		ACF081AF2955C3E00083F119 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF081AE2955C3E00083F119 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AC2DD34E294A7D7600E64523 /* Wallpaperify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wallpaperify.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC2DD351294A7D7600E64523 /* Wallpaperify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallpaperify.swift; sourceTree = "<group>"; };
+		AC2DD34E294A7D7600E64523 /* betterWallpapers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = betterWallpapers.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC2DD351294A7D7600E64523 /* betterWallpapers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = betterWallpapers.swift; sourceTree = "<group>"; };
 		AC2DD353294A7D7600E64523 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AC2DD355294A7D7700E64523 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC2DD358294A7D7700E64523 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		AC7428642957946B007E83F7 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		AC7428662957A14D007E83F7 /* ViewFlows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFlows.swift; sourceTree = "<group>"; };
 		ACC0F10029561E2A00264A0A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		ACF081AE2955C3E00083F119 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -39,7 +43,7 @@
 		AC2DD345294A7D7600E64523 = {
 			isa = PBXGroup;
 			children = (
-				AC2DD350294A7D7600E64523 /* Wallpaperify */,
+				AC2DD350294A7D7600E64523 /* betterWallpapers */,
 				AC2DD34F294A7D7600E64523 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,22 +51,24 @@
 		AC2DD34F294A7D7600E64523 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AC2DD34E294A7D7600E64523 /* Wallpaperify.app */,
+				AC2DD34E294A7D7600E64523 /* betterWallpapers.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AC2DD350294A7D7600E64523 /* Wallpaperify */ = {
+		AC2DD350294A7D7600E64523 /* betterWallpapers */ = {
 			isa = PBXGroup;
 			children = (
-				AC2DD351294A7D7600E64523 /* Wallpaperify.swift */,
+				AC2DD351294A7D7600E64523 /* betterWallpapers.swift */,
+				AC7428662957A14D007E83F7 /* ViewFlows.swift */,
 				AC2DD353294A7D7600E64523 /* ContentView.swift */,
+				AC7428642957946B007E83F7 /* Onboarding.swift */,
 				ACC0F10029561E2A00264A0A /* Settings.swift */,
 				ACF081AE2955C3E00083F119 /* Extensions.swift */,
 				AC2DD355294A7D7700E64523 /* Assets.xcassets */,
 				AC2DD357294A7D7700E64523 /* Preview Content */,
 			);
-			path = Wallpaperify;
+			path = betterWallpapers;
 			sourceTree = "<group>";
 		};
 		AC2DD357294A7D7700E64523 /* Preview Content */ = {
@@ -76,9 +82,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AC2DD34D294A7D7600E64523 /* Wallpaperify */ = {
+		AC2DD34D294A7D7600E64523 /* betterWallpapers */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AC2DD35C294A7D7700E64523 /* Build configuration list for PBXNativeTarget "Wallpaperify" */;
+			buildConfigurationList = AC2DD35C294A7D7700E64523 /* Build configuration list for PBXNativeTarget "betterWallpapers" */;
 			buildPhases = (
 				AC2DD34A294A7D7600E64523 /* Sources */,
 				AC2DD34B294A7D7600E64523 /* Frameworks */,
@@ -88,9 +94,9 @@
 			);
 			dependencies = (
 			);
-			name = Wallpaperify;
+			name = betterWallpapers;
 			productName = testApp;
-			productReference = AC2DD34E294A7D7600E64523 /* Wallpaperify.app */;
+			productReference = AC2DD34E294A7D7600E64523 /* betterWallpapers.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -108,7 +114,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AC2DD349294A7D7600E64523 /* Build configuration list for PBXProject "Wallpaperify" */;
+			buildConfigurationList = AC2DD349294A7D7600E64523 /* Build configuration list for PBXProject "betterWallpapers" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -121,7 +127,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AC2DD34D294A7D7600E64523 /* Wallpaperify */,
+				AC2DD34D294A7D7600E64523 /* betterWallpapers */,
 			);
 		};
 /* End PBXProject section */
@@ -145,8 +151,10 @@
 			files = (
 				ACF081AF2955C3E00083F119 /* Extensions.swift in Sources */,
 				AC2DD354294A7D7600E64523 /* ContentView.swift in Sources */,
+				AC7428652957946B007E83F7 /* Onboarding.swift in Sources */,
 				ACC0F10129561E2A00264A0A /* Settings.swift in Sources */,
-				AC2DD352294A7D7600E64523 /* Wallpaperify.swift in Sources */,
+				AC7428672957A14D007E83F7 /* ViewFlows.swift in Sources */,
+				AC2DD352294A7D7600E64523 /* betterWallpapers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,7 +282,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Wallpaperify/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"BetterWallpapers/Preview Content\"";
 				DEVELOPMENT_TEAM = NUUAUT9ZDU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -309,7 +317,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Wallpaperify/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"BetterWallpapers/Preview Content\"";
 				DEVELOPMENT_TEAM = NUUAUT9ZDU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -340,7 +348,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AC2DD349294A7D7600E64523 /* Build configuration list for PBXProject "Wallpaperify" */ = {
+		AC2DD349294A7D7600E64523 /* Build configuration list for PBXProject "betterWallpapers" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AC2DD35A294A7D7700E64523 /* Debug */,
@@ -349,7 +357,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AC2DD35C294A7D7700E64523 /* Build configuration list for PBXNativeTarget "Wallpaperify" */ = {
+		AC2DD35C294A7D7700E64523 /* Build configuration list for PBXNativeTarget "betterWallpapers" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AC2DD35D294A7D7700E64523 /* Debug */,
