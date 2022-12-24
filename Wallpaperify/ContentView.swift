@@ -12,8 +12,9 @@ import SystemConfiguration
 
 struct ContentView: View {
     
-    @State private var feedback = UINotificationFeedbackGenerator()
     
+    @State private var feedback = UINotificationFeedbackGenerator()
+    @State private var showingAlert = false
     
     let device =  UIDevice.modelName
     
@@ -53,7 +54,6 @@ struct ContentView: View {
     //menu controls
     @State var isShowingEdits = false
     @State var isShowingSettings = false
-    @State var isShowingInfo = false
     
     let strokeOrFill = ["Stroke", "Fill"]
     @State var strokeOrFillSelected = "Fill"
@@ -83,7 +83,6 @@ struct ContentView: View {
                     withAnimation{
                         FilledView
                             .ignoresSafeArea()
-                            .drawingGroup()
                             .onTapGesture {
                             isShowingEdits = true
                         }
@@ -92,7 +91,6 @@ struct ContentView: View {
                     withAnimation{
                         myView
                             .ignoresSafeArea()
-                            .drawingGroup()
                             .onTapGesture {
                                 isShowingEdits = true
                             }
@@ -129,6 +127,7 @@ struct ContentView: View {
                                 let highresImage = myView.asImage(size: CGSize(width: cgWidth, height: cgHeight))
                                 UIImageWriteToSavedPhotosAlbum(highresImage, nil, nil, nil)
                                 }
+                            showingAlert.toggle()
                             saveButtonAnimated = true
                             
                         } label: {
@@ -148,8 +147,8 @@ struct ContentView: View {
                         })
                         
                         Button{
-                           
                             settingsButtonAnimated = true
+                            isShowingSettings = true
                             feedback.notificationOccurred(.success)
                         } label: {
                             Image(systemName: "gear")
@@ -166,7 +165,12 @@ struct ContentView: View {
                             }
                         })
                         
-                                
+                        .alert("Image saved", isPresented: $showingAlert) {
+                                   Button("OK", role: .cancel) { }
+                               }
+                        .sheet(isPresented: $isShowingSettings) {
+                            Settings()
+                        }
                         }
                     .onAppear {
                         feedback.prepare()
@@ -569,6 +573,7 @@ struct ContentView: View {
                                  }
                              }
                                  .presentationDetents([.large, .fraction(0.9)])
+                                 .presentationDragIndicator(.hidden)
                          }
      
             }.ignoresSafeArea()
@@ -612,12 +617,6 @@ struct ContentView: View {
        
     }
 
-    func calculateScreenSize(geometry: GeometryProxy) -> (width: CGFloat, height: CGFloat) {
-        let screenSize = geometry.size
-        let width = screenSize.width
-        let height = screenSize.height
-        return (width, height)
-    }
 }
     
 

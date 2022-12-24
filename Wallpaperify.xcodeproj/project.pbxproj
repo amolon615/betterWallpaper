@@ -11,6 +11,7 @@
 		AC2DD354294A7D7600E64523 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2DD353294A7D7600E64523 /* ContentView.swift */; };
 		AC2DD356294A7D7700E64523 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC2DD355294A7D7700E64523 /* Assets.xcassets */; };
 		AC2DD359294A7D7700E64523 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC2DD358294A7D7700E64523 /* Preview Assets.xcassets */; };
+		ACC0F10129561E2A00264A0A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC0F10029561E2A00264A0A /* Settings.swift */; };
 		ACF081AF2955C3E00083F119 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF081AE2955C3E00083F119 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -20,6 +21,7 @@
 		AC2DD353294A7D7600E64523 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AC2DD355294A7D7700E64523 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC2DD358294A7D7700E64523 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		ACC0F10029561E2A00264A0A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		ACF081AE2955C3E00083F119 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -55,6 +57,7 @@
 			children = (
 				AC2DD351294A7D7600E64523 /* Wallpaperify.swift */,
 				AC2DD353294A7D7600E64523 /* ContentView.swift */,
+				ACC0F10029561E2A00264A0A /* Settings.swift */,
 				ACF081AE2955C3E00083F119 /* Extensions.swift */,
 				AC2DD355294A7D7700E64523 /* Assets.xcassets */,
 				AC2DD357294A7D7700E64523 /* Preview Content */,
@@ -142,6 +145,7 @@
 			files = (
 				ACF081AF2955C3E00083F119 /* Extensions.swift in Sources */,
 				AC2DD354294A7D7600E64523 /* ContentView.swift in Sources */,
+				ACC0F10129561E2A00264A0A /* Settings.swift in Sources */,
 				AC2DD352294A7D7600E64523 /* Wallpaperify.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
