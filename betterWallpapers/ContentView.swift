@@ -30,33 +30,33 @@ struct ContentView: View {
         
             switch device {
             
-            case "iPhone 8 Plus" : cgWidth = 414 ; cgHeight = 736
-            case "iPhone 8" : cgWidth = 375 ; cgHeight = 667
-            case "iPhone 7 Plus" : cgWidth = 414 ; cgHeight = 736
-            case "iPhone 7": cgWidth = 375 ; cgHeight = 667
-            case "iPhone 6s Plus": cgWidth = 414 ; cgHeight = 736
-            case "iPhone X": cgWidth = 375 ; cgHeight = 812
-            case "iPhone XS": cgWidth = 375 ; cgHeight = 812
-            case "iPhone XS Max": cgWidth = 414 ; cgHeight = 896
-            case "iPhone XR": cgWidth = 414 ; cgHeight = 896
-            case "iPhone 11": cgWidth = 414 ; cgHeight = 896
-            case "iPhone 11 Pro": cgWidth = 375 ; cgHeight = 812
-            case "iPhone 11 Pro Max": cgWidth = 414 ; cgHeight = 896
-            case "iPhone SE (2nd generation)": cgWidth = 375 ; cgHeight = 667
-            case "iPhone 12 mini": cgWidth = 360 ; cgHeight = 780
-            case "iPhone 12": cgWidth = 390 ;  cgHeight = 844
-            case "iPhone 12 Pro": cgWidth = 390 ; cgHeight = 844
-            case "iPhone 12 Pro Max":  cgWidth = 428 ; cgHeight = 926
-            case "iPhone 13 mini": cgWidth = 375 ; cgHeight = 812
-            case "iPhone 13": cgWidth = 390 ; cgHeight = 844
-            case "iPhone 13 Pro": cgWidth = 390 ; cgHeight = 844
-            case "iPhone 13 Pro Max": cgWidth = 428 ; cgHeight = 926
-            case "iPhone SE (3rd generation)":cgWidth = 320 ; cgHeight = 568
-            case "iPhone 14": cgWidth = 390 ; cgHeight = 844
-            case "iPhone 14 Plus": cgWidth = 428 ; cgHeight = 926
-            case "iPhone 14 Pro": cgWidth = 393 ; cgHeight = 852
-            case "iPhone 14 Pro Max": cgWidth = 430 ; cgHeight = 932
-            default: cgWidth = 300 ; cgHeight = 500
+            case "iPhone 8 Plus" : self.cgWidth = 414 ; self.cgHeight = 736
+            case "iPhone 8" : self.cgWidth = 375 ; self.cgHeight = 667
+            case "iPhone 7 Plus" : self.cgWidth = 414 ; self.cgHeight = 736
+            case "iPhone 7": self.cgWidth = 375 ; self.cgHeight = 667
+            case "iPhone 6s Plus": self.cgWidth = 414 ; self.cgHeight = 736
+            case "iPhone X": self.cgWidth = 375 ; self.cgHeight = 812
+            case "iPhone XS": self.cgWidth = 375 ; self.cgHeight = 812
+            case "iPhone XS Max": self.cgWidth = 414 ; self.cgHeight = 896
+            case "iPhone XR": self.cgWidth = 414 ; self.cgHeight = 896
+            case "iPhone 11": self.cgWidth = 414 ; self.cgHeight = 896
+            case "iPhone 11 Pro": self.cgWidth = 375 ; self.cgHeight = 812
+            case "iPhone 11 Pro Max": self.cgWidth = 414 ; self.cgHeight = 896
+            case "iPhone SE (2nd generation)": self.cgWidth = 375 ; self.cgHeight = 667
+            case "iPhone 12 mini": self.cgWidth = 360 ; self.cgHeight = 780
+            case "iPhone 12": self.cgWidth = 390 ;  self.cgHeight = 844
+            case "iPhone 12 Pro": self.cgWidth = 390 ; self.cgHeight = 844
+            case "iPhone 12 Pro Max":  self.cgWidth = 428 ; self.cgHeight = 926
+            case "iPhone 13 mini": self.cgWidth = 375 ; self.cgHeight = 812
+            case "iPhone 13": self.cgWidth = 390 ; self.cgHeight = 844
+            case "iPhone 13 Pro": self.cgWidth = 390 ; self.cgHeight = 844
+            case "iPhone 13 Pro Max": self.cgWidth = 428 ; self.cgHeight = 926
+            case "iPhone SE (3rd generation)":self.cgWidth = 320 ; self.cgHeight = 568
+            case "iPhone 14": self.cgWidth = 390 ; self.cgHeight = 844
+            case "iPhone 14 Plus": self.cgWidth = 428 ; self.cgHeight = 926
+            case "iPhone 14 Pro": self.cgWidth = 393 ; self.cgHeight = 852
+            case "iPhone 14 Pro Max": self.cgWidth = 430 ; self.cgHeight = 932
+            default: self.cgWidth = 320 ; self.cgHeight = 568
             }
         
         print("cgWidth is \(cgWidth), cgHeight is \(cgHeight). Phone is \(UIDevice.modelName)")
@@ -82,6 +82,10 @@ struct ContentView: View {
     @State var saveButtonAnimated = false
     @State var settingsButtonAnimated = false
     @State var infoButtonAnimated = false
+    
+    @State var color1SelectedAnimation = false
+    @State var color2SelectedAnimation = false
+    
     
     @State var pickedColor: Color = .orange
     
