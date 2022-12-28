@@ -56,6 +56,47 @@ struct ContentView: View {
             case "iPhone 14 Plus": self.cgWidth = 428 ; self.cgHeight = 926
             case "iPhone 14 Pro": self.cgWidth = 393 ; self.cgHeight = 852
             case "iPhone 14 Pro Max": self.cgWidth = 430 ; self.cgHeight = 932
+                
+                
+            case "iPad 2": self.cgWidth = 1024 ; self.cgHeight = 768
+            case "iPad (3rd generation)" : self.cgWidth = 2048 ; self.cgHeight = 1536
+            case "iPad (4th generation)": self.cgWidth = 2048 ; self.cgHeight = 1536
+            case "iPad (5th generation)": self.cgWidth = 2360 ; self.cgHeight = 932
+            case "iPad Pro (12.9-inch) (6th generation)": self.cgWidth = 1024 ; self.cgHeight = 1366
+                
+            case "iPad Pro (12.9-inch) (6th generation)": self.cgWidth = 1024 ; self.cgHeight = 1366
+            case "iPad Pro (12.9-inch) (5th generation)": self.cgWidth = 1024 ; self.cgHeight = 1366
+            case "iPad Pro (12.9-inch) (4th generation)": self.cgWidth = 1024 ; self.cgHeight = 1366
+            case "iPad Pro (12.9-inch) (3rd generation)": self.cgWidth = 1024 ; self.cgHeight = 1366
+            case "iPad Pro (12.9-inch) (2nd generation)": self.cgWidth = 1024 ; self.cgHeight = 1366
+            case "iPad Pro (12.9-inch) (1st generation)": self.cgWidth = 1024 ; self.cgHeight = 1366
+                
+            case "iPad Pro (9.7-inch)" : self.cgWidth = 769 ; self.cgHeight = 1024
+            case "iPad Pro (10.5-inch)" : self.cgWidth = 834 ; self.cgHeight = 1112
+                
+            case "iPad Pro (11-inch) (1st generation)" : self.cgWidth = 834 ; self.cgHeight = 1194
+            case "iPad Pro (11-inch) (2nd generation)" : self.cgWidth = 834 ; self.cgHeight = 1194
+            case "iPad Pro (11-inch) (3rd generation)" : self.cgWidth = 834 ; self.cgHeight = 1194
+            case "iPad Pro (11-inch) (4th generation)" : self.cgWidth = 834 ; self.cgHeight = 1194
+                
+            case "iPad Air" : self.cgWidth = 768 ; self.cgHeight = 1024
+            case "iPad Air 2" : self.cgWidth = 768 ; self.cgHeight = 1024
+            case "iPad Air (3rd generation)" : self.cgWidth = 834 ; self.cgHeight = 1112
+            case "iPad Air (4th generation)" : self.cgWidth = 820 ; self.cgHeight = 1180
+            case "iPad Air (5th generation)" : self.cgWidth = 820 ; self.cgHeight = 1180
+                
+            case "iPad mini" : self.cgWidth = 768 ; self.cgHeight = 1024
+            case "iPad mini 2" : self.cgWidth = 768 ; self.cgHeight = 1024
+            case "iPad mini 3" : self.cgWidth = 768 ; self.cgHeight = 1024
+            case "iPad mini 4" : self.cgWidth = 768 ; self.cgHeight = 1024
+            case "iPad mini (5th generation)" : self.cgWidth = 768 ; self.cgHeight = 1024
+            case "iPad mini (6th generation)" : self.cgWidth = 744 ; self.cgHeight = 1133
+                
+            
+                
+                
+            
+                
             default: self.cgWidth = 320 ; self.cgHeight = 568
             }
         
@@ -498,7 +539,6 @@ struct ContentView: View {
                                                              .onTapGesture {
                                                                  pickedGradientColor1 = .green
                                                              }
-                                                         
                                                      }
                                                      HStack{
                                                          Circle()
@@ -626,6 +666,7 @@ struct ContentView: View {
                    .padding(paddingEdits)
                    .ignoresSafeArea()
            }
+            
         }
        
     }
@@ -635,10 +676,12 @@ struct ContentView: View {
            if solidOrGradientSelected == "Solid fill" {
                 pickedColor
                     .ignoresSafeArea()
+            
                     
            } else {
                LinearGradient(gradient: Gradient(colors: [pickedGradientColor1, pickedGradientColor2]), startPoint: .leading, endPoint: .trailing)
                    .ignoresSafeArea()
+             
            }
         }
        
