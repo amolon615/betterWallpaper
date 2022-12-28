@@ -11,53 +11,7 @@ import UIKit
 import SystemConfiguration
 import StoreKit
 
-public extension UIDevice {
-  static let modelName: String = {
-    var systemInfo = utsname()
-    uname(&systemInfo)
-    let machineMirror = Mirror(reflecting: systemInfo.machine)
-    let identifier = machineMirror.children.reduce("") { identifier, element in
-      guard let value = element.value as? Int8, value != 0 else { return identifier }
-      return identifier + String(UnicodeScalar(UInt8(value)))
-    }
-    
-    func mapToDevice(identifier: String) -> String {
-      #if os(iOS)
-      switch identifier {
- 
-      case "iPhone10,3", "iPhone10,6":                return "iPhone X"
-      case "iPhone11,2":                              return "iPhone XS"
-      case "iPhone11,4", "iPhone11,6":                return "iPhone XS Max"
-      case "iPhone11,8":                              return "iPhone XR"
-      case "iPhone12,1":                              return "iPhone 11"
-      case "iPhone12,3":                              return "iPhone 11 Pro"
-      case "iPhone12,5":                              return "iPhone 11 Pro max"
-      case "iPhone12,8":                              return "iPhone SE (2nd generation)"
-      case "iPhone13,1":                              return "iPhone 12 mini"
-      case "iPhone13,2":                              return "iPhone 12"
-      case "iPhone13,3":                              return "iPhone 12 Pro"
-      case "iPhone13,4":                              return "iPhone 12 Pro Max"
-      case "iPhone14,4":                              return "iPhone 13 mini"
-      case "iPhone14,5":                              return "iPhone 13"
-      case "iPhone14,2":                              return "iPhone 13 Pro"
-      case "iPhone14,3":                              return "iPhone 13 Pro Max"
-      case "iPhone14,6":                              return "iPhone SE (3rd generation)"
-      case "iPhone14,7":                              return "iPhone 14"
-      case "iPhone14,8":                              return "iPhone 14 Plus"
-      case "iPhone15,2":                              return "iPhone 14 Pro"
-      case "iPhone15,3":                              return "iPhone 14 Pro Max"
-          
-      
-      case "AudioAccessory1,1":                       return "HomePod"
-      case "i386", "x86_64":                          return "Simulator \(mapToDevice(identifier: ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? "iOS"))"
-      default:                                        return identifier
-      }
-      #endif
-    }
-    
-    return mapToDevice(identifier: identifier)
-  }()
-}
+
 
 struct ContentView: View {
     
@@ -75,6 +29,12 @@ struct ContentView: View {
         UISegmentedControl.appearance().selectedSegmentTintColor = .orange
         
             switch device {
+            
+            case "iPhone 8 Plus" : cgWidth = 414 ; cgHeight = 736
+            case "iPhone 8" : cgWidth = 375 ; cgHeight = 667
+            case "iPhone 7 Plus" : cgWidth = 414 ; cgHeight = 736
+            case "iPhone 7": cgWidth = 375 ; cgHeight = 667
+            case "iPhone 6s Plus": cgWidth = 414 ; cgHeight = 736
             case "iPhone X": cgWidth = 375 ; cgHeight = 812
             case "iPhone XS": cgWidth = 375 ; cgHeight = 812
             case "iPhone XS Max": cgWidth = 414 ; cgHeight = 896
@@ -100,6 +60,7 @@ struct ContentView: View {
             }
         
         print("cgWidth is \(cgWidth), cgHeight is \(cgHeight). Phone is \(UIDevice.modelName)")
+        print(device)
         }
     
 
@@ -262,12 +223,12 @@ struct ContentView: View {
                                          if strokeOrFillSelected == "Stroke" {
                                              Text("Slide to edit stroke width")
                                                  .padding()
-                                             Slider(value: $paddingEdits, in: 1...10)
+                                             Slider(value: $paddingEdits, in: 1...20)
                                                  .frame(width: 250)
                                                  .padding()
                                              Text("Slide to edit corner radius")
                                                  .padding()
-                                             Slider(value: $radiusCorner, in: 30...50)
+                                             Slider(value: $radiusCorner, in: 1...50)
                                                  .frame(width: 250)
                                                  .padding()
                                              Text("Choose your color")
@@ -632,24 +593,29 @@ struct ContentView: View {
     
         
     }
-    
+    //stroke
     var myView: some View {
         ZStack {
            if solidOrGradientSelected == "Solid fill"{
-                pickedColor
-                    .ignoresSafeArea()
+                Rectangle()
+                    .fill(pickedColor)
                     .cornerRadius(radiusCorner)
-                    .background(Color.black)
+                    .background(.black)
+                    .ignoresSafeArea()
+
                 Rectangle()
                     .fill(.black)
                     .cornerRadius(radiusCorner)
                     .padding(paddingEdits)
                     .ignoresSafeArea()
            } else {
-               LinearGradient(gradient: Gradient(colors: [pickedGradientColor1, pickedGradientColor2]), startPoint: .center, endPoint: .trailing)
-                   .ignoresSafeArea()
+               Rectangle()
+                   .fill(LinearGradient(gradient: Gradient(colors: [pickedGradientColor1, pickedGradientColor2]), startPoint: .center, endPoint: .trailing))
                    .cornerRadius(radiusCorner)
-                   .background(Color.black)
+                   .background(.black)
+              
+                   .ignoresSafeArea()
+
                Rectangle()
                    .fill(.black)
                    .cornerRadius(radiusCorner)
@@ -659,7 +625,7 @@ struct ContentView: View {
         }
        
     }
-    
+    //fill
     var FilledView: some View {
         ZStack {
            if solidOrGradientSelected == "Solid fill" {

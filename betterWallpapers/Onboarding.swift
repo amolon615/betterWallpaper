@@ -118,7 +118,7 @@ struct Onboarding: View {
         .tabViewStyle(PageTabViewStyle())
         .tabViewStyle(.page(indexDisplayMode: .never))
         .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-        .edgesIgnoringSafeArea(.all)
+//        .edgesIgnoringSafeArea(.all)
     }
     
     func saveOnboardingStatus(key: String, value: Bool) {
