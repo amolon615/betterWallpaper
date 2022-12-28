@@ -64,7 +64,6 @@ struct ContentView: View {
             case "iPad (5th generation)": self.cgWidth = 2360 ; self.cgHeight = 932
             case "iPad Pro (12.9-inch) (6th generation)": self.cgWidth = 1024 ; self.cgHeight = 1366
                 
-            case "iPad Pro (12.9-inch) (6th generation)": self.cgWidth = 1024 ; self.cgHeight = 1366
             case "iPad Pro (12.9-inch) (5th generation)": self.cgWidth = 1024 ; self.cgHeight = 1366
             case "iPad Pro (12.9-inch) (4th generation)": self.cgWidth = 1024 ; self.cgHeight = 1366
             case "iPad Pro (12.9-inch) (3rd generation)": self.cgWidth = 1024 ; self.cgHeight = 1366
