@@ -12,7 +12,7 @@ import SwiftUI
 struct BetterWallpapers: App {
     var body: some Scene {
         WindowGroup {
-            ViewFlows()
+            ContentView()
         }
     }
 }
