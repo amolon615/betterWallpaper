@@ -11,7 +11,7 @@ import SwiftUI
 
 
 
-struct test: View {
+struct SelectView: View {
 
     
     @State var cardWidth = UIScreen.main.bounds.width
@@ -33,11 +33,11 @@ struct test: View {
     
     var body: some View {
         
-        HStack{
+        HStack(alignment: .center){
             ZStack{
-                Rectangle().fill(.blue.opacity(0.5))
+                FilledGradientView()
                     .frame(width: isPressedBlue ? cardWidth : cardWidth * 0.7, height: isPressedBlue ? cardHeight : cardHeight * 0.7)
-                    .cornerRadius(isPressedBlue ? 40 : 10)
+                    .cornerRadius(40)
                     .ignoresSafeArea()
                     .padding(isPressedBlue ? 20 : 10)
                     .offset(x: startingOffsetX)
@@ -79,14 +79,20 @@ struct test: View {
                             closed.toggle()
                         }
                     }
+                VStack{
+                    Rectangle()
+                        .fill(.blue)
+                        .frame(width: 100, height: 50)
+                }
+              
             
             }
                 
             
             ZStack{
-                Rectangle().fill(.red.opacity(0.5))
+                FilledSolidView()
                     .frame(width: isPressedRed ? cardWidth : cardWidth * 0.7, height: isPressedRed ? cardHeight : cardHeight * 0.7)
-                    .cornerRadius(isPressedRed ? 40 : 10)
+                    .cornerRadius(40)
                     .ignoresSafeArea()
                     .padding(isPressedRed ? 20 : 10)
                     .offset(x: startingOffsetX)
@@ -120,8 +126,17 @@ struct test: View {
                         }) : nil
                     
                     )
+                    .onTapGesture {
+                        withAnimation(.spring()){
+                            isPressedRed.toggle()
+                            isPressedBlue = false
+                            isPressedGreen = false
+                            
+                            closed.toggle()
+                        }
+                    }
              
-                 
+//                debug coordinates
                 VStack{
                     Text("Current drag x: \(currentDragOffsetX)") .font(.headline)
                     Text("Starting drag x: \(startingOffsetX)").font(.headline)
@@ -131,9 +146,9 @@ struct test: View {
             }
             
             ZStack{
-                Rectangle().fill(.green.opacity(0.5))
+                StrokeGradientView()
                     .frame(width: isPressedGreen ? cardWidth : cardWidth * 0.7, height: isPressedGreen ? cardHeight : cardHeight * 0.7)
-                    .cornerRadius(isPressedGreen ? 40 : 10)
+                    .cornerRadius(40)
                     .ignoresSafeArea()
                     .padding(isPressedGreen ? 20 : 10)
                     .offset(x: startingOffsetX)
@@ -185,8 +200,8 @@ struct test: View {
 
 
 
-struct test_Previews: PreviewProvider {
+struct SelectView_Previews: PreviewProvider {
     static var previews: some View {
-        test()
+        SelectView()
     }
 }

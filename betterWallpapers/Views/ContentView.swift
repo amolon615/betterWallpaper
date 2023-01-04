@@ -107,78 +107,7 @@ struct ContentView: View {
             
             //edit image view
             .sheet(isPresented: $vm.isShowingEdits) {
-                ZStack{
-                    ScrollView{
-                        Picker("Select amount of minutes", selection: $vm.strokeOrFillSelected) {
-                            withAnimation{
-                                ForEach(vm.strokeOrFill, id:\.self) {
-                                    Text("\($0)")
-                                }
-                            }
-                        }.pickerStyle(.segmented)
-                            .frame(width: 250)
-                            .padding()
-                        
-                        Picker("Select amount of minutes", selection: $vm.solidOrGradientSelected) {
-                            withAnimation{
-                                ForEach(vm.solidOrGradient, id:\.self) {
-                                    Text("\($0)")
-                                }
-                            }
-                        }.pickerStyle(.segmented)
-                            .frame(width: 250)
-                            .padding()
-                        
-                        if vm.strokeOrFillSelected == "Stroke" {
-                            Text("Slide to edit stroke width")
-                                .padding()
-                            Slider(value: $vm.paddingEdits, in: 1...20)
-                                .frame(width: 250)
-                                .padding()
-                            Text("Slide to edit corner radius")
-                                .padding()
-                            Slider(value: $vm.radiusCorner, in: 1...50)
-                                .frame(width: 250)
-                                .padding()
-                            Text("Choose your color")
-                            
-                            if vm.solidOrGradientSelected == "Solid fill" {
-                                
-                                ColorPickerView()
-                                
-                            } else {
-                                VStack{
-                                    Text("Select 1st color")
-                                        .padding()
-                                    ColorPickerView()
-                                    Text("Select 2snd color")
-                                        .padding()
-                                   ColorPickerGradients()
-                                   
-                                }
-                            }
-                        } else {
-                            Text("Choose your color")
-                            
-                            if vm.solidOrGradientSelected == "Solid fill" {
-                                ColorPickerView()
-                            } else {
-                                VStack{
-                                    Text("Select 1st color")
-                                        .padding()
-                                    ColorPickerView()
-                                    Text("Select 2snd color")
-                                        .padding()
-                                 
-                                ColorPickerGradients()
-                                }
-                            }
-                            
-                        }
-                        
-                        
-                    }
-                }
+                Edits()
                 .presentationDetents([.large, .fraction(0.9)])
                 .presentationDragIndicator(.hidden)
             }
@@ -190,6 +119,84 @@ struct ContentView: View {
     
 }
     
+struct Edits: View {
+    @EnvironmentObject var vm: WallpapersViewModel
+    var body: some View{
+        ZStack{
+            ScrollView{
+                Picker("Select amount of minutes", selection: $vm.strokeOrFillSelected) {
+                    withAnimation{
+                        ForEach(vm.strokeOrFill, id:\.self) {
+                            Text("\($0)")
+                        }
+                    }
+                }.pickerStyle(.segmented)
+                    .frame(width: 250)
+                    .padding()
+                
+                Picker("Select amount of minutes", selection: $vm.solidOrGradientSelected) {
+                    withAnimation{
+                        ForEach(vm.solidOrGradient, id:\.self) {
+                            Text("\($0)")
+                        }
+                    }
+                }.pickerStyle(.segmented)
+                    .frame(width: 250)
+                    .padding()
+                
+                if vm.strokeOrFillSelected == "Stroke" {
+                    Text("Slide to edit stroke width")
+                        .padding()
+                    Slider(value: $vm.paddingEdits, in: 1...20)
+                        .frame(width: 250)
+                        .padding()
+                    Text("Slide to edit corner radius")
+                        .padding()
+                    Slider(value: $vm.radiusCorner, in: 1...50)
+                        .frame(width: 250)
+                        .padding()
+                    Text("Choose your color")
+                    
+                    if vm.solidOrGradientSelected == "Solid fill" {
+                        
+                        ColorPickerView()
+                        
+                    } else {
+                        VStack{
+                            Text("Select 1st color")
+                                .padding()
+                            ColorPickerView()
+                            Text("Select 2snd color")
+                                .padding()
+                           ColorPickerGradients()
+                           
+                        }
+                    }
+                } else {
+                    Text("Choose your color")
+                    
+                    if vm.solidOrGradientSelected == "Solid fill" {
+                        ColorPickerView()
+                    } else {
+                        VStack{
+                            Text("Select 1st color")
+                                .padding()
+                            ColorPickerView()
+                            Text("Select 2snd color")
+                                .padding()
+                         
+                        ColorPickerGradients()
+                        }
+                    }
+                    
+                }
+                
+                
+            }
+        }
+    }
+}
+
 
 
 

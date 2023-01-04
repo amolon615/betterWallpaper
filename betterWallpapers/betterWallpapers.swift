@@ -13,7 +13,7 @@ struct BetterWallpapers: App {
     @StateObject var vm = WallpapersViewModel()
     var body: some Scene {
         WindowGroup {
-            test()
+            ContentView()
                 .environmentObject(vm)
         }
     }
