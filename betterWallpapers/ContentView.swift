@@ -12,128 +12,133 @@ import SystemConfiguration
 import StoreKit
 
 
-
-struct ContentView: View {
-    
-    @Environment(\.requestReview) var requestReview
-    
-    @State private var feedback = UINotificationFeedbackGenerator()
-    @State private var showingAlert = false
+final class WallpapersViewModel: ObservableObject {
+    @Published  var feedback = UINotificationFeedbackGenerator()
+    @Published  var showingAlert = false
     
     
-    var cgWidth: CGFloat = UIScreen.main.bounds.width
-    var cgHeight: CGFloat = UIScreen.main.bounds.height
+    @Published var cgWidth: CGFloat = UIScreen.main.bounds.width
+    @Published var cgHeight: CGFloat = UIScreen.main.bounds.height
     
     
     
     
     //menu controls
-    @State var isShowingEdits = false
-    @State var isShowingSettings = false
+    @Published var isShowingEdits = false
+    @Published var isShowingSettings = false
     
     let strokeOrFill = ["Stroke", "Fill"]
-    @State var strokeOrFillSelected = "Fill"
+    @Published var strokeOrFillSelected = "Fill"
     
     let solidOrGradient = ["Solid fill", "Gradient fill"]
-    @State var solidOrGradientSelected = "Gradient fill"
+    @Published var solidOrGradientSelected = "Gradient fill"
     
     
-    @State var radiusCorner: CGFloat = 40
-    @State var paddingEdits: CGFloat = 10
+    @Published var radiusCorner: CGFloat = 40
+    @Published var paddingEdits: CGFloat = 10
     
-    @State var editButtonAnimated = false
-    @State var saveButtonAnimated = false
-    @State var settingsButtonAnimated = false
-    @State var infoButtonAnimated = false
+    @Published var editButtonAnimated = false
+    @Published var saveButtonAnimated = false
+    @Published var settingsButtonAnimated = false
+    @Published var infoButtonAnimated = false
     
-    @State var color1SelectedAnimation = false
-    @State var color2SelectedAnimation = false
+    @Published var color1SelectedAnimation = false
+    @Published var color2SelectedAnimation = false
     
     
-    @State var pickedColor: Color = .orange
+    @Published var pickedColor: Color = .orange
     
-    @State var pickedGradientColor1: Color = .orange
-    @State var pickedGradientColor2: Color = .red
+    @Published var pickedGradientColor1: Color = .orange
+    @Published var pickedGradientColor2: Color = .red
+}
+
+
+struct ContentView: View {
+    
+    @Environment(\.requestReview) var requestReview
+  
+    @EnvironmentObject var vm: WallpapersViewModel
+
     
     var body: some View {
         
         ZStack(alignment: .bottom){
-            
-            MainView
+            let mainView = MainView().environmentObject(vm)
+            mainView
             
             ZStack{
                 HStack{
                     Button{
-                        isShowingEdits = true
-                        feedback.notificationOccurred(.success)
-                        editButtonAnimated = true
+                        vm.isShowingEdits = true
+                        vm.feedback.notificationOccurred(.success)
+                        vm.editButtonAnimated = true
                     } label: {
                         Image(systemName: "slider.vertical.3")
                     }
                     .frame(width: 70, height: 70)
-                    .background(editButtonAnimated ? .black.opacity(0.3) : .black.opacity(0.7))
-                    .clipShape(RoundedRectangle(cornerRadius: editButtonAnimated ? 50 : 15))
+                    .background(vm.editButtonAnimated ? .black.opacity(0.3) : .black.opacity(0.7))
+                    .clipShape(RoundedRectangle(cornerRadius: vm.editButtonAnimated ? 50 : 15))
                     .foregroundColor(.white)
-                    .scaleEffect(editButtonAnimated ? 0.8 : 1)
+                    .scaleEffect(vm.editButtonAnimated ? 0.8 : 1)
                     
-                    .onChange(of: editButtonAnimated, perform: { newValue in
+                    .onChange(of: vm.editButtonAnimated, perform: { newValue in
                         withAnimation(.easeInOut(duration: 0.3)){
-                            editButtonAnimated = false
+                            vm.editButtonAnimated = false
                         }
                     })
                     
                     Button {
-                        feedback.notificationOccurred(.success)
-                        let highresImage = MainView.asImage(size: CGSize(width: cgWidth, height: cgHeight))
+                        vm.feedback.notificationOccurred(.success)
+                        let highresImage = mainView.asImage(size: CGSize(width: vm.cgWidth, height: vm.cgHeight))
                         UIImageWriteToSavedPhotosAlbum(highresImage, nil, nil, nil)
                         
-                        showingAlert.toggle()
-                        saveButtonAnimated = true
+                        vm.showingAlert.toggle()
+                        vm.saveButtonAnimated = true
                         
                     } label: {
                         Image(systemName: "square.and.arrow.down")
                     }
                     
                     .frame(width: 70, height: 70)
-                    .background(saveButtonAnimated ? .black.opacity(0.2) : .black.opacity(0.7))
-                    .clipShape(RoundedRectangle(cornerRadius: saveButtonAnimated ? 50 : 15))
+                    .background(vm.saveButtonAnimated ? .black.opacity(0.2) : .black.opacity(0.7))
+                    .clipShape(RoundedRectangle(cornerRadius: vm.saveButtonAnimated ? 50 : 15))
                     .foregroundColor(.white)
-                    .scaleEffect(saveButtonAnimated ? 0.8 : 1)
+                    .scaleEffect(vm.saveButtonAnimated ? 0.8 : 1)
                     
-                    .onChange(of: saveButtonAnimated, perform: { newValue in
+                    .onChange(of: vm.saveButtonAnimated, perform: { newValue in
                         withAnimation(.easeInOut(duration: 0.3)){
-                            saveButtonAnimated = false
+                            vm.saveButtonAnimated = false
                         }
                     })
                     
                     Button{
-                        settingsButtonAnimated = true
-                        isShowingSettings = true
-                        feedback.notificationOccurred(.success)
+                        vm.settingsButtonAnimated = true
+                        vm.isShowingSettings = true
+                        vm.feedback.notificationOccurred(.success)
                     } label: {
                         Image(systemName: "gear")
                     }
                     .frame(width: 70, height: 70)
-                    .background(settingsButtonAnimated ? .black.opacity(0.2) : .black.opacity(0.7))
-                    .clipShape(RoundedRectangle(cornerRadius: settingsButtonAnimated ? 50 : 15))
+                    .background(vm.settingsButtonAnimated ? .black.opacity(0.2) : .black.opacity(0.7))
+                    .clipShape(RoundedRectangle(cornerRadius: vm.settingsButtonAnimated ? 50 : 15))
                     .foregroundColor(.white)
-                    .scaleEffect(settingsButtonAnimated ? 0.8 : 1)
+                    .scaleEffect(vm.settingsButtonAnimated ? 0.8 : 1)
                     
-                    .onChange(of: settingsButtonAnimated, perform: { newValue in
+                    .onChange(of: vm.settingsButtonAnimated, perform: { newValue in
                         withAnimation(.easeInOut(duration: 0.3)){
-                            settingsButtonAnimated = false
+                            vm.settingsButtonAnimated = false
                         }
                     })
                     
-                    .alert("Image saved", isPresented: $showingAlert) {
+                    .alert("Image saved", isPresented: $vm.showingAlert) {
                         Button("OK", role: .cancel) { }
                     }
-                    .sheet(isPresented: $isShowingSettings) {
+                    .sheet(isPresented: $vm.isShowingSettings) {
                         Settings()
                     }
                 }
                 .onAppear {
-                    feedback.prepare()
+                    vm.feedback.prepare()
                 }
             }
             .frame(width: 250, height: 90)
@@ -144,12 +149,12 @@ struct ContentView: View {
             
             
             //edit image view
-            .sheet(isPresented: $isShowingEdits) {
+            .sheet(isPresented: $vm.isShowingEdits) {
                 ZStack{
                     ScrollView{
-                        Picker("Select amount of minutes", selection: $strokeOrFillSelected) {
+                        Picker("Select amount of minutes", selection: $vm.strokeOrFillSelected) {
                             withAnimation{
-                                ForEach(strokeOrFill, id:\.self) {
+                                ForEach(vm.strokeOrFill, id:\.self) {
                                     Text("\($0)")
                                 }
                             }
@@ -157,9 +162,9 @@ struct ContentView: View {
                             .frame(width: 250)
                             .padding()
                         
-                        Picker("Select amount of minutes", selection: $solidOrGradientSelected) {
+                        Picker("Select amount of minutes", selection: $vm.solidOrGradientSelected) {
                             withAnimation{
-                                ForEach(solidOrGradient, id:\.self) {
+                                ForEach(vm.solidOrGradient, id:\.self) {
                                     Text("\($0)")
                                 }
                             }
@@ -167,46 +172,46 @@ struct ContentView: View {
                             .frame(width: 250)
                             .padding()
                         
-                        if strokeOrFillSelected == "Stroke" {
+                        if vm.strokeOrFillSelected == "Stroke" {
                             Text("Slide to edit stroke width")
                                 .padding()
-                            Slider(value: $paddingEdits, in: 1...20)
+                            Slider(value: $vm.paddingEdits, in: 1...20)
                                 .frame(width: 250)
                                 .padding()
                             Text("Slide to edit corner radius")
                                 .padding()
-                            Slider(value: $radiusCorner, in: 1...50)
+                            Slider(value: $vm.radiusCorner, in: 1...50)
                                 .frame(width: 250)
                                 .padding()
                             Text("Choose your color")
                             
                             
-                            if solidOrGradientSelected == "Solid fill" {
+                            if vm.solidOrGradientSelected == "Solid fill" {
                                 
                                 HStack{
                                     Circle()
                                         .fill(.red)
                                         .frame(width: 50, height: 50)
                                         .onTapGesture {
-                                            pickedColor = .red
+                                            vm.pickedColor = .red
                                         }
                                     Circle()
                                         .fill(.blue)
                                         .frame(width: 50, height: 50)
                                         .onTapGesture {
-                                            pickedColor = .blue
+                                            vm.pickedColor = .blue
                                         }
                                     Circle()
                                         .fill(.yellow)
                                         .frame(width: 50, height: 50)
                                         .onTapGesture {
-                                            pickedColor = .yellow
+                                            vm.pickedColor = .yellow
                                         }
                                     Circle()
                                         .fill(.green)
                                         .frame(width: 50, height: 50)
                                         .onTapGesture {
-                                            pickedColor = .green
+                                            vm.pickedColor = .green
                                         }
                                     
                                 }
@@ -215,25 +220,25 @@ struct ContentView: View {
                                         .fill(.purple)
                                         .frame(width: 50, height: 50)
                                         .onTapGesture {
-                                            pickedColor = .purple
+                                            vm.pickedColor = .purple
                                         }
                                     Circle()
                                         .fill(.orange)
                                         .frame(width: 50, height: 50)
                                         .onTapGesture {
-                                            pickedColor = .orange
+                                            vm.pickedColor = .orange
                                         }
                                     Circle()
                                         .fill(.pink)
                                         .frame(width: 50, height: 50)
                                         .onTapGesture {
-                                            pickedColor = .pink
+                                            vm.pickedColor = .pink
                                         }
                                     Circle()
                                         .fill(.gray)
                                         .frame(width: 50, height: 50)
                                         .onTapGesture {
-                                            pickedColor = .gray
+                                            vm.pickedColor = .gray
                                         }
                                 }
                                 
@@ -246,26 +251,26 @@ struct ContentView: View {
                                             .fill(.red)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor1 = .red
+                                                vm.pickedGradientColor1 = .red
                                                 print("red color tapped")
                                             }
                                         Circle()
                                             .fill(.blue)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor1 = .blue
+                                                vm.pickedGradientColor1 = .blue
                                             }
                                         Circle()
                                             .fill(.yellow)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor1 = .yellow
+                                                vm.pickedGradientColor1 = .yellow
                                             }
                                         Circle()
                                             .fill(.green)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor1 = .green
+                                                vm.pickedGradientColor1 = .green
                                             }
                                         
                                     }
@@ -274,25 +279,25 @@ struct ContentView: View {
                                             .fill(.purple)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor1 = .purple
+                                                vm.pickedGradientColor1 = .purple
                                             }
                                         Circle()
                                             .fill(.orange)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor1 = .orange
+                                                vm.pickedGradientColor1 = .orange
                                             }
                                         Circle()
                                             .fill(.pink)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor1 = .pink
+                                                vm.pickedGradientColor1 = .pink
                                             }
                                         Circle()
                                             .fill(.gray)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor1 = .gray
+                                                vm.pickedGradientColor1 = .gray
                                             }
                                     }
                                     Text("Select 2snd color")
@@ -302,25 +307,25 @@ struct ContentView: View {
                                             .fill(.red)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor2 = .red
+                                                vm.pickedGradientColor2 = .red
                                             }
                                         Circle()
                                             .fill(.blue)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor2 = .blue
+                                                vm.pickedGradientColor2 = .blue
                                             }
                                         Circle()
                                             .fill(.yellow)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor2 = .yellow
+                                                vm.pickedGradientColor2 = .yellow
                                             }
                                         Circle()
                                             .fill(.green)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor2 = .green
+                                                vm.pickedGradientColor2 = .green
                                             }
                                         
                                     }
@@ -329,25 +334,25 @@ struct ContentView: View {
                                             .fill(.purple)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor2 = .purple
+                                                vm.pickedGradientColor2 = .purple
                                             }
                                         Circle()
                                             .fill(.orange)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor2 = .orange
+                                                vm.pickedGradientColor2 = .orange
                                             }
                                         Circle()
                                             .fill(.pink)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor2 = .pink
+                                                vm.pickedGradientColor2 = .pink
                                             }
                                         Circle()
                                             .fill(.gray)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor2 = .gray
+                                                vm.pickedGradientColor2 = .gray
                                             }
                                     }
                                 }
@@ -355,32 +360,32 @@ struct ContentView: View {
                         } else {
                             Text("Choose your color")
                             
-                            if solidOrGradientSelected == "Solid fill" {
+                            if vm.solidOrGradientSelected == "Solid fill" {
                                 VStack{
                                     HStack{
                                         Circle()
                                             .fill(.red)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedColor = .red
+                                                vm.pickedColor = .red
                                             }
                                         Circle()
                                             .fill(.blue)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedColor = .blue
+                                                vm.pickedColor = .blue
                                             }
                                         Circle()
                                             .fill(.yellow)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedColor = .yellow
+                                                vm.pickedColor = .yellow
                                             }
                                         Circle()
                                             .fill(.green)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedColor = .green
+                                                vm.pickedColor = .green
                                             }
                                         
                                     }
@@ -389,25 +394,25 @@ struct ContentView: View {
                                             .fill(.purple)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedColor = .purple
+                                                vm.pickedColor = .purple
                                             }
                                         Circle()
                                             .fill(.orange)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedColor = .orange
+                                                vm.pickedColor = .orange
                                             }
                                         Circle()
                                             .fill(.pink)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedColor = .pink
+                                                vm.pickedColor = .pink
                                             }
                                         Circle()
                                             .fill(.gray)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedColor = .gray
+                                                vm.pickedColor = .gray
                                             }
                                     }
                                 }
@@ -420,26 +425,26 @@ struct ContentView: View {
                                             .fill(.red)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor1 = .red
+                                                vm.pickedGradientColor1 = .red
                                                 print("red color tapped")
                                             }
                                         Circle()
                                             .fill(.blue)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor1 = .blue
+                                                vm.pickedGradientColor1 = .blue
                                             }
                                         Circle()
                                             .fill(.yellow)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor1 = .yellow
+                                                vm.pickedGradientColor1 = .yellow
                                             }
                                         Circle()
                                             .fill(.green)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor1 = .green
+                                                vm.pickedGradientColor1 = .green
                                             }
                                     }
                                     HStack{
@@ -447,25 +452,25 @@ struct ContentView: View {
                                             .fill(.purple)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor1 = .purple
+                                                vm.pickedGradientColor1 = .purple
                                             }
                                         Circle()
                                             .fill(.orange)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor1 = .orange
+                                                vm.pickedGradientColor1 = .orange
                                             }
                                         Circle()
                                             .fill(.pink)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor1 = .pink
+                                                vm.pickedGradientColor1 = .pink
                                             }
                                         Circle()
                                             .fill(.gray)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor1 = .gray
+                                                vm.pickedGradientColor1 = .gray
                                             }
                                     }
                                     Text("Select 2snd color")
@@ -475,25 +480,25 @@ struct ContentView: View {
                                             .fill(.red)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor2 = .red
+                                                vm.pickedGradientColor2 = .red
                                             }
                                         Circle()
                                             .fill(.blue)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor2 = .blue
+                                                vm.pickedGradientColor2 = .blue
                                             }
                                         Circle()
                                             .fill(.yellow)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor2 = .yellow
+                                                vm.pickedGradientColor2 = .yellow
                                             }
                                         Circle()
                                             .fill(.green)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor2 = .green
+                                                vm.pickedGradientColor2 = .green
                                             }
                                         
                                     }
@@ -502,25 +507,25 @@ struct ContentView: View {
                                             .fill(.purple)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor2 = .purple
+                                                vm.pickedGradientColor2 = .purple
                                             }
                                         Circle()
                                             .fill(.orange)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor2 = .orange
+                                                vm.pickedGradientColor2 = .orange
                                             }
                                         Circle()
                                             .fill(.pink)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor2 = .pink
+                                                vm.pickedGradientColor2 = .pink
                                             }
                                         Circle()
                                             .fill(.gray)
                                             .frame(width: 50, height: 50)
                                             .onTapGesture {
-                                                pickedGradientColor2 = .gray
+                                                vm.pickedGradientColor2 = .gray
                                             }
                                     }
                                 }
@@ -540,88 +545,119 @@ struct ContentView: View {
         
     }
     //Main View selection
-    var MainView: some View {
-        ZStack{
-            if strokeOrFillSelected == "Fill" {
-                FilledView
-            } else {
-                StrokeView
-            }
-        }
-    }
-
-
-   //Stroke with solid color
-    var StrokeView: some View {
-        ZStack{
-            if solidOrGradientSelected == "Gradient fill" {
-                StrokeGradientView
-            } else {
-                StrokeSolidFillView
-            }
-        }
+    
 }
     
-    //stroke with solid filling
-    var StrokeSolidFillView: some View {
-        ZStack{
-            Rectangle()
-                .fill(pickedColor)
-                .cornerRadius(radiusCorner)
-                .background(.black)
-                .ignoresSafeArea()
 
-            Rectangle()
-                .fill(.black)
-                .cornerRadius(radiusCorner)
-                .padding(paddingEdits)
-                .ignoresSafeArea()
-        } .ignoresSafeArea()
-    }
+
+
+struct MainView: View {
+    @EnvironmentObject var vm: WallpapersViewModel
     
-    //stroke with gradient filling
-    var StrokeGradientView: some View {
+    var body: some View {
+        ZStack{
+            if vm.strokeOrFillSelected == "Fill" {
+                FilledView().environmentObject(vm)
+                   
+            } else {
+                StrokeView().environmentObject(vm)
+                   
+            }
+        }
+    }
+       
+}
+
+
+//Stroke with solid color
+struct StrokeView: View {
+    @EnvironmentObject var vm: WallpapersViewModel
+    var body: some View {
+        ZStack{
+            if vm.solidOrGradientSelected == "Gradient fill" {
+                StrokeGradientView().environmentObject(vm)
+            } else {
+                StrokeSolidFillView().environmentObject(vm)
+            }
+        }
+    }
+}
+
+//stroke with solid filling
+struct StrokeSolidFillView: View {
+    @EnvironmentObject var vm: WallpapersViewModel
+    var body: some View {
         ZStack{
             Rectangle()
-                .fill(LinearGradient(gradient: Gradient(colors: [pickedGradientColor1, pickedGradientColor2]), startPoint: .center, endPoint: .trailing))
-                .cornerRadius(radiusCorner)
+                .fill(vm.pickedColor)
+                .cornerRadius(vm.radiusCorner)
                 .background(.black)
-           
                 .ignoresSafeArea()
-
+            
             Rectangle()
                 .fill(.black)
-                .cornerRadius(radiusCorner)
-                .padding(paddingEdits)
+                .cornerRadius(vm.radiusCorner)
+                .padding(vm.paddingEdits)
                 .ignoresSafeArea()
         } .ignoresSafeArea()
         
     }
-    
-    
-    //filled view
-    var FilledView: some View {
+}
+
+//stroke with gradient filling
+struct StrokeGradientView: View {
+    @EnvironmentObject var vm: WallpapersViewModel
+    var body: some View {
+        ZStack{
+            Rectangle()
+                .fill(LinearGradient(gradient: Gradient(colors: [vm.pickedGradientColor1, vm.pickedGradientColor2]), startPoint: .center, endPoint: .trailing))
+                .cornerRadius(vm.radiusCorner)
+                .background(.black)
+            
+                .ignoresSafeArea()
+            
+            Rectangle()
+                .fill(.black)
+                .cornerRadius(vm.radiusCorner)
+                .padding(vm.paddingEdits)
+                .ignoresSafeArea()
+        } .ignoresSafeArea()
+        
+    }
+}
+
+
+//filled view
+
+struct FilledView: View {
+    @EnvironmentObject var vm: WallpapersViewModel
+    var body: some View {
         ZStack {
-           if solidOrGradientSelected == "Solid fill" {
-              FilledSolidView
-           } else {
-               FilledGradientView
-           }
+            if vm.solidOrGradientSelected == "Solid fill" {
+                FilledSolidView().environmentObject(vm)
+            } else {
+                FilledGradientView().environmentObject(vm)
+            }
         }
     }
-    //filled view with solid color
-    var FilledSolidView: some View {
-        pickedColor
-            .ignoresSafeArea()
-    }
-    //filled view with gradient
-    var FilledGradientView: some View {
-        LinearGradient(gradient: Gradient(colors: [pickedGradientColor1, pickedGradientColor2]), startPoint: .leading, endPoint: .trailing)
-            .ignoresSafeArea()
-    }
-
 }
-    
+//filled view with solid color
+struct FilledSolidView: View {
+    @EnvironmentObject var vm: WallpapersViewModel
+    var body: some View {
+        vm.pickedColor
+            .ignoresSafeArea()
+    }
+}
+//filled view with gradient
+struct FilledGradientView: View {
+    @EnvironmentObject var vm: WallpapersViewModel
+    var body: some View {
+        LinearGradient(gradient: Gradient(colors: [vm.pickedGradientColor1, vm.pickedGradientColor2]), startPoint: .leading, endPoint: .trailing)
+            .ignoresSafeArea()
+    }
+}
+
 
 
 struct ContentView_Previews: PreviewProvider {
@@ -629,6 +665,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-
-
 

@@ -14,6 +14,7 @@
 		AC7428652957946B007E83F7 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7428642957946B007E83F7 /* Onboarding.swift */; };
 		AC7428672957A14D007E83F7 /* ViewFlows.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7428662957A14D007E83F7 /* ViewFlows.swift */; };
 		ACC0F10129561E2A00264A0A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC0F10029561E2A00264A0A /* Settings.swift */; };
+		ACD376D52965B7B1004E6322 /* CircleDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD376D42965B7B1004E6322 /* CircleDemo.swift */; };
 		ACF081AF2955C3E00083F119 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF081AE2955C3E00083F119 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		AC7428642957946B007E83F7 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		AC7428662957A14D007E83F7 /* ViewFlows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFlows.swift; sourceTree = "<group>"; };
 		ACC0F10029561E2A00264A0A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		ACD376D42965B7B1004E6322 /* CircleDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDemo.swift; sourceTree = "<group>"; };
 		ACF081AE2955C3E00083F119 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,6 +64,7 @@
 				AC2DD351294A7D7600E64523 /* betterWallpapers.swift */,
 				AC7428662957A14D007E83F7 /* ViewFlows.swift */,
 				AC2DD353294A7D7600E64523 /* ContentView.swift */,
+				ACD376D42965B7B1004E6322 /* CircleDemo.swift */,
 				AC7428642957946B007E83F7 /* Onboarding.swift */,
 				ACC0F10029561E2A00264A0A /* Settings.swift */,
 				ACF081AE2955C3E00083F119 /* Extensions.swift */,
@@ -150,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACF081AF2955C3E00083F119 /* Extensions.swift in Sources */,
+				ACD376D52965B7B1004E6322 /* CircleDemo.swift in Sources */,
 				AC2DD354294A7D7600E64523 /* ContentView.swift in Sources */,
 				AC7428652957946B007E83F7 /* Onboarding.swift in Sources */,
 				ACC0F10129561E2A00264A0A /* Settings.swift in Sources */,

@@ -20,6 +20,7 @@ class AppState: ObservableObject {
 
 struct ViewFlows: View {
     @StateObject var appState = AppState(hasOnboarded: false)
+    @EnvironmentObject var vm: WallpapersViewModel
     
     var body: some View {
         
@@ -27,6 +28,7 @@ struct ViewFlows: View {
             if onboardingStatus{
                 ContentView()
                     .environmentObject(appState)
+                   
             } else {
                 Onboarding()
                     .environmentObject(appState)
