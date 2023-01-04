@@ -17,6 +17,8 @@
 		ACD376D72965C6E1004E6322 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD376D62965C6E1004E6322 /* ColorPickerView.swift */; };
 		ACD376D92965C712004E6322 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD376D82965C712004E6322 /* ViewModel.swift */; };
 		ACD376DD2965CCA4004E6322 /* ColorPickerGradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD376DC2965CCA4004E6322 /* ColorPickerGradients.swift */; };
+		ACD376E02965CF9F004E6322 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD376DF2965CF9F004E6322 /* SwiftUIView.swift */; };
+		ACD376E22965DFB3004E6322 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD376E12965DFB3004E6322 /* test.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		ACD376D62965C6E1004E6322 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		ACD376D82965C712004E6322 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		ACD376DC2965CCA4004E6322 /* ColorPickerGradients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerGradients.swift; sourceTree = "<group>"; };
+		ACD376DF2965CF9F004E6322 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		ACD376E12965DFB3004E6322 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +69,8 @@
 			children = (
 				AC2DD351294A7D7600E64523 /* betterWallpapers.swift */,
 				AC7428662957A14D007E83F7 /* ViewFlows.swift */,
+				ACD376DF2965CF9F004E6322 /* SwiftUIView.swift */,
+				ACD376E12965DFB3004E6322 /* test.swift */,
 				ACD376DB2965C9FE004E6322 /* ViewModels */,
 				ACD376DA2965C9E5004E6322 /* Views */,
 				AC2DD355294A7D7700E64523 /* Assets.xcassets */,
@@ -181,6 +187,8 @@
 			files = (
 				ACD376D72965C6E1004E6322 /* ColorPickerView.swift in Sources */,
 				ACD376D92965C712004E6322 /* ViewModel.swift in Sources */,
+				ACD376E02965CF9F004E6322 /* SwiftUIView.swift in Sources */,
+				ACD376E22965DFB3004E6322 /* test.swift in Sources */,
 				AC2DD354294A7D7600E64523 /* ContentView.swift in Sources */,
 				ACD376DD2965CCA4004E6322 /* ColorPickerGradients.swift in Sources */,
 				AC7428652957946B007E83F7 /* OnboardingView.swift in Sources */,
