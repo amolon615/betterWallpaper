@@ -12,7 +12,7 @@ import SwiftUI
 
 
 struct SelectView: View {
-
+    @EnvironmentObject var vm: WallpapersViewModel
     
     @State var cardWidth = UIScreen.main.bounds.width
     @State var cardHeight = UIScreen.main.bounds.height
@@ -25,6 +25,8 @@ struct SelectView: View {
     @State var isPressedBlue: Bool = false
     @State var isPressedRed: Bool = false
     @State var isPressedGreen: Bool = false
+    
+    @State var preview: Bool = false
     
     
 
@@ -72,20 +74,95 @@ struct SelectView: View {
                     )
                     .onTapGesture {
                         withAnimation(.spring()){
-                            isPressedBlue.toggle()
+                            isPressedBlue = true
                             isPressedRed = false
                             isPressedGreen = false
                             
-                            closed.toggle()
+                            closed = false
                         }
                     }
-                VStack{
-                    Rectangle()
-                        .fill(.blue)
-                        .frame(width: 100, height: 50)
-                }
+                
+                    VStack{
+                        //Overlay
+                        VStack{
+                            HStack{
+                                Button {
+                                    withAnimation(){
+                                        isPressedBlue.toggle()
+                                        closed = true
+                                    }
+                                }label: {
+                                    Label("Back", systemImage: "arrow.left")
+                                        .font(.system(size: 20))
+                                }.padding(10)
+                                Spacer()
+                                Button {
+                                    //
+                                } label : {
+                                    Image(systemName: "gearshape.fill")
+                                        .font(.system(size: 25))
+                                       
+                                }
+                            }.padding()
+                                .position(x: 190, y: 84)
+                                .foregroundColor(.white)
+                            Spacer()
+                            HStack{
+                                Button {
+                                    withAnimation(){
+                                        vm.isShowingEdits.toggle()
+                                    }
+                                }label: {
+                                    Label("Edit", systemImage: "slider.horizontal.3")
+                                }
+                                .frame(width: 150, height: 50)
+                                .background(Color.blue)
+                                    .cornerRadius(40)
+                                    .foregroundColor(.white)
+                                    .padding(.leading)
+                                
+                                Button{
+                                    preview = true
+                                } label: {
+                                    Label("Preview", systemImage: "photo")
+                                }.frame(width: 120, height: 50)
+                                    .background(Color(red: 0.054, green: 0.093, blue: 0.158))
+                                    .cornerRadius(40)
+                                    .foregroundColor(.white)
+                                    
+                                
+                                Button{
+                                    let newView = FilledGradientView().environmentObject(vm)
+                                    vm.Save(view: newView)
+                                } label: {
+                                   Image(systemName: "square.and.arrow.down")
+                                }.frame(width: 50, height: 50)
+                                    .background(Color.white)
+                                    .cornerRadius(40)
+                                    .foregroundColor(.black)
+                                    .padding(.trailing)
+                                
+                                
+                                
+                            }.padding(50)
+                          
+                            
+                        }
+                    
+                        
+                        
+                    }
+                    .frame(width: isPressedBlue ? vm.cgWidth : 0, height: isPressedBlue ? vm.cgHeight : 0)
+                    .scaleEffect(isPressedBlue ? 1 : 0)
+                    .offset(x: startingOffsetX)
+                    .offset(x: currentDragOffsetX)
+                    .offset(x: endingOffsetX)
+                    
               
-            
+              
+                    .sheet(isPresented: $vm.isShowingEdits) {
+                        Edits()
+                    }
             }
                 
             
@@ -137,11 +214,11 @@ struct SelectView: View {
                     }
              
 //                debug coordinates
-                VStack{
-                    Text("Current drag x: \(currentDragOffsetX)") .font(.headline)
-                    Text("Starting drag x: \(startingOffsetX)").font(.headline)
-                    Text("Ending drag x: \(endingOffsetX)") .font(.headline)
-                }
+//                VStack{
+//                    Text("Current drag x: \(currentDragOffsetX)") .font(.headline)
+//                    Text("Starting drag x: \(startingOffsetX)").font(.headline)
+//                    Text("Ending drag x: \(endingOffsetX)") .font(.headline)
+//                }.foregroundColor(.white)
                    
             }
             
@@ -199,9 +276,8 @@ struct SelectView: View {
 
 
 
-
 struct SelectView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectView()
+        SelectView().environmentObject(WallpapersViewModel())
     }
 }

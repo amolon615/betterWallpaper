@@ -302,8 +302,16 @@ struct FilledSolidView: View {
 struct FilledGradientView: View {
     @EnvironmentObject var vm: WallpapersViewModel
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: [vm.pickedColor, vm.pickedColor2]), startPoint: .leading, endPoint: .trailing)
-            .ignoresSafeArea()
+        ZStack{
+            LinearGradient(gradient: Gradient(colors: [vm.pickedColor, vm.pickedColor2]), startPoint: .leading, endPoint: .trailing)
+                .ignoresSafeArea()
+                .sheet(isPresented: $vm.isShowingEdits) {
+                    Edits()
+                        .presentationDetents([.large, .fraction(0.8)])
+                        .presentationDragIndicator(.hidden)
+                }
+        }
+            
     }
 }
 
@@ -313,7 +321,7 @@ struct FilledGradientView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().environmentObject(WallpapersViewModel())
     }
 }
 
