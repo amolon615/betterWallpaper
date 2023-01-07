@@ -11,9 +11,9 @@
 		AC2DD354294A7D7600E64523 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2DD353294A7D7600E64523 /* ContentView.swift */; };
 		AC2DD356294A7D7700E64523 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC2DD355294A7D7700E64523 /* Assets.xcassets */; };
 		AC2DD359294A7D7700E64523 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC2DD358294A7D7700E64523 /* Preview Assets.xcassets */; };
-		AC3656B12968BB7300362494 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3656B02968BB7300362494 /* Settings.swift */; };
+		AC3656B12968BB7300362494 /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3656B02968BB7300362494 /* EditorView.swift */; };
 		AC3656B32968CC0100362494 /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3656B22968CC0100362494 /* Slider.swift */; };
-		AC478020296831CF00A615D6 /* preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47801F296831CF00A615D6 /* preview.swift */; };
+		AC478020296831CF00A615D6 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47801F296831CF00A615D6 /* PreviewView.swift */; };
 		AC7428652957946B007E83F7 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7428642957946B007E83F7 /* OnboardingView.swift */; };
 		AC7428672957A14D007E83F7 /* ViewFlows.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7428662957A14D007E83F7 /* ViewFlows.swift */; };
 		ACC0F10129561E2A00264A0A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC0F10029561E2A00264A0A /* SettingsView.swift */; };
@@ -21,7 +21,7 @@
 		ACD376D92965C712004E6322 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD376D82965C712004E6322 /* ViewModel.swift */; };
 		ACD376DD2965CCA4004E6322 /* ColorPickerGradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD376DC2965CCA4004E6322 /* ColorPickerGradients.swift */; };
 		ACD376E02965CF9F004E6322 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD376DF2965CF9F004E6322 /* SwiftUIView.swift */; };
-		ACD376E22965DFB3004E6322 /* SelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD376E12965DFB3004E6322 /* SelectView.swift */; };
+		ACD376E22965DFB3004E6322 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD376E12965DFB3004E6322 /* CarouselView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,9 +30,9 @@
 		AC2DD353294A7D7600E64523 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AC2DD355294A7D7700E64523 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC2DD358294A7D7700E64523 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		AC3656B02968BB7300362494 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		AC3656B02968BB7300362494 /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
 		AC3656B22968CC0100362494 /* Slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
-		AC47801F296831CF00A615D6 /* preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = preview.swift; sourceTree = "<group>"; };
+		AC47801F296831CF00A615D6 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		AC7428642957946B007E83F7 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		AC7428662957A14D007E83F7 /* ViewFlows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFlows.swift; sourceTree = "<group>"; };
 		ACC0F10029561E2A00264A0A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -40,7 +40,7 @@
 		ACD376D82965C712004E6322 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		ACD376DC2965CCA4004E6322 /* ColorPickerGradients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerGradients.swift; sourceTree = "<group>"; };
 		ACD376DF2965CF9F004E6322 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
-		ACD376E12965DFB3004E6322 /* SelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectView.swift; sourceTree = "<group>"; };
+		ACD376E12965DFB3004E6322 /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,12 +74,8 @@
 			isa = PBXGroup;
 			children = (
 				AC2DD351294A7D7600E64523 /* betterWallpapers.swift */,
-				AC7428662957A14D007E83F7 /* ViewFlows.swift */,
 				ACD376DF2965CF9F004E6322 /* SwiftUIView.swift */,
-				ACD376E12965DFB3004E6322 /* SelectView.swift */,
-				AC3656B02968BB7300362494 /* Settings.swift */,
 				AC3656B22968CC0100362494 /* Slider.swift */,
-				AC47801F296831CF00A615D6 /* preview.swift */,
 				ACD376DB2965C9FE004E6322 /* ViewModels */,
 				ACD376DA2965C9E5004E6322 /* Views */,
 				AC2DD355294A7D7700E64523 /* Assets.xcassets */,
@@ -99,9 +95,13 @@
 		ACD376DA2965C9E5004E6322 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AC7428662957A14D007E83F7 /* ViewFlows.swift */,
 				AC2DD353294A7D7600E64523 /* ContentView.swift */,
+				ACD376E12965DFB3004E6322 /* CarouselView.swift */,
 				AC7428642957946B007E83F7 /* OnboardingView.swift */,
 				ACC0F10029561E2A00264A0A /* SettingsView.swift */,
+				AC3656B02968BB7300362494 /* EditorView.swift */,
+				AC47801F296831CF00A615D6 /* PreviewView.swift */,
 				ACD376DE2965CDF8004E6322 /* ColorPickersViews */,
 			);
 			path = Views;
@@ -197,10 +197,10 @@
 				ACD376D72965C6E1004E6322 /* ColorPickerView.swift in Sources */,
 				ACD376D92965C712004E6322 /* ViewModel.swift in Sources */,
 				ACD376E02965CF9F004E6322 /* SwiftUIView.swift in Sources */,
-				ACD376E22965DFB3004E6322 /* SelectView.swift in Sources */,
-				AC478020296831CF00A615D6 /* preview.swift in Sources */,
+				ACD376E22965DFB3004E6322 /* CarouselView.swift in Sources */,
+				AC478020296831CF00A615D6 /* PreviewView.swift in Sources */,
 				AC2DD354294A7D7600E64523 /* ContentView.swift in Sources */,
-				AC3656B12968BB7300362494 /* Settings.swift in Sources */,
+				AC3656B12968BB7300362494 /* EditorView.swift in Sources */,
 				ACD376DD2965CCA4004E6322 /* ColorPickerGradients.swift in Sources */,
 				AC7428652957946B007E83F7 /* OnboardingView.swift in Sources */,
 				ACC0F10129561E2A00264A0A /* SettingsView.swift in Sources */,

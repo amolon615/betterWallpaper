@@ -9,10 +9,10 @@ import SwiftUI
 
 struct NewSettings: View {
     @EnvironmentObject var vm: WallpapersViewModel
+    
     var body: some View {
         ZStack{
             VStack{
-                
                 HStack(spacing:10){
                     HStack(spacing: 10){
                         Rectangle()
