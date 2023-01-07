@@ -7,31 +7,82 @@
 
 import SwiftUI
 
-struct preview: View {
+struct Preview: View {
+    @EnvironmentObject var vm: WallpapersViewModel
+    
+    
     var body: some View{
-        VStack{
-            //title
-            HStack{
-                
-            }
-            //preview screen
-            HStack{
-                //lockscreen preview
-                ZStack{
-                    
-                    FilledGradientView()
+        ZStack{
+        
+            VStack{
+                //title
+                HStack{
+                    Text("Preview your wallpaper")
+                        .font(.headline)
+                        .padding()
                 }
-                //homescreen preview
-                ZStack{
-                    
-                    FilledGradientView()
+                //preview screen
+                Spacer()
+                HStack{
+                    //lockscreen preview
+                    ZStack{
+                        FilledGradientView()
+                        Image("lockscreen")
+                            .resizable()
+                            .scaledToFit()
+    //                        .offset(y: -10)
+                    }
+                    .frame(width: vm.cgWidth * 0.45, height: vm.cgHeight * 0.5)
+                    .cornerRadius(20)
+                    .padding(.leading)
+                    //homescreen preview
+                    ZStack{
+                        FilledGradientView()
+                        Image("homescreen")
+                            .resizable()
+                            .scaledToFit()
+    //                        .offset(y: -10)
+                    }
+                    .frame(width: vm.cgWidth * 0.45, height: vm.cgHeight * 0.5)
+                    .cornerRadius(20)
+                    .padding(.trailing)
                 }
-            }
-            //bottom buttons menu
-            HStack{
-                
+                //bottom buttons menu
+                Spacer()
+                HStack{
+                    Button {
+                        withAnimation(){
+                            vm.showPreview = false
+                            vm.showOverlay = true
+                        }
+                    }label: {
+                        Label("Back to edit", systemImage: "slider.horizontal.3")
+                    }
+                    .frame(width: 250, height: 50)
+                    .background(Color.blue)
+                        .cornerRadius(40)
+                        .foregroundColor(.white)
+                        .padding(.leading)
+                    
+                        
+                    
+                    Button{
+                        let newView = FilledGradientView().environmentObject(vm)
+                        vm.Save(view: newView)
+                    } label: {
+                       Image(systemName: "square.and.arrow.down")
+                    }.frame(width: 50, height: 50)
+                        .background(Color.white)
+                        .cornerRadius(40)
+                        .foregroundColor(.black)
+                        .padding(.trailing)
+                    
+                    
+                    
+                }
             }
         }
+            
     }
 }
 
@@ -39,7 +90,7 @@ struct preview: View {
 
 struct preview_Previews: PreviewProvider {
     static var previews: some View {
-        preview()
+        Preview().environmentObject(WallpapersViewModel())
     }
 }
 

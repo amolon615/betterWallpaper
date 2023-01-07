@@ -50,6 +50,8 @@ final class WallpapersViewModel: ObservableObject {
     
     @Published var pickedColor2: Color = .blue
     
+    @Published var showPreview: Bool = false
+    @Published var showOverlay: Bool = false
     
     
     func Save(view: any View){
