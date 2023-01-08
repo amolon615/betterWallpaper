@@ -26,7 +26,7 @@ struct Preview: View {
                 HStack{
                     //lockscreen preview
                     ZStack{
-                        FilledGradientView()
+                        GradientSelected()
                         Image("lockscreen")
                             .resizable()
                             .scaledToFit()
@@ -37,7 +37,7 @@ struct Preview: View {
                     .padding(.leading)
                     //homescreen preview
                     ZStack{
-                        FilledGradientView()
+                        GradientSelected()
                         Image("homescreen")
                             .resizable()
                             .scaledToFit()
@@ -67,8 +67,9 @@ struct Preview: View {
                         
                     
                     Button{
-                        let newView = FilledGradientView().environmentObject(vm)
+                        let newView = GradientSelected().environmentObject(vm)
                         vm.Save(view: newView)
+                        print("saved from preview success")
                     } label: {
                        Image(systemName: "square.and.arrow.down")
                     }.frame(width: 50, height: 50)

@@ -303,10 +303,11 @@ struct FilledGradientView: View {
     @EnvironmentObject var vm: WallpapersViewModel
     var body: some View {
         ZStack{
-            LinearGradient(gradient: Gradient(colors: [vm.pickedColor, vm.pickedColor2]), startPoint: .leading, endPoint: .trailing)
+            LinearGradient(gradient: Gradient(colors: [vm.pickedColor, vm.pickedColor2, vm.pickedColor3]), startPoint: .leading, endPoint: .trailing)
                 .ignoresSafeArea()
+                .rotationEffect(Angle(degrees: vm.startRadius))
                 .sheet(isPresented: $vm.isShowingEdits) {
-                    Edits()
+                    NewSettings()
                         .presentationDetents([.large, .fraction(0.8)])
                         .presentationDragIndicator(.hidden)
                 }
@@ -316,12 +317,62 @@ struct FilledGradientView: View {
 }
 
 
+struct FilledRadialGradientView: View {
+    @EnvironmentObject var vm: WallpapersViewModel
+    var body: some View {
+        ZStack{
+            RadialGradient(gradient: Gradient(colors: [vm.pickedColor, vm.pickedColor2, vm.pickedColor3, vm.pickedColor]), center: .center, startRadius: vm.startRadius, endRadius: vm.endRadius)
+                .ignoresSafeArea()
+                .sheet(isPresented: $vm.isShowingEdits) {
+                    NewSettings()
+                        .presentationDetents([.large, .fraction(0.8)])
+                        .presentationDragIndicator(.hidden)
+                }
+               
+        }
+    }
+}
+
+
+    struct FilledAngularGradientView: View {
+        @EnvironmentObject var vm: WallpapersViewModel
+        var body: some View {
+            ZStack{
+                AngularGradient(gradient: Gradient(colors: [vm.pickedColor, vm.pickedColor2, vm.pickedColor3, vm.pickedColor]), center: .center, startAngle: Angle(degrees: vm.startRadius), endAngle: Angle(degrees: vm.endRadius))
+                    .ignoresSafeArea()
+                    .sheet(isPresented: $vm.isShowingEdits) {
+                        NewSettings()
+                            .presentationDetents([.large, .fraction(0.8)])
+                            .presentationDragIndicator(.hidden)
+                    }
+            }
+        }
+    }
+
+
+struct GradientSelected: View {
+    @EnvironmentObject var vm: WallpapersViewModel
+    var body: some View {
+        
+        if vm.gradientSelected == "Linear" {
+            FilledGradientView().environmentObject(vm)
+        } else if vm.gradientSelected == "Radial" {
+            FilledRadialGradientView().environmentObject(vm)
+        } else if vm.gradientSelected == "Angular" {
+            FilledAngularGradientView().environmentObject(vm)
+        }
+           
+        
+    }
+}
+
+
 
 
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environmentObject(WallpapersViewModel())
+        FilledAngularGradientView().environmentObject(WallpapersViewModel())
     }
 }
 

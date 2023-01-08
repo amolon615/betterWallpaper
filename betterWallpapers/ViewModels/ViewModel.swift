@@ -32,6 +32,8 @@ final class WallpapersViewModel: ObservableObject {
     let solidOrGradient = ["Solid fill", "Gradient fill"]
     @Published var solidOrGradientSelected = "Gradient fill"
     
+    @Published var gradientSelected = "Linear"
+    
     
     @Published var radiusCorner: CGFloat = 40
     @Published var paddingEdits: CGFloat = 10
@@ -46,12 +48,21 @@ final class WallpapersViewModel: ObservableObject {
 
     
     
-    @Published var pickedColor: Color = .yellow
+    @Published var pickedColor: Color = .red
+    @Published var pickedColor2: Color = .green
+    @Published var pickedColor3: Color = .blue
+    @Published var showPalette: Bool = false
     
-    @Published var pickedColor2: Color = .blue
+    
+    @Published var pickedColorIndex = 1
+    
     
     @Published var showPreview: Bool = false
     @Published var showOverlay: Bool = false
+    
+    
+    @Published var startRadius: CGFloat = 0
+    @Published var endRadius: CGFloat = 200
     
     
     func Save(view: any View){
