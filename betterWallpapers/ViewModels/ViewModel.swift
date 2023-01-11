@@ -34,6 +34,8 @@ final class WallpapersViewModel: ObservableObject {
     
     @Published var gradientSelected = "Linear"
     
+    @Published var strokeSelected = "Linear"
+    
     
     @Published var radiusCorner: CGFloat = 40
     @Published var paddingEdits: CGFloat = 10
@@ -63,6 +65,8 @@ final class WallpapersViewModel: ObservableObject {
     
     @Published var startRadius: CGFloat = 0
     @Published var endRadius: CGFloat = 200
+    
+    @State var closed: Bool = true
     
     
     func Save(view: any View){

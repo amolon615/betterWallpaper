@@ -27,21 +27,21 @@ struct SelectView: View {
     @State var isPressedGreen: Bool = false
     
     @State var preview: Bool = false
+ 
     
-
-    
-    
-
-    
-    @State var closed: Bool = true
-    
-    let wallpaperView =  GradientSelected()
+    let wallpaperView =  GradientFillSelected()
+    let strokeWallpaper = GradientStrokeSelected()
+    let strokeFilledWallpaper = StrokeSolidFillView()
     
     var body: some View {
-        
+        Carousel
+    }
+    
+    
+    var Carousel: some View {
         ZStack{
             Color(red: 0.054, green: 0.093, blue: 0.158).ignoresSafeArea()
-            HStack(alignment: .center){ 
+            HStack(alignment: .center){
                 ZStack{
                     wallpaperView
                         .frame(width: isPressedBlue ? cardWidth : cardWidth * 0.7, height: isPressedBlue ? cardHeight : cardHeight * 0.7)
@@ -52,97 +52,7 @@ struct SelectView: View {
                         .offset(x: startingOffsetX)
                         .offset(x: currentDragOffsetX)
                         .offset(x: endingOffsetX)
-               
-                       
-                    
-                        VStack{
-                            //Overlay
-                            VStack{
-                                HStack{
-                                    Button {
-                                        withAnimation(){
-                                            isPressedBlue.toggle()
-                                            closed = true
-                                            vm.showOverlay = false
-                                        }
-                                    }label: {
-                                        Label("Back", systemImage: "arrow.left")
-                                            .font(.system(size: 20))
-                                    }.padding(10)
-                                    Spacer()
-                                    Button {
-                                        //
-                                    } label : {
-                                        Image(systemName: "gearshape.fill")
-                                            .font(.system(size: 25))
-                                           
-                                    }
-                                }.padding()
-                                    .position(x: 190, y: 84)
-                                    .foregroundColor(.white)
-                                Spacer()
-                                HStack{
-                                    Button {
-                                        withAnimation(){
-                                            vm.isShowingEdits.toggle()
-                                        }
-                                    }label: {
-                                        Label("Edit", systemImage: "slider.horizontal.3")
-                                    }
-                                    .frame(width: 150, height: 50)
-                                    .background(Color.blue)
-                                        .cornerRadius(40)
-                                        .foregroundColor(.white)
-                                        .padding(.leading)
-                                    
-                                    Button{
-                                        withAnimation(.spring()){
-                                            vm.showPreview = true
-                                            vm.showOverlay = false
-                                        }
-                                    } label: {
-                                        Label("Preview", systemImage: "photo")
-                                    }.frame(width: 120, height: 50)
-                                        .background(Color(red: 0.054, green: 0.093, blue: 0.158))
-                                        .cornerRadius(40)
-                                        .foregroundColor(.white)
-                                        
-                                    
-                                    Button{
-                                        let newView =   GradientSelected().environmentObject(vm)
-                                        vm.Save(view: newView)
-                                    } label: {
-                                       Image(systemName: "square.and.arrow.down")
-                                    }.frame(width: 50, height: 50)
-                                        .background(Color.white)
-                                        .cornerRadius(40)
-                                        .foregroundColor(.black)
-                                        .padding(.trailing)
-                                    
-                                    
-                                    
-                                }.padding(50)
-                              
-                                
-                            }
-                        
-                            
-                            
-                        }
-                        .frame(width: isPressedBlue ? vm.cgWidth : 0, height: isPressedBlue ? vm.cgHeight : 0)
-                        .scaleEffect(vm.showOverlay ? 1 : 0)
-                        .offset(x: startingOffsetX)
-                        .offset(x: currentDragOffsetX)
-                        .offset(x: endingOffsetX)
-                    
-                       
-                        Preview()
-                        .frame(width: vm.showPreview ? vm.cgWidth : 0, height: vm.showPreview ? vm.cgHeight * 0.8 : 0)
-                        .scaleEffect(vm.showPreview ? 1 : 0)
-                        .offset(x: startingOffsetX)
-                        .offset(x: currentDragOffsetX)
-                        .offset(x: endingOffsetX)
-                        .gesture( closed ?
+                        .gesture( vm.closed ?
                         DragGesture()
                             .onChanged({ value in
                                 withAnimation(.spring()){
@@ -152,7 +62,6 @@ struct SelectView: View {
                             })
                             .onEnded({ value in
                                 withAnimation(.spring()){
-                                    
                                         if currentDragOffsetX < -80 {
                                             endingOffsetX = -startingOffsetX
                                             currentDragOffsetX = 0
@@ -174,20 +83,93 @@ struct SelectView: View {
                                 isPressedBlue = true
                                 isPressedRed = false
                                 isPressedGreen = false
-                                closed = false
-                                vm.showOverlay = true
+                                vm.closed = false
                             }
                         }
 
-                  
-                        .sheet(isPresented: $vm.isShowingEdits) {
-                            Edits()
+                        .fullScreenCover(isPresented: $isPressedBlue) {
+                            wallpaperView
+                                .overlay(
+                                    VStack{
+                                        HStack{
+                                            Button {
+                                                withAnimation(){
+                                                    isPressedBlue.toggle()
+                                                    vm.closed = true
+
+                                                }
+                                            }label: {
+                                                Label("Back", systemImage: "arrow.left")
+                                                    .font(.system(size: 20))
+                                            }.padding(10)
+                                            Spacer()
+                                            Button {
+                                                isPressedBlue.toggle()
+                                            } label : {
+                                                Image(systemName: "gearshape.fill")
+                                                    .font(.system(size: 25))
+                                                   
+                                            }
+                                        }.padding()
+                                            .position(x: 190, y: 84)
+                                            .foregroundColor(.white)
+                                        Spacer()
+                                        HStack{
+                                            Button {
+                                                withAnimation(){
+                                                    vm.isShowingEdits.toggle()
+                                                }
+                                            }label: {
+                                                Label("Edit", systemImage: "slider.horizontal.3")
+                                            }
+                                            .frame(width: 150, height: 50)
+                                            .background(Color.blue)
+                                                .cornerRadius(40)
+                                                .foregroundColor(.white)
+                                                .padding(.leading)
+                                            
+                                            Button{
+                                                withAnimation(.spring()){
+                                                    vm.showPreview = true
+                                                }
+                                            } label: {
+                                                Label("Preview", systemImage: "photo")
+                                            }.frame(width: 120, height: 50)
+                                                .background(Color(red: 0.054, green: 0.093, blue: 0.158))
+                                                .cornerRadius(40)
+                                                .foregroundColor(.white)
+                                                
+                                            
+                                            Button{
+                                                let newView =   GradientFillSelected().environmentObject(vm)
+                                                vm.Save(view: newView)
+                                            } label: {
+                                               Image(systemName: "square.and.arrow.down")
+                                            }.frame(width: 50, height: 50)
+                                                .background(Color.white)
+                                                .cornerRadius(40)
+                                                .foregroundColor(.black)
+                                                .padding(.trailing)
+                                                .fullScreenCover(isPresented: $vm.showPreview) {
+                                                    Preview()
+                                                }
+                                            
+                                            
+                                        }.padding(50)
+                                            .sheet(isPresented: $vm.isShowingEdits) {
+                                                NewSettings()
+                                                    .presentationDetents([.fraction(0.73)])
+                                                    .presentationDragIndicator(.hidden)
+                                            }
+                                            
+                                    }
+                            )
                         }
                 }
                     
                 
                 ZStack{
-                    FilledSolidView()
+                    strokeWallpaper
                         .frame(width: isPressedRed ? cardWidth : cardWidth * 0.7, height: isPressedRed ? cardHeight : cardHeight * 0.7)
                         .cornerRadius(40)
                         .ignoresSafeArea()
@@ -195,7 +177,7 @@ struct SelectView: View {
                         .offset(x: startingOffsetX)
                         .offset(x: currentDragOffsetX)
                         .offset(x: endingOffsetX)
-                        .gesture( closed ?
+                        .gesture( vm.closed ?
                         DragGesture()
                             .onChanged({ value in
                                 withAnimation(.spring()){
@@ -229,21 +211,99 @@ struct SelectView: View {
                                 isPressedBlue = false
                                 isPressedGreen = false
                                 
-                                closed.toggle()
+                                vm.closed.toggle()
                             }
+                        }
+                        .fullScreenCover(isPresented: $isPressedRed) {
+                            strokeWallpaper
+                                .overlay(
+                                    VStack{
+                                        HStack{
+                                            Button {
+                                                withAnimation(){
+                                                    isPressedRed.toggle()
+                                                    vm.closed = true
+                                                }
+                                            }label: {
+                                                Label("Back", systemImage: "arrow.left")
+                                                    .font(.system(size: 20))
+                                            }.padding(10)
+                                            Spacer()
+                                            Button {
+                                                isPressedBlue.toggle()
+                                            } label : {
+                                                Image(systemName: "gearshape.fill")
+                                                    .font(.system(size: 25))
+                                                   
+                                            }
+                                        }.padding()
+                                            .position(x: 190, y: 84)
+                                            .foregroundColor(.white)
+                                        Spacer()
+                                        HStack{
+                                            Button {
+                                                withAnimation(){
+                                                    vm.isShowingEdits.toggle()
+                                                }
+                                            }label: {
+                                                Label("Edit", systemImage: "slider.horizontal.3")
+                                            }
+                                            .frame(width: 150, height: 50)
+                                            .background(Color.blue)
+                                                .cornerRadius(40)
+                                                .foregroundColor(.white)
+                                                .padding(.leading)
+                                            
+                                            Button{
+                                                withAnimation(.spring()){
+                                                    vm.showPreview = true
+                                              
+                                                }
+                                            } label: {
+                                                Label("Preview", systemImage: "photo")
+                                            }.frame(width: 120, height: 50)
+                                                .background(Color(red: 0.054, green: 0.093, blue: 0.158))
+                                                .cornerRadius(40)
+                                                .foregroundColor(.white)
+                                                
+                                            
+                                            Button{
+                                                let newView =   GradientStrokeSelected().environmentObject(vm)
+                                                vm.Save(view: newView)
+                                            } label: {
+                                               Image(systemName: "square.and.arrow.down")
+                                            }.frame(width: 50, height: 50)
+                                                .background(Color.white)
+                                                .cornerRadius(40)
+                                                .foregroundColor(.black)
+                                                .padding(.trailing)
+                                                .fullScreenCover(isPresented: $vm.showPreview) {
+                                                    Preview2()
+                                                }
+                                            
+                                            
+                                            
+                                        }.padding(50)
+                                            .sheet(isPresented: $vm.isShowingEdits) {
+                                                NewSettingsStrokeGradient()
+                                                    .presentationDetents([.fraction(0.73)])
+                                                    .presentationDragIndicator(.hidden)
+                                            }
+                                    }
+                            )
                         }
                  
     //                debug coordinates
-    //                VStack{
-    //                    Text("Current drag x: \(currentDragOffsetX)") .font(.headline)
-    //                    Text("Starting drag x: \(startingOffsetX)").font(.headline)
-    //                    Text("Ending drag x: \(endingOffsetX)") .font(.headline)
-    //                }.foregroundColor(.white)
-                       
+//                    VStack{
+//                        Text("Current drag x: \(currentDragOffsetX)") .font(.headline)
+//                        Text("Starting drag x: \(startingOffsetX)").font(.headline)
+//                        Text("Ending drag x: \(endingOffsetX)") .font(.headline)
+//                    }.foregroundColor(.white)
+//
                 }
                 
                 ZStack{
-                    StrokeGradientView()
+                    strokeFilledWallpaper
                         .frame(width: isPressedGreen ? cardWidth : cardWidth * 0.7, height: isPressedGreen ? cardHeight : cardHeight * 0.7)
                         .cornerRadius(40)
                         .ignoresSafeArea()
@@ -251,7 +311,7 @@ struct SelectView: View {
                         .offset(x: startingOffsetX)
                         .offset(x: currentDragOffsetX)
                         .offset(x: endingOffsetX)
-                        .gesture( closed ?
+                        .gesture( vm.closed ?
                         DragGesture()
                             .onChanged({ value in
                                 withAnimation(.spring()){
@@ -278,12 +338,90 @@ struct SelectView: View {
                         )
                         .onTapGesture {
                             withAnimation(.spring()){
-                                isPressedGreen.toggle()
+                                isPressedGreen = true
                                 isPressedRed = false
                                 isPressedBlue = false
                                 
-                                closed.toggle()
+                                vm.closed = false
                             }
+                        }
+                        .fullScreenCover(isPresented: $isPressedGreen) {
+                            strokeFilledWallpaper
+                                .overlay(
+                                    VStack{
+                                        HStack{
+                                            Button {
+                                                withAnimation(){
+                                                    isPressedGreen = false
+                                                    vm.closed = true
+                                                }
+                                            }label: {
+                                                Label("Back", systemImage: "arrow.left")
+                                                    .font(.system(size: 20))
+                                            }.padding(10)
+                                            Spacer()
+                                            Button {
+                                                isPressedBlue.toggle()
+                                            } label : {
+                                                Image(systemName: "gearshape.fill")
+                                                    .font(.system(size: 25))
+                                                   
+                                            }
+                                        }.padding()
+                                            .position(x: 190, y: 84)
+                                            .foregroundColor(.white)
+                                        Spacer()
+                                        HStack{
+                                            Button {
+                                                withAnimation(){
+                                                    vm.isShowingEdits.toggle()
+                                                }
+                                            }label: {
+                                                Label("Edit", systemImage: "slider.horizontal.3")
+                                            } 
+                                            .frame(width: 150, height: 50)
+                                            .background(Color.blue)
+                                                .cornerRadius(40)
+                                                .foregroundColor(.white)
+                                                .padding(.leading)
+                                            
+                                            Button{
+                                                withAnimation(.spring()){
+                                                    vm.showPreview = true
+                                              
+                                                }
+                                            } label: {
+                                                Label("Preview", systemImage: "photo")
+                                            }.frame(width: 120, height: 50)
+                                                .background(Color(red: 0.054, green: 0.093, blue: 0.158))
+                                                .cornerRadius(40)
+                                                .foregroundColor(.white)
+                                                
+                                            
+                                            Button{
+                                                let newView =   GradientStrokeSelected().environmentObject(vm)
+                                                vm.Save(view: newView)
+                                            } label: {
+                                               Image(systemName: "square.and.arrow.down")
+                                            }.frame(width: 50, height: 50)
+                                                .background(Color.white)
+                                                .cornerRadius(40)
+                                                .foregroundColor(.black)
+                                                .padding(.trailing)
+                                                .fullScreenCover(isPresented: $vm.showPreview) {
+                                                    Preview3()
+                                                }
+                                            
+                                            
+                                            
+                                        }.padding(50)
+                                            .sheet(isPresented: $vm.isShowingEdits) {
+                                                NewSettingsStrokeSolid()
+                                                    .presentationDetents([.fraction(0.5)])
+                                                    .presentationDragIndicator(.hidden)
+                                            }
+                                    }
+                            )
                         }
               
                    

@@ -72,6 +72,6 @@ struct ColorPickerView: View {
 
 struct ColorPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        ColorPickerView()
+        ColorPickerView().environmentObject(WallpapersViewModel())
     }
 }
