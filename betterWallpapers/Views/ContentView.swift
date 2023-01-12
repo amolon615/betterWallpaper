@@ -35,19 +35,59 @@ struct ContentView: View {
                                 
                             Text("betterWallpapers")
                                 .foregroundColor(.white)
-                                .font(.system(size: 16))
+                                .font(.system(size: 12))
+                                .font(.system(.body, design: .rounded))
+                                
                         }
                             .padding(.horizontal)
                         Spacer()
-                        Image(systemName: "gear")
+                        Image(systemName: "gearshape.fill")
                             .foregroundColor(.white)
                             .font(.system(size: 24))
                             .padding(.horizontal)
                        
                     }
                     .frame(width: vm.cgWidth)
-                    .scaleEffect(!vm.closed ? 0.3 : 1)
+                    .scaleEffect(!vm.closed ? 0 : 1)
+                    HStack{
+                        Text("Swipe to select template").font(.system(.body, design: .rounded))
+                            .foregroundColor(.white)
+                           
+                    }.scaleEffect(!vm.closed ? 0 : 1)
                      Spacer()
+                    HStack{
+                      Rectangle()
+                            .fill(.blue)
+                            .frame(width: vm.cgWidth * 0.4, height: 50)
+                            .clipShape(Capsule())
+                            .overlay(
+                                HStack{
+                                    Image(systemName: "hand.tap.fill")
+                                    Text("Select")
+                                }
+                                    .foregroundColor(.white)
+                                    .font(.system(.body, design: .rounded))
+                            )
+                            .onTapGesture {
+                                switch vm.selectedTemplate{
+                                case 1:
+                                    vm.isPressedBlue = true
+                                    vm.closed = false
+                                case 2:
+                                    vm.isPressedRed = true
+                                    vm.closed = false
+                                default:
+                                    vm.isPressedGreen = true
+                                    vm.closed = false
+                                }
+                                
+                            }
+                        
+                       
+                           
+                         
+                    }.frame(width: vm.cgWidth)
+                  
                 }
             
             )

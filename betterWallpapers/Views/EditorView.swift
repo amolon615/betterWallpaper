@@ -325,7 +325,7 @@ struct NewSettingsStrokeGradient: View {
                 .ignoresSafeArea()
             
             
-            VStack(spacing: -10){
+            VStack{
                 Spacer()
               
                 VStack (alignment: .center){
@@ -336,10 +336,13 @@ struct NewSettingsStrokeGradient: View {
                     HStack{
                         Rectangle()
                             .strokeBorder(.white, lineWidth: vm.gradientSelected == "Linear" ? 2 : 0)
-                            .frame(width: 70, height: 40)
+                            .frame(width: 80, height: 40)
                             .cornerRadius(5)
                             .overlay(
-                                Text("Linear")
+                                HStack{
+                                    Image("linear").resizable().scaledToFit().frame(width: 15, height: 15)
+                                    Text("Linear")
+                                }
                                     .font(.footnote)
                                 .foregroundColor(.white)
                             ).padding()
@@ -351,10 +354,13 @@ struct NewSettingsStrokeGradient: View {
                         
                         Rectangle()
                             .strokeBorder(.white, lineWidth: vm.gradientSelected == "Radial" ? 2 : 0)
-                            .frame(width: 70, height: 40)
+                            .frame(width: 80, height: 40)
                             .cornerRadius(3)
                             .overlay(
-                            Text("Radial")
+                            HStack{
+                                Image("radial").resizable().scaledToFit().frame(width: 15, height: 15)
+                                Text("Radial")
+                            }
                                 .font(.footnote)
                                 .foregroundColor(.white)
                             ).padding()
@@ -366,10 +372,13 @@ struct NewSettingsStrokeGradient: View {
                         
                         Rectangle()
                             .strokeBorder(.white, lineWidth: vm.gradientSelected == "Angular" ? 2 : 0)
-                            .frame(width: 70, height: 40)
+                            .frame(width: 80, height: 40)
                             .cornerRadius(3)
                             .overlay(
-                            Text("Angular")
+                            HStack{
+                                Image("angular").resizable().scaledToFit().frame(width: 15, height: 15)
+                                Text("Angular")
+                            }
                                 .font(.footnote)
                                 .foregroundColor(.white)
                             ).padding()
@@ -389,7 +398,7 @@ struct NewSettingsStrokeGradient: View {
                 VStack{
                     HStack{
                         Text("Adjust parameters").foregroundColor(.white)
-                    }
+                    }.padding()
                     HStack(spacing: 10){
                             Text(vm.gradientSelected == "Radial" ? "Start radius" : "Scale amount").foregroundColor(.white)
                                 .font(.caption)
@@ -416,7 +425,7 @@ struct NewSettingsStrokeGradient: View {
                                
                                 
                         }
-                    }.frame(width: 300, height: 160)
+                }.frame(width: vm.cgWidth * 0.7, height:  vm.cgHeight * 0.25)
 //                    .background(.red)
                     .padding()
                 
@@ -468,8 +477,8 @@ struct NewSettingsStrokeGradient: View {
                             
                             
                         }
-                    }.frame(width: 300, height: 170)
-//                    .background(.green)
+                    }.frame(width: vm.cgWidth * 0.7, height: vm.cgHeight * 0.1)
+//                    .background(.green.opacity(0.5))
                     .padding()
              
                 HStack{
@@ -509,7 +518,7 @@ struct NewSettingsStrokeGradient: View {
 //                    .background(.pink)
                     .padding(0)
             }.frame(height: vm.cgHeight * 0.6)
-//                .background(.white)
+//                .background(.white.opacity(0.5))
           
    
         

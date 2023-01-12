@@ -22,9 +22,7 @@ struct SelectView: View {
     @State var currentDragOffsetX: CGFloat = 0
     @State var endingOffsetX: CGFloat = 0
     
-    @State var isPressedBlue: Bool = false
-    @State var isPressedRed: Bool = false
-    @State var isPressedGreen: Bool = false
+    
     
     @State var preview: Bool = false
  
@@ -44,11 +42,12 @@ struct SelectView: View {
             HStack(alignment: .center){
                 ZStack{
                     wallpaperView
-                        .frame(width: isPressedBlue ? cardWidth : cardWidth * 0.7, height: isPressedBlue ? cardHeight : cardHeight * 0.7)
+                        .frame(width: vm.isPressedBlue ? cardWidth * 0 : cardWidth * 0.7, height: vm.isPressedBlue ? cardHeight * 0: cardHeight * 0.7)
                         .cornerRadius(40)
                         .ignoresSafeArea()
                         .opacity(vm.showPreview ? 0 : 1)
-                        .padding(isPressedBlue ? 20 : 10)
+                        .padding(vm.isPressedBlue ? 20 : 10)
+                        .scaleEffect(vm.selectedTemplate == 1 ? 1 : 0.95)
                         .offset(x: startingOffsetX)
                         .offset(x: currentDragOffsetX)
                         .offset(x: endingOffsetX)
@@ -66,6 +65,9 @@ struct SelectView: View {
                                             endingOffsetX = -startingOffsetX
                                             currentDragOffsetX = 0
                                             print("blue if")
+                                            vm.selectedTemplate = 2
+                                            print("selected \(vm.selectedTemplate) view")
+                                            
                                             
                                         } else if endingOffsetX != 0 && currentDragOffsetX > 80 {
                                             endingOffsetX = 0
@@ -80,21 +82,21 @@ struct SelectView: View {
                         )
                         .onTapGesture {
                             withAnimation(.spring()){
-                                isPressedBlue = true
-                                isPressedRed = false
-                                isPressedGreen = false
+                                vm.isPressedBlue = true
+                                vm.isPressedRed = false
+                                vm.isPressedGreen = false
                                 vm.closed = false
                             }
                         }
 
-                        .fullScreenCover(isPresented: $isPressedBlue) {
+                        .fullScreenCover(isPresented: $vm.isPressedBlue) {
                             wallpaperView
                                 .overlay(
                                     VStack{
                                         HStack{
                                             Button {
                                                 withAnimation(){
-                                                    isPressedBlue.toggle()
+                                                    vm.isPressedBlue.toggle()
                                                     vm.closed = true
 
                                                 }
@@ -104,7 +106,7 @@ struct SelectView: View {
                                             }.padding(10)
                                             Spacer()
                                             Button {
-                                                isPressedBlue.toggle()
+                                                vm.isPressedBlue.toggle()
                                             } label : {
                                                 Image(systemName: "gearshape.fill")
                                                     .font(.system(size: 25))
@@ -170,10 +172,11 @@ struct SelectView: View {
                 
                 ZStack{
                     strokeWallpaper
-                        .frame(width: isPressedRed ? cardWidth : cardWidth * 0.7, height: isPressedRed ? cardHeight : cardHeight * 0.7)
+                        .frame(width: vm.isPressedRed ? 0 : cardWidth * 0.7, height: vm.isPressedRed ? 0 : cardHeight * 0.7)
                         .cornerRadius(40)
                         .ignoresSafeArea()
-                        .padding(isPressedRed ? 20 : 10)
+                        .padding(vm.isPressedRed ? 20 : 10)
+                        .scaleEffect(vm.selectedTemplate == 2 ? 1 : 0.95)
                         .offset(x: startingOffsetX)
                         .offset(x: currentDragOffsetX)
                         .offset(x: endingOffsetX)
@@ -192,11 +195,15 @@ struct SelectView: View {
                                             endingOffsetX -= startingOffsetX
                                             currentDragOffsetX = 0
                                             print("red if")
+                                            vm.selectedTemplate = 3
+                                            print("selected \(vm.selectedTemplate) view")
                                             
                                         } else if endingOffsetX != 0 && currentDragOffsetX > 80 {
                                             endingOffsetX += startingOffsetX
                                             currentDragOffsetX = 0
                                             print("red else if")
+                                            vm.selectedTemplate = 1
+                                            print("selected \(vm.selectedTemplate) view")
                                         } else {
                                             currentDragOffsetX = 0
                                         }
@@ -207,21 +214,21 @@ struct SelectView: View {
                         )
                         .onTapGesture {
                             withAnimation(.spring()){
-                                isPressedRed.toggle()
-                                isPressedBlue = false
-                                isPressedGreen = false
+                                vm.isPressedRed.toggle()
+                                vm.isPressedBlue = false
+                                vm.isPressedGreen = false
                                 
                                 vm.closed.toggle()
                             }
                         }
-                        .fullScreenCover(isPresented: $isPressedRed) {
+                        .fullScreenCover(isPresented: $vm.isPressedRed) {
                             strokeWallpaper
                                 .overlay(
                                     VStack{
                                         HStack{
                                             Button {
                                                 withAnimation(){
-                                                    isPressedRed.toggle()
+                                                    vm.isPressedRed.toggle()
                                                     vm.closed = true
                                                 }
                                             }label: {
@@ -230,7 +237,7 @@ struct SelectView: View {
                                             }.padding(10)
                                             Spacer()
                                             Button {
-                                                isPressedBlue.toggle()
+                                                vm.isPressedBlue.toggle()
                                             } label : {
                                                 Image(systemName: "gearshape.fill")
                                                     .font(.system(size: 25))
@@ -304,10 +311,11 @@ struct SelectView: View {
                 
                 ZStack{
                     strokeFilledWallpaper
-                        .frame(width: isPressedGreen ? cardWidth : cardWidth * 0.7, height: isPressedGreen ? cardHeight : cardHeight * 0.7)
+                        .frame(width: vm.isPressedGreen ? 0 : cardWidth * 0.7, height: vm.isPressedGreen ? 0 : cardHeight * 0.7)
                         .cornerRadius(40)
                         .ignoresSafeArea()
-                        .padding(isPressedGreen ? 20 : 10)
+                        .padding(vm.isPressedGreen ? 20 : 10)
+                        .scaleEffect(vm.selectedTemplate == 3 ? 1 : 0.95)
                         .offset(x: startingOffsetX)
                         .offset(x: currentDragOffsetX)
                         .offset(x: endingOffsetX)
@@ -325,6 +333,8 @@ struct SelectView: View {
                                             endingOffsetX += startingOffsetX
                                             currentDragOffsetX = 0
                                             print("green if")
+                                            vm.selectedTemplate = 2
+                                            print("selected \(vm.selectedTemplate) view")
                                           
                                         } else if endingOffsetX != 0 && currentDragOffsetX > 80 {
                                             endingOffsetX = 0
@@ -338,21 +348,21 @@ struct SelectView: View {
                         )
                         .onTapGesture {
                             withAnimation(.spring()){
-                                isPressedGreen = true
-                                isPressedRed = false
-                                isPressedBlue = false
+                                vm.isPressedGreen = true
+                                vm.isPressedRed = false
+                                vm.isPressedBlue = false
                                 
                                 vm.closed = false
                             }
                         }
-                        .fullScreenCover(isPresented: $isPressedGreen) {
+                        .fullScreenCover(isPresented: $vm.isPressedGreen) {
                             strokeFilledWallpaper
                                 .overlay(
                                     VStack{
                                         HStack{
                                             Button {
                                                 withAnimation(){
-                                                    isPressedGreen = false
+                                                    vm.isPressedGreen = false
                                                     vm.closed = true
                                                 }
                                             }label: {
@@ -361,7 +371,7 @@ struct SelectView: View {
                                             }.padding(10)
                                             Spacer()
                                             Button {
-                                                isPressedBlue.toggle()
+                                                vm.isPressedBlue.toggle()
                                             } label : {
                                                 Image(systemName: "gearshape.fill")
                                                     .font(.system(size: 25))

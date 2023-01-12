@@ -26,14 +26,12 @@ final class WallpapersViewModel: ObservableObject {
     @Published var isShowingEdits = false
     @Published var isShowingSettings = false
     
-    let strokeOrFill = ["Stroke", "Fill"]
+//    let strokeOrFill = ["Stroke", "Fill"]
     @Published var strokeOrFillSelected = "Fill"
     
-    let solidOrGradient = ["Solid fill", "Gradient fill"]
+//    let solidOrGradient = ["Solid fill", "Gradient fill"]
     @Published var solidOrGradientSelected = "Gradient fill"
-    
     @Published var gradientSelected = "Linear"
-    
     @Published var strokeSelected = "Linear"
     
     
@@ -66,7 +64,14 @@ final class WallpapersViewModel: ObservableObject {
     @Published var startRadius: CGFloat = 0
     @Published var endRadius: CGFloat = 200
     
-    @State var closed: Bool = true
+    @Published var closed: Bool = true
+    @Published var selectedTemplate = 1
+    
+    
+    @Published var isPressedBlue: Bool = false
+    @Published var isPressedRed: Bool = false
+    @Published var isPressedGreen: Bool = false
+    
     
     
     func Save(view: any View){
