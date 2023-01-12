@@ -12,7 +12,7 @@ import StoreKit
 
 struct Settings: View {
     @Environment(\.requestReview) var requestReview
-    
+    @EnvironmentObject var vm: WallpapersViewModel
     
     @State private var showPP = false
     
@@ -20,6 +20,7 @@ struct Settings: View {
     
     var body: some View {
         ZStack{
+            Color(red: 0.054, green: 0.093, blue: 0.158).ignoresSafeArea()
            VStack {
                Spacer()
                 ZStack(alignment: .leading) {
@@ -28,7 +29,7 @@ struct Settings: View {
                             showPP.toggle()
                         }label:{
                             HStack{
-                                Image(systemName: "newspaper")
+                                Image(systemName: "hand.raised")
                                     .foregroundColor(.black)
                                     .padding(.leading)
                                 Text("Privacy Policy")
@@ -51,7 +52,7 @@ struct Settings: View {
                             saveOnboardingStatus(key: "hasOnboarded", value: false)
                         }label:{
                             HStack{
-                                Image(systemName: "ruler")
+                                Image(systemName: "arrow.counterclockwise")
                                     .padding(.leading)
                                     .foregroundColor(.black)
                                 Text("Reset onboarding")
@@ -92,7 +93,25 @@ struct Settings: View {
                }
               
                Spacer()
-               Text("(c) betterWallpapers v.1.0")
+               VStack{
+                   HStack{
+                       Image("logo")
+                           .resizable()
+                           .scaledToFit()
+                           .frame(width: 20, height: 20)
+                           
+                       Text("betterWallpapers")
+                           .foregroundColor(.white)
+                           .font(.system(size: 12))
+                           .font(.system(.body, design: .rounded))
+                           
+                   }
+                   HStack{
+                       Text("v1.5")
+                           .foregroundColor(.white)
+                           .font(.caption)
+                   }
+               }
                    .sheet(isPresented: $showPP){
                        SFSafariViewWrapper(url: URL(string: "https://horovenko.com/betterwallpapers-privacy-policy/")!)
                    }
@@ -121,6 +140,6 @@ struct Settings: View {
 
 struct Settings_Previews: PreviewProvider {
     static var previews: some View {
-        Settings()
+        Settings().environmentObject(WallpapersViewModel())
     }
 }

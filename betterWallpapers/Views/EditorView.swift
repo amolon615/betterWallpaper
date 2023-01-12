@@ -27,10 +27,13 @@ struct NewSettings: View {
                     HStack{
                         Rectangle()
                             .strokeBorder(.white, lineWidth: vm.gradientSelected == "Linear" ? 2 : 0)
-                            .frame(width: 70, height: 40)
+                            .frame(width: 80, height: 40)
                             .cornerRadius(5)
                             .overlay(
-                                Text("Linear")
+                                HStack{
+                                    Image("linear").resizable().scaledToFit().frame(width: 15, height: 15)
+                                    Text("Linear")
+                                }
                                     .font(.footnote)
                                 .foregroundColor(.white)
                             ).padding()
@@ -42,10 +45,13 @@ struct NewSettings: View {
                         
                         Rectangle()
                             .strokeBorder(.white, lineWidth: vm.gradientSelected == "Radial" ? 2 : 0)
-                            .frame(width: 70, height: 40)
+                            .frame(width: 80, height: 40)
                             .cornerRadius(3)
                             .overlay(
-                            Text("Radial")
+                                HStack{
+                                    Image("radial").resizable().scaledToFit().frame(width: 15, height: 15)
+                                    Text("Radial")
+                                }
                                 .font(.footnote)
                                 .foregroundColor(.white)
                             ).padding()
@@ -57,10 +63,13 @@ struct NewSettings: View {
                         
                         Rectangle()
                             .strokeBorder(.white, lineWidth: vm.gradientSelected == "Angular" ? 2 : 0)
-                            .frame(width: 70, height: 40)
+                            .frame(width: 80, height: 40)
                             .cornerRadius(3)
                             .overlay(
-                            Text("Angular")
+                                HStack{
+                                    Image("angular").resizable().scaledToFit().frame(width: 15, height: 15)
+                                    Text("Angular")
+                                }
                                 .font(.footnote)
                                 .foregroundColor(.white)
                             ).padding()
@@ -160,7 +169,7 @@ struct NewSettings: View {
                     }.frame(width: 300, height: 170)
 //                    .background(.green)
                     .padding()
-             
+             Spacer()
                 HStack{
                     Button {
                         withAnimation(){
@@ -196,9 +205,9 @@ struct NewSettings: View {
                     
                 }.frame(width: 300, height: 60)
 //                    .background(.pink)
-                    .padding(0)
-            }.frame(height: vm.cgHeight * 0.6)
-//                .background(.white)
+                    .padding(10)
+            }
+
           
    
         
@@ -413,7 +422,7 @@ struct NewSettingsStrokeGradient: View {
                                 
                         }
                     HStack (spacing: 10){
-                            Text(vm.gradientSelected == "Radial" ? "Corner radius" : "Rotation amount").foregroundColor(.white)
+                            Text("Corner radius").foregroundColor(.white)
                                 .font(.caption)
                             Slider(value: $vm.radiusCorner, in: 0...400).frame(width: 150)
                         }
@@ -480,7 +489,7 @@ struct NewSettingsStrokeGradient: View {
                     }.frame(width: vm.cgWidth * 0.7, height: vm.cgHeight * 0.1)
 //                    .background(.green.opacity(0.5))
                     .padding()
-             
+             Spacer()
                 HStack{
                     Button {
                         withAnimation(){
@@ -516,8 +525,8 @@ struct NewSettingsStrokeGradient: View {
                     
                 }.frame(width: 300, height: 60)
 //                    .background(.pink)
-                    .padding(0)
-            }.frame(height: vm.cgHeight * 0.6)
+                    .padding(10)
+            }
 //                .background(.white.opacity(0.5))
           
    
@@ -527,14 +536,7 @@ struct NewSettingsStrokeGradient: View {
     }
 }
 
-struct NewSettings_Previews: PreviewProvider {
-    static var previews: some View {
-//        ColorPicker(color: .green)
-        NewSettings().environmentObject(WallpapersViewModel())
-        NewSettingsStrokeSolid().environmentObject(WallpapersViewModel())
-        NewSettingsStrokeGradient().environmentObject(WallpapersViewModel())
-    }
-}
+
 
 
 struct ColorPicker: View {
@@ -723,3 +725,10 @@ struct ColorPicker: View {
     }
 }
 
+struct NewSettings_Previews: PreviewProvider {
+    static var previews: some View {
+//        ColorPicker(color: .green)
+        NewSettings().environmentObject(WallpapersViewModel())
+      
+    }
+}

@@ -18,6 +18,7 @@
 		ACC0F10129561E2A00264A0A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC0F10029561E2A00264A0A /* SettingsView.swift */; };
 		ACD376D92965C712004E6322 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD376D82965C712004E6322 /* ViewModel.swift */; };
 		ACD376E22965DFB3004E6322 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD376E12965DFB3004E6322 /* CarouselView.swift */; };
+		ACEF3115297021B3002CAAEE /* SaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEF3114297021B3002CAAEE /* SaveButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		ACC0F10029561E2A00264A0A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		ACD376D82965C712004E6322 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		ACD376E12965DFB3004E6322 /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
+		ACEF3114297021B3002CAAEE /* SaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				ACC0F10029561E2A00264A0A /* SettingsView.swift */,
 				AC3656B02968BB7300362494 /* EditorView.swift */,
 				AC47801F296831CF00A615D6 /* PreviewView.swift */,
+				ACEF3114297021B3002CAAEE /* SaveButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 				ACD376E22965DFB3004E6322 /* CarouselView.swift in Sources */,
 				AC478020296831CF00A615D6 /* PreviewView.swift in Sources */,
 				AC2DD354294A7D7600E64523 /* ContentView.swift in Sources */,
+				ACEF3115297021B3002CAAEE /* SaveButton.swift in Sources */,
 				AC3656B12968BB7300362494 /* EditorView.swift in Sources */,
 				AC7428652957946B007E83F7 /* OnboardingView.swift in Sources */,
 				ACC0F10129561E2A00264A0A /* SettingsView.swift in Sources */,

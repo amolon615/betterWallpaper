@@ -65,7 +65,7 @@ struct Preview: View {
                     }label: {
                         Label("Back to edit", systemImage: "slider.horizontal.3")
                     }
-                    .frame(width: 250, height: 50)
+                    .frame(width: vm.saveButtonPressed ? 150 : 250, height: 50)
                     .background(Color.blue)
                         .cornerRadius(40)
                         .foregroundColor(.white)
@@ -73,17 +73,33 @@ struct Preview: View {
                     
                         
                     
-                    Button{
-                        let newView = GradientFillSelected().environmentObject(vm)
-                        vm.Save(view: newView)
-                        print("saved from preview success")
-                    } label: {
-                       Image(systemName: "square.and.arrow.down")
-                    }.frame(width: 50, height: 50)
-                        .background(Color.white)
-                        .cornerRadius(40)
-                        .foregroundColor(.black)
-                        .padding(.trailing)
+                    Rectangle().fill(vm.saveButtonPressed ? .green : .blue)
+                        .frame(width: vm.saveButtonPressed ? 150 : 50, height: 50)
+                        .cornerRadius(50)
+                        .overlay(
+                            ZStack{
+                                HStack(spacing: vm.saveButtonPressed ? 10 : 0){
+                                    Image(systemName: vm.saveButtonPressed ? "checkmark" : "square.and.arrow.down")
+                                        .foregroundColor(.white)
+                                    Text(vm.saveButtonPressed ? "Saved" : "").foregroundColor(.white)
+                                }
+                            }
+                        )
+                        .onTapGesture {
+                            withAnimation(.spring()){
+                                vm.saveButtonPressed.toggle()
+                                let newView = GradientFillSelected().environmentObject(vm)
+                                vm.Save(view: newView)
+                                print("saved from preview success")
+                            }
+                        }
+                        .onChange(of: vm.saveButtonPressed, perform: { _ in
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                withAnimation(.spring()){
+                                    vm.saveButtonPressed = false
+                                }
+                            }
+                        })
                     
                     
                     
@@ -147,25 +163,39 @@ struct Preview2: View {
                     }label: {
                         Label("Back to edit", systemImage: "slider.horizontal.3")
                     }
-                    .frame(width: 250, height: 50)
-                    .background(Color.blue)
-                        .cornerRadius(40)
-                        .foregroundColor(.white)
-                        .padding(.leading)
-                    
-                        
-                    
-                    Button{
-                        let newView = GradientFillSelected().environmentObject(vm)
-                        vm.Save(view: newView)
-                        print("saved from preview success")
-                    } label: {
-                       Image(systemName: "square.and.arrow.down")
-                    }.frame(width: 50, height: 50)
-                        .background(Color.white)
+                    .frame(width: vm.saveButtonPressed ? 150 : 250, height: 50)
+                    .background(Color.white)
                         .cornerRadius(40)
                         .foregroundColor(.black)
-                        .padding(.trailing)
+                        .padding(.leading)
+                    
+                    Rectangle().fill(vm.saveButtonPressed ? .green : .blue)
+                        .frame(width: vm.saveButtonPressed ? 150 : 50, height: 50)
+                        .cornerRadius(50)
+                        .overlay(
+                            ZStack{
+                                HStack(spacing: vm.saveButtonPressed ? 10 : 0){
+                                    Image(systemName: vm.saveButtonPressed ? "checkmark" : "square.and.arrow.down")
+                                        .foregroundColor(.white)
+                                    Text(vm.saveButtonPressed ? "Saved" : "").foregroundColor(.white)
+                                }
+                            }
+                        )
+                        .onTapGesture {
+                            withAnimation(.spring()){
+                                vm.saveButtonPressed.toggle()
+                                let newView = GradientFillSelected().environmentObject(vm)
+                                vm.Save(view: newView)
+                                print("saved from preview success")
+                            }
+                        }
+                        .onChange(of: vm.saveButtonPressed, perform: { _ in
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                withAnimation(.spring()){
+                                    vm.saveButtonPressed = false
+                                }
+                            }
+                        })
                     
                     
                     

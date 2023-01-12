@@ -45,13 +45,19 @@ struct ContentView: View {
                             .foregroundColor(.white)
                             .font(.system(size: 24))
                             .padding(.horizontal)
+                            .onTapGesture {
+                                vm.isShowingSettings = true
+                            }
                        
                     }
                     .frame(width: vm.cgWidth)
                     .scaleEffect(!vm.closed ? 0 : 1)
                     HStack{
-                        Text("Swipe to select template").font(.system(.body, design: .rounded))
+                        Text("Swipe to select template").font(.body)
+                            .fontWeight(.ultraLight)
                             .foregroundColor(.white)
+                            .multilineTextAlignment(.center)
+                           
                            
                     }.scaleEffect(!vm.closed ? 0 : 1)
                      Spacer()
@@ -82,12 +88,13 @@ struct ContentView: View {
                                 }
                                 
                             }
-                        
-                       
-                           
                          
                     }.frame(width: vm.cgWidth)
-                  
+                        .padding(.bottom)
+                        .sheet(isPresented: $vm.isShowingSettings) {
+                            Settings().environmentObject(WallpapersViewModel())
+                                .presentationDetents([.medium])
+                        }
                 }
             
             )
@@ -302,7 +309,7 @@ struct GradientStrokeSelected: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView().environmentObject(WallpapersViewModel())
-        GradientStrokeSelected().environmentObject(WallpapersViewModel())
+        
     }
 }
 

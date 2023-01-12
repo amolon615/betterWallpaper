@@ -106,14 +106,18 @@ struct SelectView: View {
                                             }.padding(10)
                                             Spacer()
                                             Button {
-                                                vm.isPressedBlue.toggle()
+                                                withAnimation(.spring()){
+                                                    vm.isShowingSettings = true
+                                                }
+                                                
                                             } label : {
                                                 Image(systemName: "gearshape.fill")
                                                     .font(.system(size: 25))
                                                    
                                             }
                                         }.padding()
-                                            .position(x: 190, y: 84)
+                                           
+//                                            .position(x: 190, y: 84)
                                             .foregroundColor(.white)
                                         Spacer()
                                         HStack{
@@ -122,11 +126,14 @@ struct SelectView: View {
                                                     vm.isShowingEdits.toggle()
                                                 }
                                             }label: {
-                                                Label("Edit", systemImage: "slider.horizontal.3")
+                                                HStack (spacing: vm.saveButtonPressed ? 10 : 0){
+                                                    Image(systemName: "slider.horizontal.3")
+                                                    Text(vm.saveButtonPressed ? "" : "Edit")
+                                                }
                                             }
-                                            .frame(width: 150, height: 50)
+                                            .frame(width: vm.saveButtonPressed ? 50 : 150, height: 50)
                                             .background(Color.blue)
-                                                .cornerRadius(40)
+                                                .cornerRadius(50)
                                                 .foregroundColor(.white)
                                                 .padding(.leading)
                                             
@@ -135,37 +142,68 @@ struct SelectView: View {
                                                     vm.showPreview = true
                                                 }
                                             } label: {
-                                                Label("Preview", systemImage: "photo")
-                                            }.frame(width: 120, height: 50)
+                                                HStack (spacing: vm.saveButtonPressed ? 10 : 5){
+                                                    Image(systemName: "photo")
+                                                    Text(vm.saveButtonPressed ? "" : "Preview")
+                                                }
+                                            }.frame(width: vm.saveButtonPressed ? 50 : 120, height: 50)
                                                 .background(Color(red: 0.054, green: 0.093, blue: 0.158))
-                                                .cornerRadius(40)
+                                                .cornerRadius(50)
                                                 .foregroundColor(.white)
                                                 
                                             
-                                            Button{
-                                                let newView =   GradientFillSelected().environmentObject(vm)
-                                                vm.Save(view: newView)
-                                            } label: {
-                                               Image(systemName: "square.and.arrow.down")
-                                            }.frame(width: 50, height: 50)
-                                                .background(Color.white)
-                                                .cornerRadius(40)
-                                                .foregroundColor(.black)
-                                                .padding(.trailing)
+                                            
+                                            Rectangle().fill(vm.saveButtonPressed ? .green : .white)
+                                                .frame(width: vm.saveButtonPressed ? 150 : 50, height: 50)
+                                                .cornerRadius(50)
+                                                .overlay(
+                                                    ZStack{
+                                                        HStack(spacing: vm.saveButtonPressed ? 10 : 0){
+                                                            Image(systemName: vm.saveButtonPressed ? "checkmark" : "square.and.arrow.down")
+                                                                .foregroundColor(vm.saveButtonPressed ? .white : .black)
+                                                            Text(vm.saveButtonPressed ? "Saved" : "").foregroundColor(vm.saveButtonPressed ? .white : .black)
+                                                        }
+                                                    }
+                                                )
+                                                .onTapGesture {
+                                                    withAnimation(.spring()){
+                                                        vm.saveButtonPressed.toggle()
+                                                        let newView =   GradientFillSelected().environmentObject(vm)
+                                                        vm.Save(view: newView)
+                                                        print("saved from preview success")
+                                                    }
+                                                }
+                                                .onChange(of: vm.saveButtonPressed, perform: { _ in
+                                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                        withAnimation(.spring()){
+                                                            vm.saveButtonPressed = false
+                                                        }
+                                                    }
+                                                })
+                                            
+                                            
                                                 .fullScreenCover(isPresented: $vm.showPreview) {
                                                     Preview()
                                                 }
                                             
                                             
                                         }.padding(50)
-                                            .sheet(isPresented: $vm.isShowingEdits) {
+//                                            .sheet(isPresented: $vm.isShowingEdits) {
+//                                                NewSettings()
+////                                                    .presentationDetents([.fraction(0.9)])
+//                                                    .presentationDetents([.large])
+//                                                    .presentationDragIndicator(.hidden)
+//                                            }
+                                            .fullScreenCover(isPresented: $vm.isShowingEdits) {
                                                 NewSettings()
-                                                    .presentationDetents([.fraction(0.73)])
-                                                    .presentationDragIndicator(.hidden)
                                             }
                                             
                                     }
                             )
+                        }
+                        .sheet(isPresented: $vm.isShowingSettings) {
+                            Settings().environmentObject(WallpapersViewModel())
+                                .presentationDetents([.medium])
                         }
                 }
                     
@@ -253,9 +291,12 @@ struct SelectView: View {
                                                     vm.isShowingEdits.toggle()
                                                 }
                                             }label: {
-                                                Label("Edit", systemImage: "slider.horizontal.3")
+                                                HStack (spacing: vm.saveButtonPressed ? 10 : 0){
+                                                    Image(systemName: "slider.horizontal.3")
+                                                    Text(vm.saveButtonPressed ? "" : "Edit")
+                                                }
                                             }
-                                            .frame(width: 150, height: 50)
+                                            .frame(width: vm.saveButtonPressed ? 50 : 150, height: 50)
                                             .background(Color.blue)
                                                 .cornerRadius(40)
                                                 .foregroundColor(.white)
@@ -267,23 +308,44 @@ struct SelectView: View {
                                               
                                                 }
                                             } label: {
-                                                Label("Preview", systemImage: "photo")
-                                            }.frame(width: 120, height: 50)
+                                                HStack (spacing: vm.saveButtonPressed ? 10 : 5){
+                                                    Image(systemName: "photo")
+                                                    Text(vm.saveButtonPressed ? "" : "Preview")
+                                                }
+                                            }.frame(width: vm.saveButtonPressed ? 50 : 120, height: 50)
                                                 .background(Color(red: 0.054, green: 0.093, blue: 0.158))
                                                 .cornerRadius(40)
                                                 .foregroundColor(.white)
                                                 
                                             
-                                            Button{
-                                                let newView =   GradientStrokeSelected().environmentObject(vm)
-                                                vm.Save(view: newView)
-                                            } label: {
-                                               Image(systemName: "square.and.arrow.down")
-                                            }.frame(width: 50, height: 50)
-                                                .background(Color.white)
-                                                .cornerRadius(40)
-                                                .foregroundColor(.black)
-                                                .padding(.trailing)
+                                            Rectangle().fill(vm.saveButtonPressed ? .green : .white)
+                                                .frame(width: vm.saveButtonPressed ? 150 : 50, height: 50)
+                                                .cornerRadius(50)
+                                                .overlay(
+                                                    ZStack{
+                                                        HStack(spacing: vm.saveButtonPressed ? 10 : 0){
+                                                            Image(systemName: vm.saveButtonPressed ? "checkmark" : "square.and.arrow.down")
+                                                                .foregroundColor(vm.saveButtonPressed ? .white : .black)
+                                                            Text(vm.saveButtonPressed ? "Saved" : "").foregroundColor(vm.saveButtonPressed ? .white : .black)
+                                                        }
+                                                    }
+                                                )
+                                                .onTapGesture {
+                                                    withAnimation(.spring()){
+                                                        vm.saveButtonPressed.toggle()
+                                                        let newView =   GradientStrokeSelected().environmentObject(vm)
+                                                        vm.Save(view: newView)
+                                                        print("saved from preview success")
+                                                    }
+                                                }
+                                                .onChange(of: vm.saveButtonPressed, perform: { _ in
+                                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                        withAnimation(.spring()){
+                                                            vm.saveButtonPressed = false
+                                                        }
+                                                    }
+                                                })
+                                            
                                                 .fullScreenCover(isPresented: $vm.showPreview) {
                                                     Preview2()
                                                 }
@@ -291,10 +353,13 @@ struct SelectView: View {
                                             
                                             
                                         }.padding(50)
-                                            .sheet(isPresented: $vm.isShowingEdits) {
+//                                            .sheet(isPresented: $vm.isShowingEdits) {
+//                                                NewSettingsStrokeGradient()
+//                                                    .presentationDetents([.fraction(0.73)])
+//                                                    .presentationDragIndicator(.hidden)
+//                                            }
+                                            .fullScreenCover(isPresented: $vm.isShowingEdits) {
                                                 NewSettingsStrokeGradient()
-                                                    .presentationDetents([.fraction(0.73)])
-                                                    .presentationDragIndicator(.hidden)
                                             }
                                     }
                             )
@@ -387,9 +452,12 @@ struct SelectView: View {
                                                     vm.isShowingEdits.toggle()
                                                 }
                                             }label: {
-                                                Label("Edit", systemImage: "slider.horizontal.3")
+                                                HStack (spacing: vm.saveButtonPressed ? 10 : 0){
+                                                    Image(systemName: "slider.horizontal.3")
+                                                    Text(vm.saveButtonPressed ? "" : "Edit")
+                                                }
                                             } 
-                                            .frame(width: 150, height: 50)
+                                            .frame(width: vm.saveButtonPressed ? 50 : 150, height: 50)
                                             .background(Color.blue)
                                                 .cornerRadius(40)
                                                 .foregroundColor(.white)
@@ -401,23 +469,45 @@ struct SelectView: View {
                                               
                                                 }
                                             } label: {
-                                                Label("Preview", systemImage: "photo")
-                                            }.frame(width: 120, height: 50)
+                                                HStack (spacing: vm.saveButtonPressed ? 10 : 5){
+                                                    Image(systemName: "photo")
+                                                    Text(vm.saveButtonPressed ? "" : "Preview")
+                                                }
+                                            }.frame(width: vm.saveButtonPressed ? 50 : 120, height: 50)
                                                 .background(Color(red: 0.054, green: 0.093, blue: 0.158))
                                                 .cornerRadius(40)
                                                 .foregroundColor(.white)
                                                 
                                             
-                                            Button{
-                                                let newView =   GradientStrokeSelected().environmentObject(vm)
-                                                vm.Save(view: newView)
-                                            } label: {
-                                               Image(systemName: "square.and.arrow.down")
-                                            }.frame(width: 50, height: 50)
-                                                .background(Color.white)
-                                                .cornerRadius(40)
-                                                .foregroundColor(.black)
-                                                .padding(.trailing)
+                                            
+                                            Rectangle().fill(vm.saveButtonPressed ? .green : .white)
+                                                .frame(width: vm.saveButtonPressed ? 150 : 50, height: 50)
+                                                .cornerRadius(50)
+                                                .overlay(
+                                                    ZStack{
+                                                        HStack(spacing: vm.saveButtonPressed ? 10 : 0){
+                                                            Image(systemName: vm.saveButtonPressed ? "checkmark" : "square.and.arrow.down")
+                                                                .foregroundColor(vm.saveButtonPressed ? .white : .black)
+                                                            Text(vm.saveButtonPressed ? "Saved" : "").foregroundColor(vm.saveButtonPressed ? .white : .black)
+                                                        }
+                                                    }
+                                                )
+                                                .onTapGesture {
+                                                    withAnimation(.spring()){
+                                                        vm.saveButtonPressed.toggle()
+                                                        let newView =   StrokeSolidFillView().environmentObject(vm)
+                                                        vm.Save(view: newView)
+                                                        print("saved from preview success")
+                                                    }
+                                                }
+                                                .onChange(of: vm.saveButtonPressed, perform: { _ in
+                                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                        withAnimation(.spring()){
+                                                            vm.saveButtonPressed = false
+                                                        }
+                                                    }
+                                                })
+                                            
                                                 .fullScreenCover(isPresented: $vm.showPreview) {
                                                     Preview3()
                                                 }
@@ -438,6 +528,7 @@ struct SelectView: View {
                 }
                 
             }.frame(maxWidth: .infinity)
+                
         }
     }
 }

@@ -36,7 +36,7 @@ final class WallpapersViewModel: ObservableObject {
     
     
     @Published var radiusCorner: CGFloat = 40
-    @Published var paddingEdits: CGFloat = 10
+    @Published var paddingEdits: CGFloat = 5
     
     @Published var editButtonAnimated = false
     @Published var saveButtonAnimated = false
@@ -72,7 +72,7 @@ final class WallpapersViewModel: ObservableObject {
     @Published var isPressedRed: Bool = false
     @Published var isPressedGreen: Bool = false
     
-    
+    @Published var saveButtonPressed = false
     
     func Save(view: any View){
         self.feedback.notificationOccurred(.success)
