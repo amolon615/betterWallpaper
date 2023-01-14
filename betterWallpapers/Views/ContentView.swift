@@ -235,7 +235,7 @@ struct FilledGradientView: View {
         ZStack{
             LinearGradient(gradient: Gradient(colors: [vm.pickedColor, vm.pickedColor2, vm.pickedColor3]), startPoint: .leading, endPoint: .trailing)
                 .ignoresSafeArea()
-                .rotationEffect(Angle(degrees: vm.startRadius))
+           
 
         }
             

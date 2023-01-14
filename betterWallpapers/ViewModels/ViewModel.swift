@@ -35,7 +35,7 @@ final class WallpapersViewModel: ObservableObject {
     @Published var strokeSelected = "Linear"
     
     
-    @Published var radiusCorner: CGFloat = 40
+    @Published var radiusCorner: CGFloat = 50
     @Published var paddingEdits: CGFloat = 5
     
     @Published var editButtonAnimated = false

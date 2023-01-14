@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+
+
+
 struct NewSettings: View {
     @EnvironmentObject var vm: WallpapersViewModel
     
@@ -17,13 +20,12 @@ struct NewSettings: View {
             
             
             VStack(spacing: -10){
-                Spacer()
               
                 VStack (alignment: .center){
                     HStack(alignment: .center){
                         Text("Select gradient type").foregroundColor(.white)
                             .padding()
-                    }
+                    }.padding(.top)
                     HStack{
                         Rectangle()
                             .strokeBorder(.white, lineWidth: vm.gradientSelected == "Linear" ? 2 : 0)
@@ -63,7 +65,7 @@ struct NewSettings: View {
                         
                         Rectangle()
                             .strokeBorder(.white, lineWidth: vm.gradientSelected == "Angular" ? 2 : 0)
-                            .frame(width: 80, height: 40)
+                            .frame(width: 90, height: 40)
                             .cornerRadius(3)
                             .overlay(
                                 HStack{
@@ -87,34 +89,50 @@ struct NewSettings: View {
                 
                 
                 VStack{
-                    HStack{
-                        Text("Adjust parameters").foregroundColor(.white)
-                    }
-                    HStack(spacing: 10){
+                    
+                    if vm.gradientSelected == "Linear" {
+                        
+                    } else if vm.gradientSelected == "Radial"{
+                        HStack{
+                            Text("Adjust parameters").foregroundColor(.white)
+                        }
+                        HStack(spacing: 10){
                             Text(vm.gradientSelected == "Radial" ? "Start radius" : "Scale amount").foregroundColor(.white)
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                                 .padding(.trailing)
                             Slider(value: $vm.startRadius, in: 0...400).frame(width: 150)
-                                
+                            
                         }
-                    HStack(spacing: 20){
+                        HStack(spacing: 20){
                             Text(vm.gradientSelected == "Radial" ? "End radius" : "Corner radius").foregroundColor(.white)
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                             Slider(value: $vm.endRadius, in: 0...400).frame(width: 150)
-                                
+                            
                         }
-                    HStack (spacing: 10){
-                            Text(vm.gradientSelected == "Radial" ? "Corner radius" : "Rotation amount").foregroundColor(.white)
+
+                    } else if vm.gradientSelected == "Angular" {
+                        HStack{
+                            Text("Adjust parameters").foregroundColor(.white)
+                        }
+                        HStack(spacing: 10){
+                            Text("Start angle").foregroundColor(.white)
                                 .font(.caption)
                                 .foregroundColor(.secondary)
-                            Slider(value: $vm.radiusCorner, in: 0...400).frame(width: 150)
-                       
-                               
-                                
+                                .padding(.trailing)
+                            Slider(value: $vm.startRadius, in: 0...400).frame(width: 150)
+                            
                         }
-                    }.frame(width: 300, height: 160)
+                        HStack(spacing: 20){
+                            Text("End angle").foregroundColor(.white)
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                            Slider(value: $vm.endRadius, in: 0...400).frame(width: 150)
+                            
+                        }
+                    }
+                }.frame(width: 300, height: vm.gradientSelected == "Linear" ? 0 : 160)
 //                    .background(.red)
                     .padding()
                 
@@ -169,7 +187,7 @@ struct NewSettings: View {
                     }.frame(width: 300, height: 170)
 //                    .background(.green)
                     .padding()
-             Spacer()
+//             Spacer()
                 HStack{
                     Button {
                         withAnimation(){
@@ -191,7 +209,7 @@ struct NewSettings: View {
                             vm.radiusCorner = 40
                             vm.startRadius = 0
                             vm.endRadius = 200
-                            vm.isShowingEdits = false
+                          
                         }
                     } label: {
                        Image(systemName: "arrow.counterclockwise")
@@ -227,8 +245,6 @@ struct NewSettingsStrokeSolid: View {
             
             VStack{
               
-              
-      
                 
                 
                 VStack{
@@ -240,7 +256,7 @@ struct NewSettingsStrokeSolid: View {
                     HStack (spacing: 10){
                             Text("Corner Radius").foregroundColor(.white)
                                 .font(.caption)
-                            Slider(value: $vm.radiusCorner, in: 0...400).frame(width: 150)
+                            Slider(value: $vm.radiusCorner, in: 0...40).frame(width: 150)
                        
                                
                                 
@@ -302,7 +318,7 @@ struct NewSettingsStrokeSolid: View {
                             vm.radiusCorner = 40
                             vm.startRadius = 0
                             vm.endRadius = 200
-                            vm.isShowingEdits = false
+                            
                         }
                     } label: {
                        Image(systemName: "arrow.counterclockwise")
@@ -407,33 +423,65 @@ struct NewSettingsStrokeGradient: View {
                 VStack{
                     HStack{
                         Text("Adjust parameters").foregroundColor(.white)
-                    }.padding()
-                    HStack(spacing: 10){
-                            Text(vm.gradientSelected == "Radial" ? "Start radius" : "Scale amount").foregroundColor(.white)
-                                .font(.caption)
-                                .padding(.trailing)
-                            Slider(value: $vm.startRadius, in: 0...400).frame(width: 150)
-                                
-                        }
-                    HStack(spacing: 20){
-                            Text(vm.gradientSelected == "Radial" ? "End radius" : "Corner radius").foregroundColor(.white)
-                                .font(.caption)
-                            Slider(value: $vm.endRadius, in: 0...400).frame(width: 150)
-                                
-                        }
+                    }
                     HStack (spacing: 10){
                             Text("Corner radius").foregroundColor(.white)
                                 .font(.caption)
-                            Slider(value: $vm.radiusCorner, in: 0...400).frame(width: 150)
+                            Slider(value: $vm.radiusCorner, in: 0...40).frame(width: 150)
                         }
                     HStack (spacing: 10){
-                            Text("Stroke Width").foregroundColor(.white)
-                                .font(.caption)
-                            Slider(value: $vm.paddingEdits, in: 0...100).frame(width: 150)
+                        Text("Stroke Width").foregroundColor(.white)
+                            .font(.caption)
+                        Slider(value: $vm.paddingEdits, in: 0...100).frame(width: 150)
+                    }
+                        
+                        
+                    if vm.gradientSelected == "Linear" {
+                        //
+                    } else if vm.gradientSelected == "Radial"{
+                        
+                            HStack(spacing: 10){
+                                Text(vm.gradientSelected == "Radial" ? "Start radius" : "Scale amount").foregroundColor(.white)
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                                    .padding(.trailing)
+                                Slider(value: $vm.startRadius, in: 0...400).frame(width: 150)
+                                
+                            }
+                            HStack(spacing: 20){
+                                Text(vm.gradientSelected == "Radial" ? "End radius" : "Corner radius").foregroundColor(.white)
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                                Slider(value: $vm.endRadius, in: 0...400).frame(width: 150)
+                                
+                            }
+                        
+
+                    } else if vm.gradientSelected == "Angular" {
+                        VStack{
+                            HStack(spacing: 10){
+                                Text("Start angle").foregroundColor(.white)
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                                    .padding(.trailing)
+                                Slider(value: $vm.startRadius, in: 0...400).frame(width: 150)
+                                
+                            }
+                            HStack(spacing: 10){
+                                Text("End angle").foregroundColor(.white)
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                                Slider(value: $vm.endRadius, in: 0...400).frame(width: 150)
+                                
+                            }
+                        }
+                    }
+               
+                   
                        
                                
                                 
-                        }
+                        
                 }.frame(width: vm.cgWidth * 0.7, height:  vm.cgHeight * 0.25)
 //                    .background(.red)
                     .padding()
@@ -511,7 +559,7 @@ struct NewSettingsStrokeGradient: View {
                             vm.radiusCorner = 40
                             vm.startRadius = 0
                             vm.endRadius = 200
-                            vm.isShowingEdits = false
+                            
                         }
                     } label: {
                        Image(systemName: "arrow.counterclockwise")
@@ -728,7 +776,10 @@ struct ColorPicker: View {
 struct NewSettings_Previews: PreviewProvider {
     static var previews: some View {
 //        ColorPicker(color: .green)
+     
         NewSettings().environmentObject(WallpapersViewModel())
-      
+        NewSettingsStrokeSolid().environmentObject(WallpapersViewModel())
+        NewSettingsStrokeGradient().environmentObject(WallpapersViewModel())
+        ColorPicker().environmentObject(WallpapersViewModel())
     }
 }

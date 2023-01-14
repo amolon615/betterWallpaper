@@ -7,6 +7,48 @@
 
 import SwiftUI
 
+struct Preview_Layout: View {
+    @EnvironmentObject var vm: WallpapersViewModel
+    var body: some View{
+        
+        Preview()
+            .overlay(
+                VStack{
+                    HStack{
+                        HStack{
+                            Image("logo")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 40, height: 40)
+                                
+                            Text("betterWallpapers")
+                                .foregroundColor(.white)
+                                .font(.system(size: 12))
+                                .font(.system(.body, design: .rounded))
+                                
+                        }
+                            .padding(.horizontal)
+                        Spacer()
+                        Image(systemName: "gearshape.fill")
+                            .foregroundColor(.white)
+                            .font(.system(size: 24))
+                            .padding(.horizontal)
+                            .onTapGesture {
+                                vm.isShowingSettings = true
+                            }
+                       
+                    }
+                    .frame(width: vm.cgWidth)
+                    .scaleEffect(!vm.closed ? 0 : 1)
+           
+   Spacer()
+                }
+            
+            )
+    }
+}
+
+
 
 //1st preview
 struct Preview: View {
@@ -22,6 +64,7 @@ struct Preview: View {
             Color(red: 0.054, green: 0.093, blue: 0.158).ignoresSafeArea()
             VStack{
                 //title
+                Spacer()
                 HStack{
                     Text("Preview your wallpaper")
                         .font(.headline)
@@ -29,33 +72,43 @@ struct Preview: View {
                         .padding()
                 }
                 //preview screen
-                Spacer()
-                HStack{
+                
+                
+                HStack (spacing: 0){
                     //lockscreen preview
                     ZStack{
                         GradientFillSelected()
-                        Image("lockscreen")
+                        Image(vm.cgWidth > 740 ? "ipad_layout_lockscreen" : "iphone_layout_lockscreen")
                             .resizable()
                             .scaledToFit()
-    //                        .offset(y: -10)
+                            .offset(y: vm.cgWidth > 740 ? 0 : -10)
                     }
-                    .frame(width: vm.cgWidth * 0.45, height: vm.cgHeight * 0.47)
-                    .cornerRadius(20)
-                    .padding(.leading)
-                    //homescreen preview
+
+                    .cornerRadius(vm.radiusCorner)
+                    
+                    .frame(width: vm.cgWidth * 0.5, height: vm.cgHeight * 0.5)
+                    .scaleEffect(vm.cgWidth > 740 ? 0.87 : 0.9)
+                  
+                    
                     ZStack{
                         GradientFillSelected()
-                        Image("homescreen")
+                        Image(vm.cgWidth > 740 ? "ipad_layout_homescreen" : "iphone_layout_homescreen")
                             .resizable()
                             .scaledToFit()
-    //                        .offset(y: -10)
+                            .scaleEffect(0.9)
+                            .offset(y: +10)
                     }
-                    .frame(width: vm.cgWidth * 0.45, height: vm.cgHeight * 0.47)
-                    .cornerRadius(20)
-                    .padding(.trailing)
+                .cornerRadius(vm.radiusCorner)
+                        .frame(width: vm.cgWidth * 0.5, height: vm.cgHeight * 0.5)
+                        .scaleEffect(vm.cgWidth > 740 ? 0.87 : 0.9)
+                    
+                    
                 }
+                
                 //bottom buttons menu
                 Spacer()
+                
+                
                 HStack{
                     Button {
                         withAnimation(){
@@ -63,7 +116,8 @@ struct Preview: View {
                             print("dismissed preview")
                         }
                     }label: {
-                        Label("Back to edit", systemImage: "slider.horizontal.3")
+                        Label("Back to edit", systemImage: "arrow.counterclockwise.circle")
+                            .font(.system(size: 20))
                     }
                     .frame(width: vm.saveButtonPressed ? 150 : 250, height: 50)
                     .background(Color.blue)
@@ -73,18 +127,21 @@ struct Preview: View {
                     
                         
                     
-                    Rectangle().fill(vm.saveButtonPressed ? .green : .blue)
+                    Rectangle().fill(vm.saveButtonPressed ? .green : .white)
                         .frame(width: vm.saveButtonPressed ? 150 : 50, height: 50)
                         .cornerRadius(50)
                         .overlay(
                             ZStack{
                                 HStack(spacing: vm.saveButtonPressed ? 10 : 0){
-                                    Image(systemName: vm.saveButtonPressed ? "checkmark" : "square.and.arrow.down")
-                                        .foregroundColor(.white)
-                                    Text(vm.saveButtonPressed ? "Saved" : "").foregroundColor(.white)
+                                    Image(systemName: vm.saveButtonPressed ? "checkmark.circle" : "arrow.down.circle")
+                                        .foregroundColor(vm.saveButtonPressed ? .white : .black)
+                                        .font(.system(size: 20))
+                                    Text(vm.saveButtonPressed ? "Saved" : "")
+                                        .foregroundColor(vm.saveButtonPressed ? .white : .black)
                                 }
                             }
                         )
+                        .shadow(radius: 10)
                         .onTapGesture {
                             withAnimation(.spring()){
                                 vm.saveButtonPressed.toggle()
@@ -100,6 +157,8 @@ struct Preview: View {
                                 }
                             }
                         })
+                    
+                  
                     
                     
                     
@@ -128,29 +187,35 @@ struct Preview2: View {
                 }
                 //preview screen
                 Spacer()
-                HStack{
+                HStack (spacing: 0){
                     //lockscreen preview
                     ZStack{
                         GradientStrokeSelected()
-                        Image("lockscreen")
+                        Image(vm.cgWidth > 740 ? "ipad_layout_lockscreen" : "iphone_layout_lockscreen")
                             .resizable()
                             .scaledToFit()
-    //                        .offset(y: -10)
+                            .offset(y: vm.cgWidth > 740 ? 0 : -10)
                     }
-                    .frame(width: vm.cgWidth * 0.45, height: vm.cgHeight * 0.47)
-                    .cornerRadius(20)
-                    .padding(.leading)
-                    //homescreen preview
+
+                    .cornerRadius(vm.radiusCorner)
+                    
+                    .frame(width: vm.cgWidth * 0.5, height: vm.cgHeight * 0.5)
+                    .scaleEffect(vm.cgWidth > 740 ? 0.87 : 0.9)
+                  
+                    
                     ZStack{
                         GradientStrokeSelected()
-                        Image("homescreen")
+                        Image(vm.cgWidth > 740 ? "ipad_layout_homescreen" : "iphone_layout_homescreen")
                             .resizable()
                             .scaledToFit()
-    //                        .offset(y: -10)
+                            .scaleEffect(0.9)
+                            .offset(y: +10)
                     }
-                    .frame(width: vm.cgWidth * 0.45, height: vm.cgHeight * 0.47)
-                    .cornerRadius(20)
-                    .padding(.trailing)
+                .cornerRadius(vm.radiusCorner)
+                        .frame(width: vm.cgWidth * 0.5, height: vm.cgHeight * 0.5)
+                        .scaleEffect(vm.cgWidth > 740 ? 0.87 : 0.9)
+                    
+                    
                 }
                 //bottom buttons menu
                 Spacer()
@@ -161,26 +226,30 @@ struct Preview2: View {
                             print("dismissed preview")
                         }
                     }label: {
-                        Label("Back to edit", systemImage: "slider.horizontal.3")
+                        Label("Back to edit", systemImage: "arrow.counterclockwise.circle")
+                            .font(.system(size: 20))
                     }
                     .frame(width: vm.saveButtonPressed ? 150 : 250, height: 50)
-                    .background(Color.white)
+                    .background(Color.blue)
                         .cornerRadius(40)
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
                         .padding(.leading)
                     
-                    Rectangle().fill(vm.saveButtonPressed ? .green : .blue)
+                    Rectangle().fill(vm.saveButtonPressed ? .green : .white)
                         .frame(width: vm.saveButtonPressed ? 150 : 50, height: 50)
                         .cornerRadius(50)
                         .overlay(
                             ZStack{
                                 HStack(spacing: vm.saveButtonPressed ? 10 : 0){
-                                    Image(systemName: vm.saveButtonPressed ? "checkmark" : "square.and.arrow.down")
-                                        .foregroundColor(.white)
-                                    Text(vm.saveButtonPressed ? "Saved" : "").foregroundColor(.white)
+                                    Image(systemName: vm.saveButtonPressed ? "checkmark.circle" : "arrow.down.circle")
+                                        .foregroundColor(vm.saveButtonPressed ? .white : .black)
+                                        .font(.system(size: 20))
+                                    Text(vm.saveButtonPressed ? "Saved" : "")
+                                        .foregroundColor(vm.saveButtonPressed ? .white : .black)
                                 }
                             }
                         )
+                        .shadow(radius: 10)
                         .onTapGesture {
                             withAnimation(.spring()){
                                 vm.saveButtonPressed.toggle()
@@ -197,6 +266,7 @@ struct Preview2: View {
                             }
                         })
                     
+                   
                     
                     
                 }
@@ -213,41 +283,45 @@ struct Preview3: View {
         //preview 1
         ZStack{
             Color(red: 0.054, green: 0.093, blue: 0.158).ignoresSafeArea()
+            
             VStack{
-                //title
-                HStack{
+                Spacer()
                     Text("Preview your wallpaper")
                         .font(.headline)
                         .foregroundColor(.white)
                         .padding()
-                }
-                //preview screen
-                Spacer()
-                HStack{
+                
+                HStack (spacing: 0){
                     //lockscreen preview
                     ZStack{
                         StrokeSolidFillView()
-                        Image("lockscreen")
+                        Image(vm.cgWidth > 740 ? "ipad_layout_lockscreen" : "iphone_layout_lockscreen")
                             .resizable()
                             .scaledToFit()
-    //                        .offset(y: -10)
+                            .offset(y: vm.cgWidth > 740 ? 0 : -10)
                     }
-                    .frame(width: vm.cgWidth * 0.45, height: vm.cgHeight * 0.47)
-                    .cornerRadius(20)
-                    .padding(.leading)
-                    //homescreen preview
+
+                    .cornerRadius(vm.radiusCorner)
+                    
+                    .frame(width: vm.cgWidth * 0.5, height: vm.cgHeight * 0.5)
+                    .scaleEffect(vm.cgWidth > 740 ? 0.87 : 0.9)
+                  
+                    
                     ZStack{
                         StrokeSolidFillView()
-                        Image("homescreen")
+                        Image(vm.cgWidth > 740 ? "ipad_layout_homescreen" : "iphone_layout_homescreen")
                             .resizable()
                             .scaledToFit()
-    //                        .offset(y: -10)
+                            .scaleEffect(0.9)
+                            .offset(y: +10)
                     }
-                    .frame(width: vm.cgWidth * 0.45, height: vm.cgHeight * 0.47)
-                    .cornerRadius(20)
-                    .padding(.trailing)
+                .cornerRadius(vm.radiusCorner)
+                        .frame(width: vm.cgWidth * 0.5, height: vm.cgHeight * 0.5)
+                        .scaleEffect(vm.cgWidth > 740 ? 0.87 : 0.9)
+                    
+                    
                 }
-                //bottom buttons menu
+                     
                 Spacer()
                 HStack{
                     Button {
@@ -256,32 +330,55 @@ struct Preview3: View {
                             print("dismissed preview")
                         }
                     }label: {
-                        Label("Back to edit", systemImage: "slider.horizontal.3")
+                        Label("Back to edit", systemImage: "arrow.counterclockwise.circle")
+                            .font(.system(size: 20))
                     }
-                    .frame(width: 250, height: 50)
+                    .frame(width: vm.saveButtonPressed ? 150 : 250, height: 50)
                     .background(Color.blue)
                         .cornerRadius(40)
                         .foregroundColor(.white)
                         .padding(.leading)
                     
-                        
                     
-                    Button{
-                        let newView = StrokeSolidFillView().environmentObject(vm)
-                        vm.Save(view: newView)
-                        print("saved from preview success")
-                    } label: {
-                       Image(systemName: "square.and.arrow.down")
-                    }.frame(width: 50, height: 50)
-                        .background(Color.white)
-                        .cornerRadius(40)
-                        .foregroundColor(.black)
-                        .padding(.trailing)
-                    
-                    
-                    
+                    Rectangle().fill(vm.saveButtonPressed ? .green : .white)
+                        .frame(width: vm.saveButtonPressed ? 150 : 50, height: 50)
+                        .cornerRadius(50)
+                        .overlay(
+                            ZStack{
+                                HStack(spacing: vm.saveButtonPressed ? 10 : 0){
+                                    Image(systemName: vm.saveButtonPressed ? "checkmark.circle" : "arrow.down.circle")
+                                        .foregroundColor(vm.saveButtonPressed ? .white : .black)
+                                        .font(.system(size: 20))
+                                    Text(vm.saveButtonPressed ? "Saved" : "")
+                                        .foregroundColor(vm.saveButtonPressed ? .white : .black)
+                                }
+                            }
+                        )
+                        .shadow(radius: 10)
+                        .onTapGesture {
+                            withAnimation(.spring()){
+                                vm.saveButtonPressed.toggle()
+                                let newView = StrokeSolidFillView().environmentObject(vm)
+                                vm.Save(view: newView)
+                                print("saved from preview success")
+                            }
+                        }
+                        .onChange(of: vm.saveButtonPressed, perform: { _ in
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                withAnimation(.spring()){
+                                    vm.saveButtonPressed = false
+                                }
+                            }
+                        })
+
+
+
                 }
+//                    .frame(width: 300, height: 100)
+                    
             }
+//            .frame(width: 300, height: 700)
+         
         }
             
     }
@@ -290,8 +387,11 @@ struct Preview3: View {
 
 struct preview_Previews: PreviewProvider {
     static var previews: some View {
+        Preview_Layout().environmentObject(WallpapersViewModel())
         Preview().environmentObject(WallpapersViewModel())
         Preview2().environmentObject(WallpapersViewModel())
+        Preview3().environmentObject(WallpapersViewModel())
+       
     }
 }
 

@@ -90,7 +90,14 @@ struct SelectView: View {
                         }
 
                         .fullScreenCover(isPresented: $vm.isPressedBlue) {
-                            wallpaperView
+                            ZStack{
+                                wallpaperView
+                                NewSettings()
+                                    .cornerRadius(50)
+                                    .frame(width: vm.cgWidth * 0.9, height: vm.cgHeight * 0.7)
+                                    .scaleEffect(vm.isShowingEdits ? 1 : 0)
+                                    .offset(y: +100)
+                            }
                                 .overlay(
                                     VStack{
                                         HStack{
@@ -103,21 +110,14 @@ struct SelectView: View {
                                             }label: {
                                                 Label("Back", systemImage: "arrow.left")
                                                     .font(.system(size: 20))
+                                                    .shadow(radius: 10)
+                                                    .foregroundColor(.white)
                                             }.padding(10)
                                             Spacer()
-                                            Button {
-                                                withAnimation(.spring()){
-                                                    vm.isShowingSettings = true
-                                                }
-                                                
-                                            } label : {
-                                                Image(systemName: "gearshape.fill")
-                                                    .font(.system(size: 25))
-                                                   
-                                            }
+//
                                         }.padding()
                                            
-//                                            .position(x: 190, y: 84)
+//
                                             .foregroundColor(.white)
                                         Spacer()
                                         HStack{
@@ -126,28 +126,31 @@ struct SelectView: View {
                                                     vm.isShowingEdits.toggle()
                                                 }
                                             }label: {
-                                                HStack (spacing: vm.saveButtonPressed ? 10 : 0){
-                                                    Image(systemName: "slider.horizontal.3")
+                                                HStack (spacing: vm.saveButtonPressed ? 10 : 5){
+                                                    Image(systemName: "pencil.tip.crop.circle")
+                                                        .font(.system(size: 20))
                                                     Text(vm.saveButtonPressed ? "" : "Edit")
                                                 }
                                             }
-                                            .frame(width: vm.saveButtonPressed ? 50 : 150, height: 50)
+                                            .frame(width: vm.saveButtonPressed ? 50 : 120, height: 50)
+                                            .shadow(radius: 10)
                                             .background(Color.blue)
                                                 .cornerRadius(50)
                                                 .foregroundColor(.white)
                                                 .padding(.leading)
-                                            
                                             Button{
                                                 withAnimation(.spring()){
                                                     vm.showPreview = true
                                                 }
                                             } label: {
                                                 HStack (spacing: vm.saveButtonPressed ? 10 : 5){
-                                                    Image(systemName: "photo")
+                                                    Image(systemName: "photo.circle")
+                                                        .font(.system(size: 20))
                                                     Text(vm.saveButtonPressed ? "" : "Preview")
                                                 }
                                             }.frame(width: vm.saveButtonPressed ? 50 : 120, height: 50)
                                                 .background(Color(red: 0.054, green: 0.093, blue: 0.158))
+                                                .shadow(radius: 10)
                                                 .cornerRadius(50)
                                                 .foregroundColor(.white)
                                                 
@@ -159,12 +162,14 @@ struct SelectView: View {
                                                 .overlay(
                                                     ZStack{
                                                         HStack(spacing: vm.saveButtonPressed ? 10 : 0){
-                                                            Image(systemName: vm.saveButtonPressed ? "checkmark" : "square.and.arrow.down")
+                                                            Image(systemName: vm.saveButtonPressed ? "checkmark.circle" : "arrow.down.circle")
                                                                 .foregroundColor(vm.saveButtonPressed ? .white : .black)
+                                                                .font(.system(size: 20))
                                                             Text(vm.saveButtonPressed ? "Saved" : "").foregroundColor(vm.saveButtonPressed ? .white : .black)
                                                         }
                                                     }
                                                 )
+                                                .shadow(radius: 10)
                                                 .onTapGesture {
                                                     withAnimation(.spring()){
                                                         vm.saveButtonPressed.toggle()
@@ -188,16 +193,9 @@ struct SelectView: View {
                                             
                                             
                                         }.padding(50)
-//                                            .sheet(isPresented: $vm.isShowingEdits) {
-//                                                NewSettings()
-////                                                    .presentationDetents([.fraction(0.9)])
-//                                                    .presentationDetents([.large])
-//                                                    .presentationDragIndicator(.hidden)
-//                                            }
-                                            .fullScreenCover(isPresented: $vm.isShowingEdits) {
-                                                NewSettings()
-                                            }
-                                            
+                                            .scaleEffect(vm.isShowingEdits ? 0 : 1)
+
+                                       
                                     }
                             )
                         }
@@ -260,7 +258,14 @@ struct SelectView: View {
                             }
                         }
                         .fullScreenCover(isPresented: $vm.isPressedRed) {
-                            strokeWallpaper
+                            ZStack{
+                                strokeWallpaper
+                                NewSettingsStrokeGradient()
+                                    .cornerRadius(50)
+                                    .frame(width: vm.cgWidth * 0.9, height: vm.cgHeight * 0.7)
+                                    .scaleEffect(vm.isShowingEdits ? 1 : 0)
+                                    .offset(y: +100)
+                            }
                                 .overlay(
                                     VStack{
                                         HStack{
@@ -272,17 +277,13 @@ struct SelectView: View {
                                             }label: {
                                                 Label("Back", systemImage: "arrow.left")
                                                     .font(.system(size: 20))
-                                            }.padding(10)
+                                                    .foregroundColor(.white)
+                                            }.padding()
+                                            
                                             Spacer()
-                                            Button {
-                                                vm.isPressedBlue.toggle()
-                                            } label : {
-                                                Image(systemName: "gearshape.fill")
-                                                    .font(.system(size: 25))
-                                                   
-                                            }
+
                                         }.padding()
-                                            .position(x: 190, y: 84)
+//
                                             .foregroundColor(.white)
                                         Spacer()
                                         HStack{
@@ -291,13 +292,14 @@ struct SelectView: View {
                                                     vm.isShowingEdits.toggle()
                                                 }
                                             }label: {
-                                                HStack (spacing: vm.saveButtonPressed ? 10 : 0){
-                                                    Image(systemName: "slider.horizontal.3")
+                                                HStack (spacing: vm.saveButtonPressed ? 10 : 5){
+                                                    Image(systemName: "pencil.tip.crop.circle")
                                                     Text(vm.saveButtonPressed ? "" : "Edit")
                                                 }
                                             }
                                             .frame(width: vm.saveButtonPressed ? 50 : 150, height: 50)
                                             .background(Color.blue)
+                                            .shadow(radius: 10)
                                                 .cornerRadius(40)
                                                 .foregroundColor(.white)
                                                 .padding(.leading)
@@ -309,11 +311,13 @@ struct SelectView: View {
                                                 }
                                             } label: {
                                                 HStack (spacing: vm.saveButtonPressed ? 10 : 5){
-                                                    Image(systemName: "photo")
+                                                    Image(systemName: "photo.circle")
+                                                        .font(.system(size: 20))
                                                     Text(vm.saveButtonPressed ? "" : "Preview")
                                                 }
                                             }.frame(width: vm.saveButtonPressed ? 50 : 120, height: 50)
                                                 .background(Color(red: 0.054, green: 0.093, blue: 0.158))
+                                                .shadow(radius: 10)
                                                 .cornerRadius(40)
                                                 .foregroundColor(.white)
                                                 
@@ -324,12 +328,13 @@ struct SelectView: View {
                                                 .overlay(
                                                     ZStack{
                                                         HStack(spacing: vm.saveButtonPressed ? 10 : 0){
-                                                            Image(systemName: vm.saveButtonPressed ? "checkmark" : "square.and.arrow.down")
+                                                            Image(systemName: vm.saveButtonPressed ? "checkmark.circle" : "arrow.down.circle")
                                                                 .foregroundColor(vm.saveButtonPressed ? .white : .black)
                                                             Text(vm.saveButtonPressed ? "Saved" : "").foregroundColor(vm.saveButtonPressed ? .white : .black)
                                                         }
                                                     }
                                                 )
+                                                .shadow(radius: 10)
                                                 .onTapGesture {
                                                     withAnimation(.spring()){
                                                         vm.saveButtonPressed.toggle()
@@ -353,14 +358,16 @@ struct SelectView: View {
                                             
                                             
                                         }.padding(50)
+                                            .scaleEffect(vm.isShowingEdits ? 0 : 1)
 //                                            .sheet(isPresented: $vm.isShowingEdits) {
 //                                                NewSettingsStrokeGradient()
 //                                                    .presentationDetents([.fraction(0.73)])
 //                                                    .presentationDragIndicator(.hidden)
 //                                            }
-                                            .fullScreenCover(isPresented: $vm.isShowingEdits) {
-                                                NewSettingsStrokeGradient()
-                                            }
+//                                            .fullScreenCover(isPresented: $vm.isShowingEdits) {
+//                                                NewSettingsStrokeGradient()
+//
+//                                            }
                                     }
                             )
                         }
@@ -377,7 +384,7 @@ struct SelectView: View {
                 ZStack{
                     strokeFilledWallpaper
                         .frame(width: vm.isPressedGreen ? 0 : cardWidth * 0.7, height: vm.isPressedGreen ? 0 : cardHeight * 0.7)
-                        .cornerRadius(40)
+                        .cornerRadius(50)
                         .ignoresSafeArea()
                         .padding(vm.isPressedGreen ? 20 : 10)
                         .scaleEffect(vm.selectedTemplate == 3 ? 1 : 0.95)
@@ -421,7 +428,14 @@ struct SelectView: View {
                             }
                         }
                         .fullScreenCover(isPresented: $vm.isPressedGreen) {
-                            strokeFilledWallpaper
+                            ZStack{
+                                strokeFilledWallpaper
+                                NewSettingsStrokeSolid()
+                                    .cornerRadius(50)
+                                    .frame(width: vm.cgWidth * 0.9, height: vm.cgHeight * 0.7)
+                                    .scaleEffect(vm.isShowingEdits ? 1 : 0)
+                                    .offset(y: +100)
+                            }
                                 .overlay(
                                     VStack{
                                         HStack{
@@ -431,19 +445,24 @@ struct SelectView: View {
                                                     vm.closed = true
                                                 }
                                             }label: {
-                                                Label("Back", systemImage: "arrow.left")
+//                                                Label("Back", systemImage: "arrow.left")
+                                                HStack{
+                                                    Image(systemName: "arrow.left")
+                                                    Text("Back")
+                                                }
                                                     .font(.system(size: 20))
+                                                    .foregroundColor(.white)
                                             }.padding(10)
                                             Spacer()
-                                            Button {
-                                                vm.isPressedBlue.toggle()
-                                            } label : {
-                                                Image(systemName: "gearshape.fill")
-                                                    .font(.system(size: 25))
-                                                   
-                                            }
+//                                            Button {
+//                                                vm.isPressedBlue.toggle()
+//                                            } label : {
+//                                                Image(systemName: "gearshape.fill")
+//                                                    .font(.system(size: 25))
+//                                                   
+//                                            }
                                         }.padding()
-                                            .position(x: 190, y: 84)
+                                          
                                             .foregroundColor(.white)
                                         Spacer()
                                         HStack{
@@ -452,14 +471,16 @@ struct SelectView: View {
                                                     vm.isShowingEdits.toggle()
                                                 }
                                             }label: {
-                                                HStack (spacing: vm.saveButtonPressed ? 10 : 0){
-                                                    Image(systemName: "slider.horizontal.3")
+                                                HStack (spacing: vm.saveButtonPressed ? 10 : 5){
+                                                    Image(systemName: "pencil.tip.crop.circle")
+                                                        .font(.system(size: 20))
                                                     Text(vm.saveButtonPressed ? "" : "Edit")
                                                 }
                                             } 
                                             .frame(width: vm.saveButtonPressed ? 50 : 150, height: 50)
                                             .background(Color.blue)
                                                 .cornerRadius(40)
+                                                .shadow(radius: 10)
                                                 .foregroundColor(.white)
                                                 .padding(.leading)
                                             
@@ -470,12 +491,14 @@ struct SelectView: View {
                                                 }
                                             } label: {
                                                 HStack (spacing: vm.saveButtonPressed ? 10 : 5){
-                                                    Image(systemName: "photo")
+                                                    Image(systemName: "photo.circle")
+                                                        .font(.system(size: 20))
                                                     Text(vm.saveButtonPressed ? "" : "Preview")
                                                 }
                                             }.frame(width: vm.saveButtonPressed ? 50 : 120, height: 50)
                                                 .background(Color(red: 0.054, green: 0.093, blue: 0.158))
                                                 .cornerRadius(40)
+                                                .shadow(radius: 10)
                                                 .foregroundColor(.white)
                                                 
                                             
@@ -486,12 +509,13 @@ struct SelectView: View {
                                                 .overlay(
                                                     ZStack{
                                                         HStack(spacing: vm.saveButtonPressed ? 10 : 0){
-                                                            Image(systemName: vm.saveButtonPressed ? "checkmark" : "square.and.arrow.down")
+                                                            Image(systemName: vm.saveButtonPressed ? "checkmark.circle" : "arrow.down.circle")
                                                                 .foregroundColor(vm.saveButtonPressed ? .white : .black)
                                                             Text(vm.saveButtonPressed ? "Saved" : "").foregroundColor(vm.saveButtonPressed ? .white : .black)
                                                         }
                                                     }
                                                 )
+                                                .shadow(radius: 10)
                                                 .onTapGesture {
                                                     withAnimation(.spring()){
                                                         vm.saveButtonPressed.toggle()
@@ -515,11 +539,8 @@ struct SelectView: View {
                                             
                                             
                                         }.padding(50)
-                                            .sheet(isPresented: $vm.isShowingEdits) {
-                                                NewSettingsStrokeSolid()
-                                                    .presentationDetents([.fraction(0.5)])
-                                                    .presentationDragIndicator(.hidden)
-                                            }
+                                        .scaleEffect(vm.isShowingEdits ? 0: 1)
+
                                     }
                             )
                         }
