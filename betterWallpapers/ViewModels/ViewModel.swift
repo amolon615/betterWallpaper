@@ -26,10 +26,8 @@ final class WallpapersViewModel: ObservableObject {
     @Published var isShowingEdits = false
     @Published var isShowingSettings = false
     
-//    let strokeOrFill = ["Stroke", "Fill"]
     @Published var strokeOrFillSelected = "Fill"
     
-//    let solidOrGradient = ["Solid fill", "Gradient fill"]
     @Published var solidOrGradientSelected = "Gradient fill"
     @Published var gradientSelected = "Linear"
     @Published var strokeSelected = "Linear"

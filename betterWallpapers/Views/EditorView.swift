@@ -256,7 +256,7 @@ struct NewSettingsStrokeSolid: View {
                     HStack (spacing: 10){
                             Text("Corner Radius").foregroundColor(.white)
                                 .font(.caption)
-                            Slider(value: $vm.radiusCorner, in: 0...40).frame(width: 150)
+                            Slider(value: $vm.radiusCorner, in: 0...50).frame(width: 150)
                        
                                
                                 
@@ -397,7 +397,7 @@ struct NewSettingsStrokeGradient: View {
                         
                         Rectangle()
                             .strokeBorder(.white, lineWidth: vm.gradientSelected == "Angular" ? 2 : 0)
-                            .frame(width: 80, height: 40)
+                            .frame(width: 90, height: 40)
                             .cornerRadius(3)
                             .overlay(
                             HStack{
@@ -427,7 +427,7 @@ struct NewSettingsStrokeGradient: View {
                     HStack (spacing: 10){
                             Text("Corner radius").foregroundColor(.white)
                                 .font(.caption)
-                            Slider(value: $vm.radiusCorner, in: 0...40).frame(width: 150)
+                            Slider(value: $vm.radiusCorner, in: 0...50).frame(width: 150)
                         }
                     HStack (spacing: 10){
                         Text("Stroke Width").foregroundColor(.white)

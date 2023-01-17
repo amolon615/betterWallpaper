@@ -18,8 +18,6 @@
 		ACC0F10129561E2A00264A0A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC0F10029561E2A00264A0A /* SettingsView.swift */; };
 		ACD376D92965C712004E6322 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD376D82965C712004E6322 /* ViewModel.swift */; };
 		ACD376E22965DFB3004E6322 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD376E12965DFB3004E6322 /* CarouselView.swift */; };
-		ACEF3115297021B3002CAAEE /* SaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEF3114297021B3002CAAEE /* SaveButton.swift */; };
-		ACEF3119297157A8002CAAEE /* EditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEF3118297157A8002CAAEE /* EditsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,8 +33,6 @@
 		ACC0F10029561E2A00264A0A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		ACD376D82965C712004E6322 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		ACD376E12965DFB3004E6322 /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
-		ACEF3114297021B3002CAAEE /* SaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButton.swift; sourceTree = "<group>"; };
-		ACEF3118297157A8002CAAEE /* EditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,8 +92,6 @@
 				ACC0F10029561E2A00264A0A /* SettingsView.swift */,
 				AC3656B02968BB7300362494 /* EditorView.swift */,
 				AC47801F296831CF00A615D6 /* PreviewView.swift */,
-				ACEF3114297021B3002CAAEE /* SaveButton.swift */,
-				ACEF3118297157A8002CAAEE /* EditsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -184,12 +178,10 @@
 				ACD376E22965DFB3004E6322 /* CarouselView.swift in Sources */,
 				AC478020296831CF00A615D6 /* PreviewView.swift in Sources */,
 				AC2DD354294A7D7600E64523 /* ContentView.swift in Sources */,
-				ACEF3115297021B3002CAAEE /* SaveButton.swift in Sources */,
 				AC3656B12968BB7300362494 /* EditorView.swift in Sources */,
 				AC7428652957946B007E83F7 /* OnboardingView.swift in Sources */,
 				ACC0F10129561E2A00264A0A /* SettingsView.swift in Sources */,
 				AC7428672957A14D007E83F7 /* ViewFlows.swift in Sources */,
-				ACEF3119297157A8002CAAEE /* EditsView.swift in Sources */,
 				AC2DD352294A7D7600E64523 /* betterWallpapers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,7 +337,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.horovenko.betterwallpapers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -384,7 +376,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.horovenko.betterwallpapers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

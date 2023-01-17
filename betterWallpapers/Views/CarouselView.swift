@@ -96,7 +96,8 @@ struct SelectView: View {
                                     .cornerRadius(50)
                                     .frame(width: vm.cgWidth * 0.9, height: vm.cgHeight * 0.7)
                                     .scaleEffect(vm.isShowingEdits ? 1 : 0)
-                                    .offset(y: +100)
+//                                    .offset(y: 50)
+//                                    .padding(.bottom, 20)
                             }
                                 .overlay(
                                     VStack{
@@ -203,6 +204,7 @@ struct SelectView: View {
                             Settings().environmentObject(WallpapersViewModel())
                                 .presentationDetents([.medium])
                         }
+                    
                 }
                     
                 
@@ -264,7 +266,14 @@ struct SelectView: View {
                                     .cornerRadius(50)
                                     .frame(width: vm.cgWidth * 0.9, height: vm.cgHeight * 0.7)
                                     .scaleEffect(vm.isShowingEdits ? 1 : 0)
-                                    .offset(y: +100)
+//                                    .offset(y: +100)
+//                                    .padding(.bottom, 50)
+                                
+                                
+//                                    .frame(width: vm.cgWidth * 0.9, height: vm.cgHeight * 0.7)
+//                                    .scaleEffect(vm.isShowingEdits ? 1 : 0)
+//                                    .offset(y: 50)
+//                                    .padding(.bottom, 20)
                             }
                                 .overlay(
                                     VStack{
@@ -434,7 +443,7 @@ struct SelectView: View {
                                     .cornerRadius(50)
                                     .frame(width: vm.cgWidth * 0.9, height: vm.cgHeight * 0.7)
                                     .scaleEffect(vm.isShowingEdits ? 1 : 0)
-                                    .offset(y: +100)
+
                             }
                                 .overlay(
                                     VStack{
@@ -445,7 +454,6 @@ struct SelectView: View {
                                                     vm.closed = true
                                                 }
                                             }label: {
-//                                                Label("Back", systemImage: "arrow.left")
                                                 HStack{
                                                     Image(systemName: "arrow.left")
                                                     Text("Back")
@@ -454,13 +462,7 @@ struct SelectView: View {
                                                     .foregroundColor(.white)
                                             }.padding(10)
                                             Spacer()
-//                                            Button {
-//                                                vm.isPressedBlue.toggle()
-//                                            } label : {
-//                                                Image(systemName: "gearshape.fill")
-//                                                    .font(.system(size: 25))
-//                                                   
-//                                            }
+
                                         }.padding()
                                           
                                             .foregroundColor(.white)
