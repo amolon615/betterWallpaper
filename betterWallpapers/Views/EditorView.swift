@@ -12,15 +12,16 @@ import SwiftUI
 
 struct NewSettings: View {
     @EnvironmentObject var vm: WallpapersViewModel
+    @EnvironmentObject var sliderVM: SliderViewModel
     
     var body: some View {
         ZStack{
             Color(red: 0.054, green: 0.093, blue: 0.158) 
                 .ignoresSafeArea()
-            
-            
+            Image("mesh")
+                .resizable()
+                .scaledToFit()
             VStack(spacing: -10){
-              
                 VStack (alignment: .center){
                     HStack(alignment: .center){
                         Text("Select gradient type").foregroundColor(.white)
@@ -96,41 +97,16 @@ struct NewSettings: View {
                         HStack{
                             Text("Adjust parameters").foregroundColor(.white)
                         }
-                        HStack(spacing: 10){
-                            Text(vm.gradientSelected == "Radial" ? "Start radius" : "Scale amount").foregroundColor(.white)
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                                .padding(.trailing)
-                            Slider(value: $vm.startRadius, in: 0...400).frame(width: 150)
-                            
-                        }
-                        HStack(spacing: 20){
-                            Text(vm.gradientSelected == "Radial" ? "End radius" : "Corner radius").foregroundColor(.white)
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                            Slider(value: $vm.endRadius, in: 0...400).frame(width: 150)
-                            
-                        }
+                        BWSliderStartRadius().environmentObject(SliderViewModel())
+                        BWSliderEndRadius().environmentObject(SliderViewModel())
 
                     } else if vm.gradientSelected == "Angular" {
                         HStack{
                             Text("Adjust parameters").foregroundColor(.white)
                         }
-                        HStack(spacing: 10){
-                            Text("Start angle").foregroundColor(.white)
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                                .padding(.trailing)
-                            Slider(value: $vm.startRadius, in: 0...400).frame(width: 150)
-                            
-                        }
-                        HStack(spacing: 20){
-                            Text("End angle").foregroundColor(.white)
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                            Slider(value: $vm.endRadius, in: 0...400).frame(width: 150)
-                            
-                        }
+                        BWSliderStartRadius().environmentObject(SliderViewModel())
+                        BWSliderEndRadius().environmentObject(SliderViewModel())
+
                     }
                 }.frame(width: 300, height: vm.gradientSelected == "Linear" ? 0 : 160)
 //                    .background(.red)
@@ -236,13 +212,16 @@ struct NewSettings: View {
 
 struct NewSettingsStrokeSolid: View {
     @EnvironmentObject var vm: WallpapersViewModel
+    @EnvironmentObject var sliderVM: SliderViewModel
     
     var body: some View {
         ZStack{
             Color(red: 0.054, green: 0.093, blue: 0.158)
                 .ignoresSafeArea()
             
-            
+            Image("mesh")
+                .resizable()
+                .scaledToFit()
             VStack{
               
                 
@@ -252,23 +231,9 @@ struct NewSettingsStrokeSolid: View {
                         Text("Adjust parameters")
                             .foregroundColor(.white)
                     }
-        
-                    HStack (spacing: 10){
-                            Text("Corner Radius").foregroundColor(.white)
-                                .font(.caption)
-                            Slider(value: $vm.radiusCorner, in: 0...50).frame(width: 150)
-                       
-                               
-                                
-                        }
-                    HStack (spacing: 10){
-                            Text("Stroke Width").foregroundColor(.white)
-                                .font(.caption)
-                        Slider(value: $vm.paddingEdits, in: 0...100).frame(width: 150)
-                       
-                               
-                                
-                        }
+                    BWSliderCornerRadius().environmentObject(SliderViewModel())
+                    BWSliderStrokeWidth().environmentObject(SliderViewModel())
+
                     HStack{
                         Text("Select color")
                             .foregroundColor(.white)
@@ -332,10 +297,7 @@ struct NewSettingsStrokeSolid: View {
                     
                 }
             }.frame(height: 400)
-//                .background(.black)
-          
-   
-        
+
         }
         
     }
@@ -343,20 +305,23 @@ struct NewSettingsStrokeSolid: View {
 
 struct NewSettingsStrokeGradient: View {
     @EnvironmentObject var vm: WallpapersViewModel
+    @EnvironmentObject var sliderVM: SliderViewModel
     
     var body: some View {
         ZStack{
             Color(red: 0.054, green: 0.093, blue: 0.158)
                 .ignoresSafeArea()
             
-            
-            VStack{
+            Image("mesh")
+                .resizable()
+                .scaledToFit()
+            VStack (spacing: 20){
                 Spacer()
               
                 VStack (alignment: .center){
                     HStack(alignment: .center){
                         Text("Select gradient type").foregroundColor(.white)
-                            .padding()
+                            .padding(.vertical)
                     }
                     HStack{
                         Rectangle()
@@ -412,77 +377,35 @@ struct NewSettingsStrokeGradient: View {
                                     vm.gradientSelected = "Angular"
                                 }
                             }
-                           
-                    
                     }
                 }
                 .frame(width: 300, height: 100)
 //                .background(.blue)
                 
                 
-                VStack{
+                VStack (spacing: 20){
                     HStack{
                         Text("Adjust parameters").foregroundColor(.white)
-                    }
-                    HStack (spacing: 10){
-                            Text("Corner radius").foregroundColor(.white)
-                                .font(.caption)
-                            Slider(value: $vm.radiusCorner, in: 0...50).frame(width: 150)
-                        }
-                    HStack (spacing: 10){
-                        Text("Stroke Width").foregroundColor(.white)
-                            .font(.caption)
-                        Slider(value: $vm.paddingEdits, in: 0...100).frame(width: 150)
-                    }
+                    }.padding(.vertical)
+                    
+                    BWSliderCornerRadius().environmentObject(SliderViewModel())
+                    BWSliderStrokeWidth().environmentObject(SliderViewModel())
                         
                         
                     if vm.gradientSelected == "Linear" {
                         //
                     } else if vm.gradientSelected == "Radial"{
                         
-                            HStack(spacing: 10){
-                                Text(vm.gradientSelected == "Radial" ? "Start radius" : "Scale amount").foregroundColor(.white)
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                                    .padding(.trailing)
-                                Slider(value: $vm.startRadius, in: 0...400).frame(width: 150)
-                                
-                            }
-                            HStack(spacing: 20){
-                                Text(vm.gradientSelected == "Radial" ? "End radius" : "Corner radius").foregroundColor(.white)
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                                Slider(value: $vm.endRadius, in: 0...400).frame(width: 150)
-                                
-                            }
+                        BWSliderStartRadius().environmentObject(SliderViewModel())
+                        BWSliderEndRadius().environmentObject(SliderViewModel())
                         
 
                     } else if vm.gradientSelected == "Angular" {
-                        VStack{
-                            HStack(spacing: 10){
-                                Text("Start angle").foregroundColor(.white)
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                                    .padding(.trailing)
-                                Slider(value: $vm.startRadius, in: 0...400).frame(width: 150)
-                                
-                            }
-                            HStack(spacing: 10){
-                                Text("End angle").foregroundColor(.white)
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                                Slider(value: $vm.endRadius, in: 0...400).frame(width: 150)
-                                
-                            }
-                        }
+                        BWSliderStartRadius().environmentObject(SliderViewModel())
+                        BWSliderEndRadius().environmentObject(SliderViewModel())
                     }
-               
                    
-                       
-                               
-                                
-                        
-                }.frame(width: vm.cgWidth * 0.7, height:  vm.cgHeight * 0.25)
+                }.frame(width: vm.cgWidth * 0.9, height:  vm.cgHeight * 0.25)
 //                    .background(.red)
                     .padding()
                 
@@ -502,7 +425,6 @@ struct NewSettingsStrokeGradient: View {
                                             vm.showPalette = true
                                         }
                                     }
-                                
                                 Rectangle().fill(vm.pickedColor2)
                                     .frame(width: 50, height: 50)
                                     .cornerRadius(10)
@@ -524,19 +446,14 @@ struct NewSettingsStrokeGradient: View {
                                             vm.showPalette = true
                                         }
                                     }
-                                
-                                    
                             }.scaleEffect(!vm.showPalette ? 1 : 0)
                                 .padding()
                             ColorPicker()
                                 .scaleEffect(vm.showPalette ? 1 : 0)
-                            
-                            
-                            
                         }
                     }.frame(width: vm.cgWidth * 0.7, height: vm.cgHeight * 0.1)
 //                    .background(.green.opacity(0.5))
-                    .padding()
+                    .padding(.vertical, 60)
              Spacer()
                 HStack{
                     Button {
@@ -551,15 +468,11 @@ struct NewSettingsStrokeGradient: View {
                         .cornerRadius(40)
                         .foregroundColor(.white)
                         .padding(.leading)
-                    
-                        
-                    
                     Button{
                         withAnimation(.spring()){
                             vm.radiusCorner = 40
                             vm.startRadius = 0
                             vm.endRadius = 200
-                            
                         }
                     } label: {
                        Image(systemName: "arrow.counterclockwise")
@@ -568,14 +481,9 @@ struct NewSettingsStrokeGradient: View {
                         .cornerRadius(40)
                         .foregroundColor(.black)
                         .padding(.trailing)
-                    
-                    
-                    
                 }.frame(width: 300, height: 60)
-//                    .background(.pink)
                     .padding(10)
             }
-//                .background(.white.opacity(0.5))
           
    
         
@@ -586,11 +494,8 @@ struct NewSettingsStrokeGradient: View {
 
 
 
-
 struct ColorPicker: View {
-    
     @EnvironmentObject var vm: WallpapersViewModel
-    
     var body: some View{
         ZStack{
             VStack{
@@ -775,11 +680,17 @@ struct ColorPicker: View {
 
 struct NewSettings_Previews: PreviewProvider {
     static var previews: some View {
-//        ColorPicker(color: .green)
-     
-        NewSettings().environmentObject(WallpapersViewModel())
-        NewSettingsStrokeSolid().environmentObject(WallpapersViewModel())
-        NewSettingsStrokeGradient().environmentObject(WallpapersViewModel())
-        ColorPicker().environmentObject(WallpapersViewModel())
+        NewSettings()
+            .environmentObject(WallpapersViewModel())
+            .environmentObject(SliderViewModel())
+        NewSettingsStrokeSolid()
+            .environmentObject(WallpapersViewModel())
+            .environmentObject(SliderViewModel())
+        NewSettingsStrokeGradient()
+            .environmentObject(WallpapersViewModel())
+            .environmentObject(SliderViewModel())
+        ColorPicker()
+            .environmentObject(WallpapersViewModel())
+            .environmentObject(SliderViewModel())
     }
 }

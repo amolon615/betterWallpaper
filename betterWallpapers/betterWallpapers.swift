@@ -10,11 +10,14 @@ import SwiftUI
 
 @main
 struct BetterWallpapers: App {
-    @StateObject var vm = WallpapersViewModel()
     var body: some Scene {
         WindowGroup {
-            ViewFlows()
-                .environmentObject(vm)
+            ContentView()
+                .environmentObject(WallpapersViewModel())
+                .environmentObject(SliderViewModel())
+                .environmentObject(SliderCornerRadius())
+                .environmentObject(SliderStartRadius())
+                .environmentObject(SliderEndRadius())
         }
     }
 }

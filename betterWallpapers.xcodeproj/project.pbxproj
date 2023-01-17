@@ -16,8 +16,10 @@
 		AC7428652957946B007E83F7 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7428642957946B007E83F7 /* OnboardingView.swift */; };
 		AC7428672957A14D007E83F7 /* ViewFlows.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7428662957A14D007E83F7 /* ViewFlows.swift */; };
 		ACC0F10129561E2A00264A0A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC0F10029561E2A00264A0A /* SettingsView.swift */; };
-		ACD376D92965C712004E6322 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD376D82965C712004E6322 /* ViewModel.swift */; };
+		ACD376D92965C712004E6322 /* WallpaperViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD376D82965C712004E6322 /* WallpaperViewModel.swift */; };
 		ACD376E22965DFB3004E6322 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD376E12965DFB3004E6322 /* CarouselView.swift */; };
+		ACEB758A29763449004C23BC /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEB758929763449004C23BC /* Slider.swift */; };
+		ACEB758C2976FD0C004C23BC /* SliderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEB758B2976FD0C004C23BC /* SliderViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,8 +33,10 @@
 		AC7428642957946B007E83F7 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		AC7428662957A14D007E83F7 /* ViewFlows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFlows.swift; sourceTree = "<group>"; };
 		ACC0F10029561E2A00264A0A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		ACD376D82965C712004E6322 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		ACD376D82965C712004E6322 /* WallpaperViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperViewModel.swift; sourceTree = "<group>"; };
 		ACD376E12965DFB3004E6322 /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
+		ACEB758929763449004C23BC /* Slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
+		ACEB758B2976FD0C004C23BC /* SliderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,7 @@
 				ACC0F10029561E2A00264A0A /* SettingsView.swift */,
 				AC3656B02968BB7300362494 /* EditorView.swift */,
 				AC47801F296831CF00A615D6 /* PreviewView.swift */,
+				ACEB758929763449004C23BC /* Slider.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -99,7 +104,8 @@
 		ACD376DB2965C9FE004E6322 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				ACD376D82965C712004E6322 /* ViewModel.swift */,
+				ACD376D82965C712004E6322 /* WallpaperViewModel.swift */,
+				ACEB758B2976FD0C004C23BC /* SliderViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -174,12 +180,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACD376D92965C712004E6322 /* ViewModel.swift in Sources */,
+				ACEB758A29763449004C23BC /* Slider.swift in Sources */,
+				ACD376D92965C712004E6322 /* WallpaperViewModel.swift in Sources */,
 				ACD376E22965DFB3004E6322 /* CarouselView.swift in Sources */,
 				AC478020296831CF00A615D6 /* PreviewView.swift in Sources */,
 				AC2DD354294A7D7600E64523 /* ContentView.swift in Sources */,
 				AC3656B12968BB7300362494 /* EditorView.swift in Sources */,
 				AC7428652957946B007E83F7 /* OnboardingView.swift in Sources */,
+				ACEB758C2976FD0C004C23BC /* SliderViewModel.swift in Sources */,
 				ACC0F10129561E2A00264A0A /* SettingsView.swift in Sources */,
 				AC7428672957A14D007E83F7 /* ViewFlows.swift in Sources */,
 				AC2DD352294A7D7600E64523 /* betterWallpapers.swift in Sources */,
@@ -332,6 +340,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -371,6 +380,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

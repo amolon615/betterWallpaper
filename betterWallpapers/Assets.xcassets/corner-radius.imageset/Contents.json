@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "corner-radius.png",
       "idiom" : "universal",
       "scale" : "1x"
     },

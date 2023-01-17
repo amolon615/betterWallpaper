@@ -5,7 +5,6 @@
 //  Created by Artem on 04/01/2023.
 //
 
-import Foundation
 import SwiftUI
 import PhotosUI
 import UIKit
@@ -33,8 +32,8 @@ final class WallpapersViewModel: ObservableObject {
     @Published var strokeSelected = "Linear"
     
     
-    @Published var radiusCorner: CGFloat = 50
-    @Published var paddingEdits: CGFloat = 5
+    @Published var radiusCorner: CGFloat = 43.89
+    @Published var paddingEdits: CGFloat = 6.43
     
     @Published var editButtonAnimated = false
     @Published var saveButtonAnimated = false
@@ -59,7 +58,7 @@ final class WallpapersViewModel: ObservableObject {
     @Published var showOverlay: Bool = false
     
     
-    @Published var startRadius: CGFloat = 0
+    @Published var startRadius: CGFloat = 215.01
     @Published var endRadius: CGFloat = 200
     
     @Published var closed: Bool = true
@@ -71,6 +70,11 @@ final class WallpapersViewModel: ObservableObject {
     @Published var isPressedGreen: Bool = false
     
     @Published var saveButtonPressed = false
+    
+    
+   
+    
+   
     
     func Save(view: any View){
         self.feedback.notificationOccurred(.success)

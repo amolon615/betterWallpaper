@@ -16,14 +16,12 @@ import StoreKit
  
 
 struct ContentView: View {
-    
-    @Environment(\.requestReview) var requestReview
-  
     @EnvironmentObject var vm: WallpapersViewModel
-
+    @Environment(\.requestReview) var requestReview
     
     var body: some View {
         SelectView()
+            .environmentObject(WallpapersViewModel())
             .overlay(
                 VStack{
                     HStack{
@@ -78,13 +76,18 @@ struct ContentView: View {
                                 switch vm.selectedTemplate{
                                 case 1:
                                     vm.isPressedBlue = true
+                                    vm.isPressedRed = false
+                                    vm.isPressedGreen = false
                                     vm.closed = false
+                                    print("select tapped")
                                 case 2:
                                     vm.isPressedRed = true
                                     vm.closed = false
+                                    print("select tapped")
                                 default:
                                     vm.isPressedGreen = true
                                     vm.closed = false
+                                    print("select tapped")
                                 }
                                 
                             }
@@ -171,7 +174,6 @@ struct StrokeRadialGradientView: View {
                 .fill(RadialGradient(gradient: Gradient(colors: [vm.pickedColor, vm.pickedColor2, vm.pickedColor3, vm.pickedColor]), center: .center, startRadius: vm.startRadius, endRadius: vm.endRadius))
                 .cornerRadius(vm.radiusCorner)
                 .background(.black)
-            
                 .ignoresSafeArea()
             
             Rectangle()

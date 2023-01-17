@@ -12,6 +12,8 @@ import SwiftUI
 
 
 struct SelectView: View {
+    
+  
     @EnvironmentObject var vm: WallpapersViewModel
     
     @State var cardWidth = UIScreen.main.bounds.width
@@ -43,7 +45,7 @@ struct SelectView: View {
                 ZStack{
                     wallpaperView
                         .frame(width: vm.isPressedBlue ? cardWidth * 0 : cardWidth * 0.7, height: vm.isPressedBlue ? cardHeight * 0: cardHeight * 0.7)
-                        .cornerRadius(40)
+                        .cornerRadius(10)
                         .ignoresSafeArea()
                         .opacity(vm.showPreview ? 0 : 1)
                         .padding(vm.isPressedBlue ? 20 : 10)
@@ -201,7 +203,8 @@ struct SelectView: View {
                             )
                         }
                         .sheet(isPresented: $vm.isShowingSettings) {
-                            Settings().environmentObject(WallpapersViewModel())
+                            Settings()
+                                .environmentObject(WallpapersViewModel())
                                 .presentationDetents([.medium])
                         }
                     
@@ -211,7 +214,7 @@ struct SelectView: View {
                 ZStack{
                     strokeWallpaper
                         .frame(width: vm.isPressedRed ? 0 : cardWidth * 0.7, height: vm.isPressedRed ? 0 : cardHeight * 0.7)
-                        .cornerRadius(40)
+                        .cornerRadius(10)
                         .ignoresSafeArea()
                         .padding(vm.isPressedRed ? 20 : 10)
                         .scaleEffect(vm.selectedTemplate == 2 ? 1 : 0.95)
@@ -266,14 +269,7 @@ struct SelectView: View {
                                     .cornerRadius(50)
                                     .frame(width: vm.cgWidth * 0.9, height: vm.cgHeight * 0.7)
                                     .scaleEffect(vm.isShowingEdits ? 1 : 0)
-//                                    .offset(y: +100)
-//                                    .padding(.bottom, 50)
-                                
-                                
-//                                    .frame(width: vm.cgWidth * 0.9, height: vm.cgHeight * 0.7)
-//                                    .scaleEffect(vm.isShowingEdits ? 1 : 0)
-//                                    .offset(y: 50)
-//                                    .padding(.bottom, 20)
+
                             }
                                 .overlay(
                                     VStack{
@@ -368,32 +364,18 @@ struct SelectView: View {
                                             
                                         }.padding(50)
                                             .scaleEffect(vm.isShowingEdits ? 0 : 1)
-//                                            .sheet(isPresented: $vm.isShowingEdits) {
-//                                                NewSettingsStrokeGradient()
-//                                                    .presentationDetents([.fraction(0.73)])
-//                                                    .presentationDragIndicator(.hidden)
-//                                            }
-//                                            .fullScreenCover(isPresented: $vm.isShowingEdits) {
-//                                                NewSettingsStrokeGradient()
-//
-//                                            }
+
                                     }
                             )
                         }
                  
-    //                debug coordinates
-//                    VStack{
-//                        Text("Current drag x: \(currentDragOffsetX)") .font(.headline)
-//                        Text("Starting drag x: \(startingOffsetX)").font(.headline)
-//                        Text("Ending drag x: \(endingOffsetX)") .font(.headline)
-//                    }.foregroundColor(.white)
-//
+
                 }
                 
                 ZStack{
                     strokeFilledWallpaper
                         .frame(width: vm.isPressedGreen ? 0 : cardWidth * 0.7, height: vm.isPressedGreen ? 0 : cardHeight * 0.7)
-                        .cornerRadius(50)
+                        .cornerRadius(10)
                         .ignoresSafeArea()
                         .padding(vm.isPressedGreen ? 20 : 10)
                         .scaleEffect(vm.selectedTemplate == 3 ? 1 : 0.95)
