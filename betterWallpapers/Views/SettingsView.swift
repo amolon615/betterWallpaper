@@ -15,7 +15,7 @@ struct Settings: View {
     @EnvironmentObject var vm: WallpapersViewModel
     
     @State private var showPP = false
-    
+    @State private var showTT = false
     @EnvironmentObject var appState: AppState
     
     var body: some View {
@@ -69,6 +69,37 @@ struct Settings: View {
                         .shadow(radius: 5)
                    
                 }
+               ZStack(alignment: .leading) {
+                   withAnimation(.easeInOut(duration: 2)) {
+                       Button{
+                           showTT.toggle()
+                       }label:{
+                           HStack{
+//                               Image(systemName: "person.crop.circle.fill.badge.plus")
+                               Image("twitter_white")
+                                   .resizable()
+                                   .scaledToFit()
+                                   .cornerRadius(30)
+                                   .frame(width: 25, height: 25)
+                                   .foregroundColor(.black)
+                                   .padding(.leading)
+                                  
+                               Text("Follow me on Twitter")
+                                   .foregroundColor(.black)
+                               Spacer()
+                           }.foregroundColor(.black)
+                       }
+                       .fullScreenCover(isPresented: $showTT){
+                           SFSafariViewWrapper(url: URL(string: "https://twitter.com/amolon210")!)
+                       }
+                       
+                   }   .padding()
+                       .frame(width: 350,height: 40)
+                       .background(.white)
+                       .cornerRadius(10)
+                       .shadow(radius: 5)
+                      
+               }
                ZStack(alignment: .leading) {
                    withAnimation(.easeInOut(duration: 2)) {
                        Button{

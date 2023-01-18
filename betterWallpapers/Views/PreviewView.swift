@@ -10,7 +10,6 @@ import SwiftUI
 struct Preview_Layout: View {
     @EnvironmentObject var vm: WallpapersViewModel
     var body: some View{
-        
         Preview()
             .overlay(
                 VStack{
@@ -39,7 +38,7 @@ struct Preview_Layout: View {
                        
                     }
                     .frame(width: vm.cgWidth)
-                    .scaleEffect(vm.closed ? 0 : 1)
+                    .scaleEffect(!vm.closed ? 0 : 1)
            
    Spacer()
                 }
@@ -53,11 +52,6 @@ struct Preview_Layout: View {
 //1st preview
 struct Preview: View {
     @EnvironmentObject var vm: WallpapersViewModel
-    
-    
-    
-    
-    
     var body: some View{
         //preview 1
         ZStack{
@@ -71,8 +65,6 @@ struct Preview: View {
                         .foregroundColor(.white)
                         .padding()
                 }
-                //preview screen
-                
                 
                 HStack (spacing: 0){
                     //lockscreen preview
@@ -158,11 +150,6 @@ struct Preview: View {
                                 }
                             }
                         })
-                    
-                  
-                    
-                    
-                    
                 }
             }
         }
@@ -173,7 +160,6 @@ struct Preview: View {
 
 struct Preview2: View {
     @EnvironmentObject var vm: WallpapersViewModel
-    
     var body: some View{
         //preview 1
         ZStack{
@@ -269,10 +255,6 @@ struct Preview2: View {
                                 }
                             }
                         })
-                    
-                   
-                    
-                    
                 }
             }
         }
@@ -282,7 +264,6 @@ struct Preview2: View {
 
 struct Preview3: View {
     @EnvironmentObject var vm: WallpapersViewModel
-    
     var body: some View{
         //preview 1
         ZStack{

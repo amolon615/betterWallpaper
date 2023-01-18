@@ -196,7 +196,6 @@ struct StrokeAngularGradientView: View {
                 .fill(AngularGradient(gradient: Gradient(colors: [vm.pickedColor, vm.pickedColor2, vm.pickedColor3, vm.pickedColor]), center: .center, startAngle: Angle(degrees: vm.startRadius), endAngle: Angle(degrees: vm.endRadius)))
                 .cornerRadius(vm.radiusCorner)
                 .background(.black)
-            
                 .ignoresSafeArea()
             
             Rectangle()
@@ -296,7 +295,6 @@ struct GradientStrokeSelected: View {
             StrokeLinearGradientView().environmentObject(vm)
         } else if vm.gradientSelected == "Radial" {
             StrokeRadialGradientView().environmentObject(vm)
-            
         } else if vm.gradientSelected == "Angular" {
             StrokeAngularGradientView().environmentObject(vm)
         }
