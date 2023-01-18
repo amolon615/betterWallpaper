@@ -39,7 +39,7 @@ struct Preview_Layout: View {
                        
                     }
                     .frame(width: vm.cgWidth)
-                    .scaleEffect(!vm.closed ? 0 : 1)
+                    .scaleEffect(vm.closed ? 0 : 1)
            
    Spacer()
                 }
@@ -114,6 +114,7 @@ struct Preview: View {
                         withAnimation(){
                             vm.showPreview = false
                             print("dismissed preview")
+                            vm.radiusCorner = 44
                         }
                     }label: {
                         Label("Back to edit", systemImage: "arrow.counterclockwise.circle")
@@ -223,6 +224,8 @@ struct Preview2: View {
                     Button {
                         withAnimation(){
                             vm.showPreview = false
+                            vm.radiusCorner = 44
+                            vm.paddingEdits = 6.43
                             print("dismissed preview")
                         }
                     }label: {
@@ -327,7 +330,9 @@ struct Preview3: View {
                     Button {
                         withAnimation(){
                             vm.showPreview = false
+                            vm.radiusCorner = 44
                             print("dismissed preview")
+                            vm.paddingEdits = 6.43
                         }
                     }label: {
                         Label("Back to edit", systemImage: "arrow.counterclockwise.circle")

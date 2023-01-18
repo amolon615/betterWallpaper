@@ -29,7 +29,7 @@ struct NewSettings: View {
                     }.padding(.top)
                     HStack{
                         Rectangle()
-                            .strokeBorder(.white, lineWidth: vm.gradientSelected == "Linear" ? 2 : 0)
+                            .strokeBorder(Color.white, lineWidth: vm.gradientSelected == "Linear" ? 2 : 0)
                             .frame(width: 80, height: 40)
                             .cornerRadius(5)
                             .overlay(
@@ -97,15 +97,15 @@ struct NewSettings: View {
                         HStack{
                             Text("Adjust parameters").foregroundColor(.white)
                         }
-                        BWSliderStartRadius().environmentObject(SliderViewModel())
-                        BWSliderEndRadius().environmentObject(SliderViewModel())
+                        BWSliderStartRadius()
+                        BWSliderEndRadius()
 
                     } else if vm.gradientSelected == "Angular" {
                         HStack{
                             Text("Adjust parameters").foregroundColor(.white)
                         }
-                        BWSliderStartRadius().environmentObject(SliderViewModel())
-                        BWSliderEndRadius().environmentObject(SliderViewModel())
+                        BWSliderStartRadius()
+                        BWSliderEndRadius()
 
                     }
                 }.frame(width: 300, height: vm.gradientSelected == "Linear" ? 0 : 160)
@@ -231,8 +231,8 @@ struct NewSettingsStrokeSolid: View {
                         Text("Adjust parameters")
                             .foregroundColor(.white)
                     }
-                    BWSliderCornerRadius().environmentObject(SliderViewModel())
-                    BWSliderStrokeWidth().environmentObject(SliderViewModel())
+                    BWSliderCornerRadius()
+                    BWSliderStrokeWidth()
 
                     HStack{
                         Text("Select color")
@@ -388,21 +388,21 @@ struct NewSettingsStrokeGradient: View {
                         Text("Adjust parameters").foregroundColor(.white)
                     }.padding(.vertical)
                     
-                    BWSliderCornerRadius().environmentObject(SliderViewModel())
-                    BWSliderStrokeWidth().environmentObject(SliderViewModel())
+                    BWSliderCornerRadius()
+                    BWSliderStrokeWidth()
                         
                         
                     if vm.gradientSelected == "Linear" {
                         //
                     } else if vm.gradientSelected == "Radial"{
                         
-                        BWSliderStartRadius().environmentObject(SliderViewModel())
-                        BWSliderEndRadius().environmentObject(SliderViewModel())
+                        BWSliderStartRadius()
+                        BWSliderEndRadius()
                         
 
                     } else if vm.gradientSelected == "Angular" {
-                        BWSliderStartRadius().environmentObject(SliderViewModel())
-                        BWSliderEndRadius().environmentObject(SliderViewModel())
+                        BWSliderStartRadius()
+                        BWSliderEndRadius()
                     }
                    
                 }.frame(width: vm.cgWidth * 0.9, height:  vm.cgHeight * 0.25)

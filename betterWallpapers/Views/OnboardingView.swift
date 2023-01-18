@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WebKit
 
 struct Onboarding: View {
     @State private var currentTab = 0
@@ -14,22 +15,23 @@ struct Onboarding: View {
 
     
     var body: some View {
-        ZStack{Color(red: 0.054, green: 0.093, blue: 0.158).ignoresSafeArea()
+        ZStack{
+            Color(red: 0.054, green: 0.093, blue: 0.158).opacity(0.9).ignoresSafeArea()
+//            Color.blue.opacity(0.3).ignoresSafeArea()
             TabView(selection: $currentTab,
                     content:  {
                 VStack{
                     ZStack{
                         VStack (spacing: 0){
-                                Text("Create stunning edges for your iPhone")
+                                Text("Swipe to select wallpaper type")
                                 .font(.system(size: 26, design: .rounded))
-                                
                                     .multilineTextAlignment(.center)
                                     .foregroundColor(.white)
                                     .padding()
-                                Image("edge-solid")
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 300)
+
+                            GifImage("select")
+                                .frame(width: 180, height: 380)
+                                .cornerRadius(20)
                                     .padding()
                                     
                         }
@@ -55,15 +57,14 @@ struct Onboarding: View {
                 VStack{
                     ZStack{
                         VStack (spacing: 0){
-                            Text("Make them glowing with gradients")
+                            Text("Adjust it in your style")
                                 .font(.system(size: 26, design: .rounded))
                                     .multilineTextAlignment(.center)
                                     .foregroundColor(.white)
                                     .padding()
-                            Image("edge-gradient")
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 300)
+                            GifImage("adjust")
+                                .frame(width: 180, height: 380)
+                                .cornerRadius(20)
                                     .padding()
                                     
                         }
@@ -89,22 +90,21 @@ struct Onboarding: View {
                 VStack{
                     ZStack{
                         VStack (spacing: 0){
-                            Text("Or fill the entire screen with the gradient of your choice")
+                            Text("Check preview and tap Save")
                                 .font(.system(size: 26, design: .rounded))
                                     .multilineTextAlignment(.center)
                                     .foregroundColor(.white)
                                     .padding()
-                            Image("fill-gradient")
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 300)
+                            GifImage("save")
+                                .frame(width: 180, height: 380)
+                                .cornerRadius(20)
                                     .padding()
                                     
                         }
                     }
                     .padding()
                     
-                    Button("Start creating!"){
+                    Button("Get started"){
                         withAnimation{
                             appState.hasOnboarded = true
                             saveOnboardingStatus(key: "hasOnboarded", value: true)
@@ -132,8 +132,38 @@ struct Onboarding: View {
     }
     
 }
+
+
+struct GifImage: UIViewRepresentable {
+    private let name: String
+
+    init(_ name: String) {
+        self.name = name
+    }
+
+    func makeUIView(context: Context) -> WKWebView {
+        let webView = WKWebView()
+        let url = Bundle.main.url(forResource: name, withExtension: "gif")!
+        let data = try! Data(contentsOf: url)
+        webView.load(
+            data,
+            mimeType: "image/gif",
+            characterEncodingName: "UTF-8",
+            baseURL: url.deletingLastPathComponent()
+        )
+        webView.scrollView.isScrollEnabled = false
+
+        return webView
+    }
+
+    func updateUIView(_ uiView: WKWebView, context: Context) {
+        uiView.reload()
+    }
+
+}
 struct Onboarding_Previews: PreviewProvider {
     static var previews: some View {
         Onboarding()
+        GifImage("select")
     }
 }

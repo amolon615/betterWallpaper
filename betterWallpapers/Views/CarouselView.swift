@@ -45,7 +45,7 @@ struct SelectView: View {
                 ZStack{
                     wallpaperView
                         .frame(width: vm.isPressedBlue ? cardWidth * 0 : cardWidth * 0.7, height: vm.isPressedBlue ? cardHeight * 0: cardHeight * 0.7)
-                        .cornerRadius(10)
+                        .cornerRadius(20)
                         .ignoresSafeArea()
                         .opacity(vm.showPreview ? 0 : 1)
                         .padding(vm.isPressedBlue ? 20 : 10)
@@ -69,6 +69,7 @@ struct SelectView: View {
                                             print("blue if")
                                             vm.selectedTemplate = 2
                                             print("selected \(vm.selectedTemplate) view")
+                                            vm.cardTitle = "Stunning Gradient Edge"
                                             
                                             
                                         } else if endingOffsetX != 0 && currentDragOffsetX > 80 {
@@ -88,18 +89,17 @@ struct SelectView: View {
                                 vm.isPressedRed = false
                                 vm.isPressedGreen = false
                                 vm.closed = false
+                                vm.radiusCorner = 43.89
+                                
                             }
                         }
-
                         .fullScreenCover(isPresented: $vm.isPressedBlue) {
                             ZStack{
                                 wallpaperView
                                 NewSettings()
                                     .cornerRadius(50)
-                                    .frame(width: vm.cgWidth * 0.9, height: vm.cgHeight * 0.7)
+                                    .frame(width: vm.cgWidth * 0.87, height: vm.cgHeight * 0.67)
                                     .scaleEffect(vm.isShowingEdits ? 1 : 0)
-//                                    .offset(y: 50)
-//                                    .padding(.bottom, 20)
                             }
                                 .overlay(
                                     VStack{
@@ -108,6 +108,8 @@ struct SelectView: View {
                                                 withAnimation(){
                                                     vm.isPressedBlue.toggle()
                                                     vm.closed = true
+                                                    vm.radiusCorner = 20
+                                                    
 
                                                 }
                                             }label: {
@@ -115,7 +117,9 @@ struct SelectView: View {
                                                     .font(.system(size: 20))
                                                     .shadow(radius: 10)
                                                     .foregroundColor(.white)
-                                            }.padding(10)
+                                            }
+                                            .padding(10)
+                                            .scaleEffect(vm.isShowingEdits ? 0 : 1)
                                             Spacer()
 //
                                         }.padding()
@@ -144,6 +148,8 @@ struct SelectView: View {
                                             Button{
                                                 withAnimation(.spring()){
                                                     vm.showPreview = true
+                                                    vm.radiusCorner = 20
+                                                    vm.paddingEdits = vm.paddingEdits * 0.5
                                                 }
                                             } label: {
                                                 HStack (spacing: vm.saveButtonPressed ? 10 : 5){
@@ -214,7 +220,7 @@ struct SelectView: View {
                 ZStack{
                     strokeWallpaper
                         .frame(width: vm.isPressedRed ? 0 : cardWidth * 0.7, height: vm.isPressedRed ? 0 : cardHeight * 0.7)
-                        .cornerRadius(10)
+                        .cornerRadius(20)
                         .ignoresSafeArea()
                         .padding(vm.isPressedRed ? 20 : 10)
                         .scaleEffect(vm.selectedTemplate == 2 ? 1 : 0.95)
@@ -238,6 +244,7 @@ struct SelectView: View {
                                             print("red if")
                                             vm.selectedTemplate = 3
                                             print("selected \(vm.selectedTemplate) view")
+                                            vm.cardTitle = "Minimalistic Monocolor Edge"
                                             
                                         } else if endingOffsetX != 0 && currentDragOffsetX > 80 {
                                             endingOffsetX += startingOffsetX
@@ -245,6 +252,7 @@ struct SelectView: View {
                                             print("red else if")
                                             vm.selectedTemplate = 1
                                             print("selected \(vm.selectedTemplate) view")
+                                            vm.cardTitle = "Gorgeous Gradient Fill"
                                         } else {
                                             currentDragOffsetX = 0
                                         }
@@ -260,6 +268,7 @@ struct SelectView: View {
                                 vm.isPressedGreen = false
                                 
                                 vm.closed.toggle()
+                                vm.radiusCorner = 43.89
                             }
                         }
                         .fullScreenCover(isPresented: $vm.isPressedRed) {
@@ -267,7 +276,7 @@ struct SelectView: View {
                                 strokeWallpaper
                                 NewSettingsStrokeGradient()
                                     .cornerRadius(50)
-                                    .frame(width: vm.cgWidth * 0.9, height: vm.cgHeight * 0.7)
+                                    .frame(width: vm.cgWidth * 0.9, height: vm.cgHeight * 0.5)
                                     .scaleEffect(vm.isShowingEdits ? 1 : 0)
 
                             }
@@ -278,12 +287,15 @@ struct SelectView: View {
                                                 withAnimation(){
                                                     vm.isPressedRed.toggle()
                                                     vm.closed = true
+                                                    vm.radiusCorner = 20
                                                 }
                                             }label: {
                                                 Label("Back", systemImage: "arrow.left")
                                                     .font(.system(size: 20))
                                                     .foregroundColor(.white)
-                                            }.padding()
+                                            }
+                                            .padding()
+                                            .scaleEffect(vm.isShowingEdits ? 0 : 1)
                                             
                                             Spacer()
 
@@ -312,6 +324,8 @@ struct SelectView: View {
                                             Button{
                                                 withAnimation(.spring()){
                                                     vm.showPreview = true
+                                                    vm.radiusCorner = 20
+                                                    vm.paddingEdits = vm.paddingEdits * 0.5
                                               
                                                 }
                                             } label: {
@@ -375,7 +389,7 @@ struct SelectView: View {
                 ZStack{
                     strokeFilledWallpaper
                         .frame(width: vm.isPressedGreen ? 0 : cardWidth * 0.7, height: vm.isPressedGreen ? 0 : cardHeight * 0.7)
-                        .cornerRadius(10)
+                        .cornerRadius(20)
                         .ignoresSafeArea()
                         .padding(vm.isPressedGreen ? 20 : 10)
                         .scaleEffect(vm.selectedTemplate == 3 ? 1 : 0.95)
@@ -398,6 +412,7 @@ struct SelectView: View {
                                             print("green if")
                                             vm.selectedTemplate = 2
                                             print("selected \(vm.selectedTemplate) view")
+                                            vm.cardTitle = "Stunning Gradient Edge"
                                           
                                         } else if endingOffsetX != 0 && currentDragOffsetX > 80 {
                                             endingOffsetX = 0
@@ -416,6 +431,7 @@ struct SelectView: View {
                                 vm.isPressedBlue = false
                                 
                                 vm.closed = false
+                                vm.radiusCorner = 43.89
                             }
                         }
                         .fullScreenCover(isPresented: $vm.isPressedGreen) {
@@ -423,8 +439,9 @@ struct SelectView: View {
                                 strokeFilledWallpaper
                                 NewSettingsStrokeSolid()
                                     .cornerRadius(50)
-                                    .frame(width: vm.cgWidth * 0.9, height: vm.cgHeight * 0.7)
+                                    .frame(width: vm.cgWidth * 0.8, height: vm.cgHeight * 0.4)
                                     .scaleEffect(vm.isShowingEdits ? 1 : 0)
+                                    
 
                             }
                                 .overlay(
@@ -434,6 +451,7 @@ struct SelectView: View {
                                                 withAnimation(){
                                                     vm.isPressedGreen = false
                                                     vm.closed = true
+                                                    vm.radiusCorner = 20
                                                 }
                                             }label: {
                                                 HStack{
@@ -442,7 +460,9 @@ struct SelectView: View {
                                                 }
                                                     .font(.system(size: 20))
                                                     .foregroundColor(.white)
-                                            }.padding(10)
+                                            }
+                                            .padding(10)
+                                            .scaleEffect(vm.isShowingEdits ? 0 : 1)
                                             Spacer()
 
                                         }.padding()
@@ -471,6 +491,8 @@ struct SelectView: View {
                                             Button{
                                                 withAnimation(.spring()){
                                                     vm.showPreview = true
+                                                    vm.radiusCorner = 20
+                                                    vm.paddingEdits = vm.paddingEdits * 0.5
                                               
                                                 }
                                             } label: {

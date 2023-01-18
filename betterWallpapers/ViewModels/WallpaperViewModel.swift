@@ -32,7 +32,7 @@ final class WallpapersViewModel: ObservableObject {
     @Published var strokeSelected = "Linear"
     
     
-    @Published var radiusCorner: CGFloat = 43.89
+    @Published var radiusCorner: CGFloat = 10
     @Published var paddingEdits: CGFloat = 6.43
     
     @Published var editButtonAnimated = false
@@ -71,7 +71,7 @@ final class WallpapersViewModel: ObservableObject {
     
     @Published var saveButtonPressed = false
     
-    
+    @Published var cardTitle = "Gorgeous Gradient Fill"
    
     
    

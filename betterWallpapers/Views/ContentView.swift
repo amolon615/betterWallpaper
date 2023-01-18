@@ -21,7 +21,6 @@ struct ContentView: View {
     
     var body: some View {
         SelectView()
-            .environmentObject(WallpapersViewModel())
             .overlay(
                 VStack{
                     HStack{
@@ -30,6 +29,7 @@ struct ContentView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 40, height: 40)
+                            
                                 
                             Text("betterWallpapers")
                                 .foregroundColor(.white)
@@ -51,8 +51,9 @@ struct ContentView: View {
                     .frame(width: vm.cgWidth)
                     .scaleEffect(!vm.closed ? 0 : 1)
                     HStack{
-                        Text("Swipe to select template").font(.body)
-                            .fontWeight(.ultraLight)
+                        Text(vm.cardTitle)
+                            
+//                            .fontWeight(.ultraLight)
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
                            
@@ -69,8 +70,9 @@ struct ContentView: View {
                                     Image(systemName: "hand.tap.fill")
                                     Text("Select")
                                 }
-                                    .foregroundColor(.white)
-                                    .font(.system(.body, design: .rounded))
+                                    .foregroundColor(.white.opacity(0.7))
+                                    .font(.system( .body, design: .rounded))
+                                   
                             )
                             .onTapGesture {
                                 switch vm.selectedTemplate{
