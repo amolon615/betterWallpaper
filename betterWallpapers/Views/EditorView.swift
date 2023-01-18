@@ -303,6 +303,8 @@ struct NewSettingsStrokeSolid: View {
     }
 }
 
+
+
 struct NewSettingsStrokeGradient: View {
     @EnvironmentObject var vm: WallpapersViewModel
     @EnvironmentObject var sliderVM: SliderViewModel

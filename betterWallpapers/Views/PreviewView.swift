@@ -256,9 +256,10 @@ struct Preview2: View {
                         .onTapGesture {
                             withAnimation(.spring()){
                                 vm.saveButtonPressed.toggle()
-                                let newView = GradientFillSelected().environmentObject(vm)
+                                let newView = GradientStrokeSelected().environmentObject(vm)
                                 vm.Save(view: newView)
                                 print("saved from preview success")
+                           
                             }
                         }
                         .onChange(of: vm.saveButtonPressed, perform: { _ in

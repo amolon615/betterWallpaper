@@ -18,10 +18,9 @@ struct BWSliderCornerRadius: View {
                 Rectangle()
                     .fill(LinearGradient(gradient: Gradient(colors: [.blue, .purple ]), startPoint: .leading, endPoint: .trailing))
                     .frame(width: scrVM.sliderWidth, height: 40)
-                Text("CORNER RADIUS")
-                    .foregroundColor(.white)
-                    .offset(x: scrVM.maxWidth / 3)
-            } .frame(width: scrVM.maxWidth, height: 40 )
+            }.overlay(Text("CORNER RADIUS")
+                .foregroundColor(.white))
+            .frame(width: scrVM.maxWidth, height: 40 )
                 .cornerRadius(35)
                 .gesture(
                 DragGesture(minimumDistance: 0)
@@ -66,10 +65,10 @@ struct BWSliderStrokeWidth: View {
                 Rectangle()
                     .fill(LinearGradient(gradient: Gradient(colors: [.blue, .purple ]), startPoint: .leading, endPoint: .trailing))
                     .frame(width: sliderVM.widthSliderProgress, height: 40)
+            }.overlay(
                 Text("STROKE WIDTH")
-                    .foregroundColor(.white)
-                    .offset(x: sliderVM.widthMaxWidth / 3)
-            } .frame(width: sliderVM.widthMaxWidth, height: 40 )
+                .foregroundColor(.white))
+            .frame(width: sliderVM.widthMaxWidth, height: 40 )
                 .cornerRadius(35)
                 .gesture(
                 DragGesture(minimumDistance: 0)
@@ -112,10 +111,12 @@ struct BWSliderStartRadius: View {
                 Rectangle()
                     .fill(LinearGradient(gradient: Gradient(colors: [.blue, .purple ]), startPoint: .leading, endPoint: .trailing))
                     .frame(width: srVM.startSliderWidth, height: 40)
+
+            }.overlay(
                 Text(vm.gradientSelected == "Angular" ? "START ANGLE" : "START RADIUS")
                     .foregroundColor(.white)
-                    .offset(x: srVM.startMaxWidth / 3)
-            } .frame(width: srVM.startMaxWidth, height: 40 )
+            )
+            .frame(width: srVM.startMaxWidth, height: 40 )
                 .cornerRadius(35)
                 .gesture(
                 DragGesture(minimumDistance: 0)
@@ -158,10 +159,9 @@ struct BWSliderEndRadius: View {
                 Rectangle()
                     .fill(LinearGradient(gradient: Gradient(colors: [.blue, .purple ]), startPoint: .leading, endPoint: .trailing))
                     .frame(width: erVM.endsliderWidth, height: 40)
-                Text(vm.gradientSelected == "Angular" ? "END ANGLE" : "END RADIUS")
-                    .foregroundColor(.white)
-                    .offset(x: erVM.endmaxWidth / 3)
-            } .frame(width: erVM.endmaxWidth, height: 40 )
+            }.overlay(Text(vm.gradientSelected == "Angular" ? "END ANGLE" : "END RADIUS")
+                .foregroundColor(.white))
+            .frame(width: erVM.endmaxWidth, height: 40 )
                 .cornerRadius(35)
                 .gesture(
                 DragGesture(minimumDistance: 0)
