@@ -27,7 +27,7 @@ struct NewSettings: View {
                         Text("Select gradient type").foregroundColor(.white)
                             .padding()
                     }.padding(.top)
-                    HStack{
+                    HStack(spacing: 0){
                         Rectangle()
                             .strokeBorder(Color.white, lineWidth: vm.gradientSelected == "Linear" ? 2 : 0)
                             .frame(width: 80, height: 40)
@@ -223,9 +223,6 @@ struct NewSettingsStrokeSolid: View {
                 .resizable()
                 .scaledToFit()
             VStack{
-              
-                
-                
                 VStack{
                     HStack{
                         Text("Adjust parameters")
@@ -325,7 +322,7 @@ struct NewSettingsStrokeGradient: View {
                         Text("Select gradient type").foregroundColor(.white)
                             .padding(.vertical)
                     }
-                    HStack{
+                    HStack(spacing: 0){
                         Rectangle()
                             .strokeBorder(.white, lineWidth: vm.gradientSelected == "Linear" ? 2 : 0)
                             .frame(width: 80, height: 40)

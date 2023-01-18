@@ -45,9 +45,9 @@ final class WallpapersViewModel: ObservableObject {
 
     
     
-    @Published var pickedColor: Color = .red
-    @Published var pickedColor2: Color = .green
-    @Published var pickedColor3: Color = .blue
+    @Published var pickedColor: Color = .blue
+    @Published var pickedColor2: Color = .yellow
+    @Published var pickedColor3: Color = .purple
     @Published var showPalette: Bool = false
     
     
