@@ -70,7 +70,6 @@ final class WallpapersViewModel: ObservableObject {
     @Published var isPressedGreen: Bool = false
     
     @Published var saveButtonPressed = false
-    
     @Published var cardTitle = "Gorgeous Gradient Fill"
    
     

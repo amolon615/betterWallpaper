@@ -21,6 +21,7 @@ struct Settings: View {
     var body: some View {
         ZStack{
             Color(red: 0.054, green: 0.093, blue: 0.158).ignoresSafeArea()
+            Image("mesh")
            VStack {
                Spacer()
                 ZStack(alignment: .leading) {
@@ -45,44 +46,44 @@ struct Settings: View {
                         .shadow(radius: 5)
                    
                 }
-                ZStack(alignment: .leading) {
-                    withAnimation(.easeInOut(duration: 2)) {
-                        Button{
-                            appState.hasOnboarded = false
-                            saveOnboardingStatus(key: "hasOnboarded", value: false)
-                        }label:{
-                            HStack{
-                                Image(systemName: "arrow.counterclockwise")
-                                    .padding(.leading)
-                                    .foregroundColor(.black)
-                                Text("Reset onboarding")
-                                    .foregroundColor(.black)
-                                Spacer()
-                            }
-                        
-                        }
-                        
-                    }   .padding()
-                        .frame(width: 350,height: 40)
-                        .background(.white)
-                        .cornerRadius(10)
-                        .shadow(radius: 5)
-                   
-                }
+//                ZStack(alignment: .leading) {
+//                    withAnimation(.easeInOut(duration: 2)) {
+//                        Button{
+//                            appState.hasOnboarded = false
+//                            saveOnboardingStatus(key: "hasOnboarded", value: false)
+//                        }label:{
+//                            HStack{
+//                                Image(systemName: "arrow.counterclockwise")
+//                                    .padding(.leading)
+//                                    .foregroundColor(.black)
+//                                Text("Reset onboarding")
+//                                    .foregroundColor(.black)
+//                                Spacer()
+//                            }
+//
+//                        }
+//
+//                    }   .padding()
+//                        .frame(width: 350,height: 40)
+//                        .background(.white)
+//                        .cornerRadius(10)
+//                        .shadow(radius: 5)
+//
+//                }
                ZStack(alignment: .leading) {
                    withAnimation(.easeInOut(duration: 2)) {
                        Button{
                            showTT.toggle()
                        }label:{
-                           HStack{
+                           HStack(spacing: 0){
 //                               Image(systemName: "person.crop.circle.fill.badge.plus")
-                               Image("twitter_white")
+                               Image("twitter")
                                    .resizable()
                                    .scaledToFit()
                                    .cornerRadius(30)
-                                   .frame(width: 25, height: 25)
+                                   .frame(width: 30, height: 30)
                                    .foregroundColor(.black)
-                                   .padding(.leading)
+                                   .padding(.leading, 10)
                                   
                                Text("Follow me on Twitter")
                                    .foregroundColor(.black)
@@ -138,7 +139,7 @@ struct Settings: View {
                            
                    }
                    HStack{
-                       Text("v1.5")
+                       Text("v1.5.1")
                            .foregroundColor(.white)
                            .font(.caption)
                    }
@@ -149,6 +150,26 @@ struct Settings: View {
             }
          
         }
+        .overlay(
+            VStack{
+                HStack{
+                    Spacer()
+                    Button {
+                        withAnimation(.spring()){
+                            vm.isShowingSettings = false
+                        }
+                    } label: {
+                        Image(systemName: "xmark.circle")
+                            .font(.system(size: 40))
+                            .shadow(radius: 10)
+                            .foregroundColor(.white)
+                    }
+                  
+                }.padding(.horizontal)
+                    .padding(.trailing, 30)
+                Spacer()
+            }
+        )
        
     }
     

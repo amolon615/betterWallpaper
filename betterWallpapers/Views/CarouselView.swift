@@ -41,6 +41,9 @@ struct SelectView: View {
     var Carousel: some View {
         ZStack{
             Color(red: 0.054, green: 0.093, blue: 0.158).ignoresSafeArea()
+            Image("mesh")
+                .resizable()
+                .scaledToFit()
             HStack(alignment: .center){
                 ZStack{
                     wallpaperView
@@ -113,12 +116,15 @@ struct SelectView: View {
 
                                                 }
                                             }label: {
-                                                Label("Back", systemImage: "arrow.left")
+                                                Image("back")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 100, height: 100)
                                                     .font(.system(size: 20))
                                                     .shadow(radius: 10)
                                                     .foregroundColor(.white)
                                             }
-                                            .padding(10)
+                                           
                                             .scaleEffect(vm.isShowingEdits ? 0 : 1)
                                             Spacer()
 //
@@ -208,10 +214,13 @@ struct SelectView: View {
                                     }
                             )
                         }
-                        .sheet(isPresented: $vm.isShowingSettings) {
+//                        .sheet(isPresented: $vm.isShowingSettings) {
+//                            Settings()
+//                                .environmentObject(WallpapersViewModel())
+//                                .presentationDetents([.medium])
+//                        }
+                        .fullScreenCover(isPresented: $vm.isShowingSettings) {
                             Settings()
-                                .environmentObject(WallpapersViewModel())
-                                .presentationDetents([.medium])
                         }
                     
                 }
@@ -290,8 +299,12 @@ struct SelectView: View {
                                                     vm.radiusCorner = 20
                                                 }
                                             }label: {
-                                                Label("Back", systemImage: "arrow.left")
+                                                Image("back")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 100, height: 100)
                                                     .font(.system(size: 20))
+                                                    .shadow(radius: 10)
                                                     .foregroundColor(.white)
                                             }
                                             .padding()
@@ -455,11 +468,14 @@ struct SelectView: View {
                                                 }
                                             }label: {
                                                 HStack{
-                                                    Image(systemName: "arrow.left")
-                                                    Text("Back")
+                                                    Image("back")
+                                                        .resizable()
+                                                        .scaledToFit()
+                                                        .frame(width: 100, height: 100)
+                                                        .font(.system(size: 20))
+                                                        .shadow(radius: 10)
+                                                        .foregroundColor(.white)
                                                 }
-                                                    .font(.system(size: 20))
-                                                    .foregroundColor(.white)
                                             }
                                             .padding(10)
                                             .scaleEffect(vm.isShowingEdits ? 0 : 1)

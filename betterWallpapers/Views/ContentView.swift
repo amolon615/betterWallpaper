@@ -52,8 +52,7 @@ struct ContentView: View {
                     .scaleEffect(!vm.closed ? 0 : 1)
                     HStack{
                         Text(vm.cardTitle)
-                            
-//                            .fontWeight(.ultraLight)
+
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
                            
@@ -96,10 +95,6 @@ struct ContentView: View {
                          
                     }.frame(width: vm.cgWidth)
                         .padding(.bottom)
-                        .sheet(isPresented: $vm.isShowingSettings) {
-                            Settings().environmentObject(WallpapersViewModel())
-                                .presentationDetents([.medium])
-                        }
                 }
             
             )
