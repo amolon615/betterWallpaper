@@ -39,15 +39,6 @@ struct BWSliderCornerRadius: View {
                         scrVM.lastDragValue = scrVM.sliderWidth
                     })
                 )
-//
-//            VStack{
-//                Text("slider progress is \(vm.sliderProgress)")
-//                Text("slider width is \(vm.sliderWidth)")
-//                Text("lastdrag value is \(vm.lastDragValue)")
-//                Text("MaxWidth is \(maxWidth)")
-//                Text("Progress is \(vm.progress)")
-//                Text("Progress is \(vm.radiusCorner)")
-//            }
         }
                
     }
@@ -86,15 +77,7 @@ struct BWSliderStrokeWidth: View {
                         sliderVM.widthLastDragValue = sliderVM.widthSliderProgress
                     })
                 )
-//
-//            VStack{
-//                Text("slider progress is \(sliderVM.widthSliderProgress )")
-//                Text("slider width is \(sliderVM.widthSliderWidth)")
-//                Text("lastdrag value is \(sliderVM.widthLastDragValue)")
-//                Text("MaxWidth is \(maxWidth)")
-//                Text("Progress is \(sliderVM.widthProgress)")
-//                Text("Progress is \(vm.paddingEdits)")
-//            }
+
         }
                
     }

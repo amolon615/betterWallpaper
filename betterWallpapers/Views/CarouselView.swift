@@ -6,20 +6,18 @@
 //
 
 import SwiftUI
-
-
-
+import StoreKit
+import GoogleMobileAds
+import AppTrackingTransparency
+import AdSupport
 
 
 struct SelectView: View {
     
-  
+    @Environment(\.requestReview) var requestReview
     @EnvironmentObject var vm: WallpapersViewModel
-    
     @State var cardWidth = UIScreen.main.bounds.width
     @State var cardHeight = UIScreen.main.bounds.height
-    
-    
     @State var startingOffsetX: CGFloat = UIScreen.main.bounds.width * 0.77
     @State var currentDragOffsetX: CGFloat = 0
     @State var endingOffsetX: CGFloat = 0
@@ -28,6 +26,33 @@ struct SelectView: View {
     
     @State var preview: Bool = false
  
+    func requestPermission() {
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization { status in
+                switch status {
+                case .authorized:
+                    // Tracking authorization dialog was shown
+                    // and we are authorized
+                    print("Authorized")
+                    
+                    // Now that we are authorized we can get the IDFA
+                    print(ASIdentifierManager.shared().advertisingIdentifier)
+                case .denied:
+                    // Tracking authorization dialog was
+                    // shown and permission is denied
+                    print("Denied")
+                case .notDetermined:
+                    // Tracking authorization dialog has not been shown
+                    print("Not Determined")
+                case .restricted:
+                    print("Restricted")
+                @unknown default:
+                    print("Unknown")
+                }
+            }
+        }
+    }
+    
     
     let wallpaperView =  GradientFillSelected()
     let strokeWallpaper = GradientStrokeSelected()
@@ -36,7 +61,6 @@ struct SelectView: View {
     var body: some View {
         Carousel
     }
-    
     
     var Carousel: some View {
         ZStack{
@@ -137,6 +161,7 @@ struct SelectView: View {
                                             Button {
                                                 withAnimation(){
                                                     vm.isShowingEdits.toggle()
+                                                    vm.previewBlocked = true
                                                 }
                                             }label: {
                                                 HStack (spacing: vm.saveButtonPressed ? 10 : 5){
@@ -146,6 +171,7 @@ struct SelectView: View {
                                                 }
                                             }
                                             .frame(width: vm.saveButtonPressed ? 50 : 120, height: 50)
+                                            .disabled(vm.previewBlocked)
                                             .shadow(radius: 10)
                                             .background(Color.blue)
                                                 .cornerRadius(50)
@@ -168,6 +194,7 @@ struct SelectView: View {
                                                 .shadow(radius: 10)
                                                 .cornerRadius(50)
                                                 .foregroundColor(.white)
+                                                .disabled(vm.previewBlocked)
                                                 
                                             
                                             
@@ -181,18 +208,24 @@ struct SelectView: View {
                                                                 .foregroundColor(vm.saveButtonPressed ? .white : .black)
                                                                 .font(.system(size: 20))
                                                             Text(vm.saveButtonPressed ? "Saved" : "").foregroundColor(vm.saveButtonPressed ? .white : .black)
+                                                            
                                                         }
                                                     }
                                                 )
                                                 .shadow(radius: 10)
                                                 .onTapGesture {
                                                     withAnimation(.spring()){
+                        
                                                         vm.saveButtonPressed.toggle()
                                                         let newView =   GradientFillSelected().environmentObject(vm)
                                                         vm.Save(view: newView)
+                                                        
+                                    
                                                         print("saved from preview success")
+//                                                        requestReview()
                                                     }
                                                 }
+                                                .disabled(vm.previewBlocked)
                                                 .onChange(of: vm.saveButtonPressed, perform: { _ in
                                                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                                                         withAnimation(.spring()){
@@ -214,11 +247,7 @@ struct SelectView: View {
                                     }
                             )
                         }
-//                        .sheet(isPresented: $vm.isShowingSettings) {
-//                            Settings()
-//                                .environmentObject(WallpapersViewModel())
-//                                .presentationDetents([.medium])
-//                        }
+
                         .fullScreenCover(isPresented: $vm.isShowingSettings) {
                             Settings()
                         }
@@ -320,6 +349,7 @@ struct SelectView: View {
                                             Button {
                                                 withAnimation(){
                                                     vm.isShowingEdits.toggle()
+                                                    vm.previewBlocked = true
                                                 }
                                             }label: {
                                                 HStack (spacing: vm.saveButtonPressed ? 10 : 5){
@@ -328,6 +358,7 @@ struct SelectView: View {
                                                 }
                                             }
                                             .frame(width: vm.saveButtonPressed ? 50 : 150, height: 50)
+                                            .disabled(vm.previewBlocked)
                                             .background(Color.blue)
                                             .shadow(radius: 10)
                                                 .cornerRadius(40)
@@ -349,6 +380,7 @@ struct SelectView: View {
                                                 }
                                             }.frame(width: vm.saveButtonPressed ? 50 : 120, height: 50)
                                                 .background(Color(red: 0.054, green: 0.093, blue: 0.158))
+                                                .disabled(vm.previewBlocked)
                                                 .shadow(radius: 10)
                                                 .cornerRadius(40)
                                                 .foregroundColor(.white)
@@ -368,13 +400,16 @@ struct SelectView: View {
                                                 )
                                                 .shadow(radius: 10)
                                                 .onTapGesture {
+                                                    vm.showAd = true
                                                     withAnimation(.spring()){
                                                         vm.saveButtonPressed.toggle()
                                                         let newView =   GradientStrokeSelected().environmentObject(vm)
                                                         vm.Save(view: newView)
-                                                        print("saved from preview success")
+
+                                                        requestReview()
                                                     }
                                                 }
+                                                .disabled(vm.previewBlocked)
                                                 .onChange(of: vm.saveButtonPressed, perform: { _ in
                                                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                                                         withAnimation(.spring()){
@@ -489,6 +524,7 @@ struct SelectView: View {
                                             Button {
                                                 withAnimation(){
                                                     vm.isShowingEdits.toggle()
+                                                    vm.previewBlocked = true
                                                 }
                                             }label: {
                                                 HStack (spacing: vm.saveButtonPressed ? 10 : 5){
@@ -498,6 +534,7 @@ struct SelectView: View {
                                                 }
                                             } 
                                             .frame(width: vm.saveButtonPressed ? 50 : 150, height: 50)
+                                            .disabled(vm.previewBlocked)
                                             .background(Color.blue)
                                                 .cornerRadius(40)
                                                 .shadow(radius: 10)
@@ -518,6 +555,7 @@ struct SelectView: View {
                                                     Text(vm.saveButtonPressed ? "" : "Preview")
                                                 }
                                             }.frame(width: vm.saveButtonPressed ? 50 : 120, height: 50)
+                                                .disabled(vm.previewBlocked)
                                                 .background(Color(red: 0.054, green: 0.093, blue: 0.158))
                                                 .cornerRadius(40)
                                                 .shadow(radius: 10)
@@ -543,9 +581,11 @@ struct SelectView: View {
                                                         vm.saveButtonPressed.toggle()
                                                         let newView =   StrokeSolidFillView().environmentObject(vm)
                                                         vm.Save(view: newView)
+                                                        requestReview()
                                                         print("saved from preview success")
                                                     }
                                                 }
+                                                .disabled(vm.previewBlocked)
                                                 .onChange(of: vm.saveButtonPressed, perform: { _ in
                                                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                                                         withAnimation(.spring()){
@@ -570,7 +610,11 @@ struct SelectView: View {
                    
                 }
                 
-            }.frame(maxWidth: .infinity)
+            }
+            .frame(maxWidth: .infinity)
+            .onAppear{
+                requestPermission()
+            }
                 
         }
     }
@@ -581,6 +625,7 @@ struct SelectView: View {
 
 struct SelectView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectView().environmentObject(WallpapersViewModel())
+        SelectView()
+            .environmentObject(WallpapersViewModel())
     }
 }

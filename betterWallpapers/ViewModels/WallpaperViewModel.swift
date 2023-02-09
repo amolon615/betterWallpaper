@@ -13,10 +13,14 @@ import StoreKit
 
 
 
-final class WallpapersViewModel: ObservableObject {
+ class WallpapersViewModel: ObservableObject {
+  
+    @Published var showAd: Bool = false
     @Published  var feedback = UINotificationFeedbackGenerator()
     @Published  var showingAlert = false
     
+     @Published var showAdInter = false
+     
     
     @Published var cgWidth: CGFloat = UIScreen.main.bounds.width
     @Published var cgHeight: CGFloat = UIScreen.main.bounds.height
@@ -72,6 +76,7 @@ final class WallpapersViewModel: ObservableObject {
     @Published var saveButtonPressed = false
     @Published var cardTitle = "Gorgeous Gradient Fill"
    
+     @Published var previewBlocked: Bool = false
     
    
     
@@ -82,6 +87,7 @@ final class WallpapersViewModel: ObservableObject {
         
         self.showingAlert.toggle()
         self.saveButtonAnimated = true
+       
     }
     
     

@@ -46,30 +46,7 @@ struct Settings: View {
                         .shadow(radius: 5)
                    
                 }
-//                ZStack(alignment: .leading) {
-//                    withAnimation(.easeInOut(duration: 2)) {
-//                        Button{
-//                            appState.hasOnboarded = false
-//                            saveOnboardingStatus(key: "hasOnboarded", value: false)
-//                        }label:{
-//                            HStack{
-//                                Image(systemName: "arrow.counterclockwise")
-//                                    .padding(.leading)
-//                                    .foregroundColor(.black)
-//                                Text("Reset onboarding")
-//                                    .foregroundColor(.black)
-//                                Spacer()
-//                            }
-//
-//                        }
-//
-//                    }   .padding()
-//                        .frame(width: 350,height: 40)
-//                        .background(.white)
-//                        .cornerRadius(10)
-//                        .shadow(radius: 5)
-//
-//                }
+
                ZStack(alignment: .leading) {
                    withAnimation(.easeInOut(duration: 2)) {
                        Button{
@@ -139,13 +116,14 @@ struct Settings: View {
                            
                    }
                    HStack{
-                       Text("v1.5.1")
+                       Text("v1.5.3")
                            .foregroundColor(.white)
                            .font(.caption)
                    }
                }
+               .padding(.bottom, 150)
                    .sheet(isPresented: $showPP){
-                       SFSafariViewWrapper(url: URL(string: "https://horovenko.com/betterwallpapers-privacy-policy/")!)
+                       SFSafariViewWrapper(url: URL(string: "https://horovenko.com/betterwallpapers-privacy-policy-8bc29616e7c9?source=friends_link&sk=28ef57d24d86b462d79e47fececdca8e")!)
                    }
             }
          

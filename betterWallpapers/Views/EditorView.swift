@@ -21,7 +21,7 @@ struct NewSettings: View {
             Image("mesh")
                 .resizable()
                 .scaledToFit()
-            VStack(spacing: -10){
+            VStack(spacing: 20){
                 VStack (alignment: .center){
                     HStack(alignment: .center){
                         Text("Select gradient type").foregroundColor(.white)
@@ -92,7 +92,7 @@ struct NewSettings: View {
                 VStack{
                     
                     if vm.gradientSelected == "Linear" {
-                        
+                        BWSliderStartRadius()
                     } else if vm.gradientSelected == "Radial"{
                         HStack{
                             Text("Adjust parameters").foregroundColor(.white)
@@ -168,6 +168,7 @@ struct NewSettings: View {
                     Button {
                         withAnimation(){
                             vm.isShowingEdits = false
+                            vm.previewBlocked = false
                         }
                     }label: {
                         Label("Save", systemImage: "checkmark.circle")
@@ -263,6 +264,7 @@ struct NewSettingsStrokeSolid: View {
                     Button {
                         withAnimation(){
                             vm.isShowingEdits = false
+                            vm.previewBlocked = false
                         }
                     }label: {
                         Label("Save", systemImage: "checkmark.circle")
@@ -458,6 +460,7 @@ struct NewSettingsStrokeGradient: View {
                     Button {
                         withAnimation(){
                             vm.isShowingEdits = false
+                            vm.previewBlocked = false
                         }
                     }label: {
                         Label("Save", systemImage: "checkmark.circle")

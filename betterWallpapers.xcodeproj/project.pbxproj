@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03159603A30F8B9A34C533C8 /* Pods_betterWallpapers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22DF8C502BAF131052E98B1 /* Pods_betterWallpapers.framework */; };
+		AC2532BA2994FE0A00230C2F /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2532B92994FE0A00230C2F /* AdManager.swift */; };
 		AC2DD352294A7D7600E64523 /* betterWallpapers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2DD351294A7D7600E64523 /* betterWallpapers.swift */; };
 		AC2DD354294A7D7600E64523 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2DD353294A7D7600E64523 /* ContentView.swift */; };
 		AC2DD356294A7D7700E64523 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC2DD355294A7D7700E64523 /* Assets.xcassets */; };
 		AC2DD359294A7D7700E64523 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC2DD358294A7D7700E64523 /* Preview Assets.xcassets */; };
 		AC3656B12968BB7300362494 /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3656B02968BB7300362494 /* EditorView.swift */; };
+		AC40E32D29945011001EF10F /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40E32C29945011001EF10F /* TestView.swift */; };
 		AC478020296831CF00A615D6 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47801F296831CF00A615D6 /* PreviewView.swift */; };
 		AC7428652957946B007E83F7 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7428642957946B007E83F7 /* OnboardingView.swift */; };
 		AC7428672957A14D007E83F7 /* ViewFlows.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7428662957A14D007E83F7 /* ViewFlows.swift */; };
@@ -23,12 +26,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05C5B768AC11BF49A2E0A48D /* Pods-betterWallpapers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-betterWallpapers.debug.xcconfig"; path = "Target Support Files/Pods-betterWallpapers/Pods-betterWallpapers.debug.xcconfig"; sourceTree = "<group>"; };
+		31BE3A11118CCEE8D21CD282 /* Pods-betterWallpapers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-betterWallpapers.release.xcconfig"; path = "Target Support Files/Pods-betterWallpapers/Pods-betterWallpapers.release.xcconfig"; sourceTree = "<group>"; };
+		AC12AB122995093400599179 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AC2532B92994FE0A00230C2F /* AdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManager.swift; sourceTree = "<group>"; };
 		AC2DD34E294A7D7600E64523 /* betterWallpapers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = betterWallpapers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC2DD351294A7D7600E64523 /* betterWallpapers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = betterWallpapers.swift; sourceTree = "<group>"; };
 		AC2DD353294A7D7600E64523 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AC2DD355294A7D7700E64523 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC2DD358294A7D7700E64523 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AC3656B02968BB7300362494 /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
+		AC40E32C29945011001EF10F /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		AC47801F296831CF00A615D6 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		AC7428642957946B007E83F7 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		AC7428662957A14D007E83F7 /* ViewFlows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFlows.swift; sourceTree = "<group>"; };
@@ -37,6 +45,7 @@
 		ACD376E12965DFB3004E6322 /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		ACEB758929763449004C23BC /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		ACEB758B2976FD0C004C23BC /* SliderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewModel.swift; sourceTree = "<group>"; };
+		D22DF8C502BAF131052E98B1 /* Pods_betterWallpapers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_betterWallpapers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,17 +53,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03159603A30F8B9A34C533C8 /* Pods_betterWallpapers.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F1D54E8FDCBC1A7888468F9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				05C5B768AC11BF49A2E0A48D /* Pods-betterWallpapers.debug.xcconfig */,
+				31BE3A11118CCEE8D21CD282 /* Pods-betterWallpapers.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		AC2532B82994FDF700230C2F /* AdManager */ = {
+			isa = PBXGroup;
+			children = (
+				AC2532B92994FE0A00230C2F /* AdManager.swift */,
+			);
+			name = AdManager;
+			sourceTree = "<group>";
+		};
 		AC2DD345294A7D7600E64523 = {
 			isa = PBXGroup;
 			children = (
 				AC2DD350294A7D7600E64523 /* betterWallpapers */,
 				AC2DD34F294A7D7600E64523 /* Products */,
+				1F1D54E8FDCBC1A7888468F9 /* Pods */,
+				F7069173EE37B75DA3863BBF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,7 +98,9 @@
 		AC2DD350294A7D7600E64523 /* betterWallpapers */ = {
 			isa = PBXGroup;
 			children = (
+				AC12AB122995093400599179 /* Info.plist */,
 				AC2DD351294A7D7600E64523 /* betterWallpapers.swift */,
+				AC2532B82994FDF700230C2F /* AdManager */,
 				ACD376DB2965C9FE004E6322 /* ViewModels */,
 				ACD376DA2965C9E5004E6322 /* Views */,
 				AC2DD355294A7D7700E64523 /* Assets.xcassets */,
@@ -97,6 +128,7 @@
 				AC3656B02968BB7300362494 /* EditorView.swift */,
 				AC47801F296831CF00A615D6 /* PreviewView.swift */,
 				ACEB758929763449004C23BC /* SliderView.swift */,
+				AC40E32C29945011001EF10F /* TestView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -110,6 +142,14 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		F7069173EE37B75DA3863BBF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D22DF8C502BAF131052E98B1 /* Pods_betterWallpapers.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -117,9 +157,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AC2DD35C294A7D7700E64523 /* Build configuration list for PBXNativeTarget "betterWallpapers" */;
 			buildPhases = (
+				1099B68C2BEE485D8E5042FA /* [CP] Check Pods Manifest.lock */,
 				AC2DD34A294A7D7600E64523 /* Sources */,
 				AC2DD34B294A7D7600E64523 /* Frameworks */,
 				AC2DD34C294A7D7600E64523 /* Resources */,
+				C2AA563F5FF1DF6C9E02301C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -175,13 +217,57 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1099B68C2BEE485D8E5042FA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-betterWallpapers-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C2AA563F5FF1DF6C9E02301C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-betterWallpapers/Pods-betterWallpapers-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-betterWallpapers/Pods-betterWallpapers-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-betterWallpapers/Pods-betterWallpapers-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AC2DD34A294A7D7600E64523 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC40E32D29945011001EF10F /* TestView.swift in Sources */,
 				ACEB758A29763449004C23BC /* SliderView.swift in Sources */,
 				ACD376D92965C712004E6322 /* WallpaperViewModel.swift in Sources */,
+				AC2532BA2994FE0A00230C2F /* AdManager.swift in Sources */,
 				ACD376E22965DFB3004E6322 /* CarouselView.swift in Sources */,
 				AC478020296831CF00A615D6 /* PreviewView.swift in Sources */,
 				AC2DD354294A7D7600E64523 /* ContentView.swift in Sources */,
@@ -321,16 +407,18 @@
 		};
 		AC2DD35D294A7D7700E64523 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05C5B768AC11BF49A2E0A48D /* Pods-betterWallpapers.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BetterWallpapers/Preview Content\"";
 				DEVELOPMENT_TEAM = NUUAUT9ZDU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = betterWallpapers/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = betterWallpapers;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need this to save your wallpaper";
@@ -338,6 +426,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -346,7 +435,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.1;
+				MARKETING_VERSION = 1.5.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.horovenko.betterwallpapers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -361,16 +450,18 @@
 		};
 		AC2DD35E294A7D7700E64523 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 31BE3A11118CCEE8D21CD282 /* Pods-betterWallpapers.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BetterWallpapers/Preview Content\"";
 				DEVELOPMENT_TEAM = NUUAUT9ZDU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = betterWallpapers/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = betterWallpapers;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need this to save your wallpaper";
@@ -378,6 +469,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -386,7 +478,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.1;
+				MARKETING_VERSION = 1.5.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.horovenko.betterwallpapers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

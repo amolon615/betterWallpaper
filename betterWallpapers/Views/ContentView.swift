@@ -19,6 +19,9 @@ struct ContentView: View {
     @EnvironmentObject var vm: WallpapersViewModel
     @Environment(\.requestReview) var requestReview
     
+
+    
+    
     var body: some View {
         SelectView()
             .overlay(
@@ -144,10 +147,12 @@ struct StrokeSolidFillView: View {
 //stroke with linear gradient filling
 struct StrokeLinearGradientView: View {
     @EnvironmentObject var vm: WallpapersViewModel
+    @EnvironmentObject var vm2: SliderStartRadius
+    
     var body: some View {
         ZStack{
             Rectangle()
-                .fill( LinearGradient(gradient: Gradient(colors: [vm.pickedColor, vm.pickedColor2, vm.pickedColor3]), startPoint: .leading, endPoint: .trailing))
+                .fill( LinearGradient(gradient: Gradient(colors: [vm.pickedColor, vm.pickedColor2, vm.pickedColor3]), startPoint: .leading, endPoint:  .trailing))
                 .cornerRadius(vm.radiusCorner)
                 .background(.black)
             
@@ -229,10 +234,12 @@ struct FilledSolidView: View {
 //filled view with gradient
 struct FilledGradientView: View {
     @EnvironmentObject var vm: WallpapersViewModel
+    @EnvironmentObject var vm2: SliderStartRadius
     var body: some View {
         ZStack{
-            LinearGradient(gradient: Gradient(colors: [vm.pickedColor, vm.pickedColor2, vm.pickedColor3]), startPoint: .leading, endPoint: .trailing)
-                .ignoresSafeArea()
+//            LinearGradient(gradient: Gradient(colors: [vm.pickedColor, vm.pickedColor2, vm.pickedColor3]), startPoint: .leading, endPoint: .trailing)
+//                .ignoresSafeArea()
+            LinearGradient(gradient: Gradient(colors: [vm.pickedColor, vm.pickedColor2, vm.pickedColor3]), startPoint: .leading, endPoint:  .trailing ).ignoresSafeArea()
            
 
         }
@@ -287,11 +294,16 @@ struct GradientStrokeSelected: View {
     var body: some View {
         
         if vm.gradientSelected == "Linear" {
-            StrokeLinearGradientView().environmentObject(vm)
+            StrokeLinearGradientView()
+                .environmentObject(vm)
         } else if vm.gradientSelected == "Radial" {
-            StrokeRadialGradientView().environmentObject(vm)
+            StrokeRadialGradientView()
+                .environmentObject(vm)
+            
         } else if vm.gradientSelected == "Angular" {
-            StrokeAngularGradientView().environmentObject(vm)
+            StrokeAngularGradientView()
+                .environmentObject(vm)
+                
         }
            
         

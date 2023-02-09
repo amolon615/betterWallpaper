@@ -6,10 +6,16 @@
 //
 
 import SwiftUI
-
+import GoogleMobileAds
+import AppTrackingTransparency
 
 @main
 struct BetterWallpapers: App {
+
+    @Environment(\.scenePhase) private var scenePhase
+
+    var ad = OpenAd()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -19,5 +25,10 @@ struct BetterWallpapers: App {
                 .environmentObject(SliderStartRadius())
                 .environmentObject(SliderEndRadius())
         }
+        .onChange(of: scenePhase) { phase in
+                  if phase == .active {
+                      ad.tryToPresentAd()
+                  }
+            }
     }
 }
