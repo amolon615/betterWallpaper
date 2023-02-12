@@ -178,7 +178,7 @@ struct BWSliderEndRadius: View {
 
 struct slider_Previews: PreviewProvider {
     static var previews: some View {
-        BWSliderCornerRadius().environmentObject(WallpapersViewModel())
+        BWSliderCornerRadius().environmentObject(WallpapersViewModel()).environmentObject(SliderCornerRadius())
         BWSliderStrokeWidth().environmentObject(WallpapersViewModel()).environmentObject(SliderViewModel())
         BWSliderStartRadius().environmentObject(WallpapersViewModel()).environmentObject(SliderStartRadius())
         BWSliderEndRadius().environmentObject(WallpapersViewModel()).environmentObject(SliderEndRadius())

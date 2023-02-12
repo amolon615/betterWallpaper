@@ -16,6 +16,7 @@ struct SelectView: View {
     
     @Environment(\.requestReview) var requestReview
     @EnvironmentObject var vm: WallpapersViewModel
+    
     @State var cardWidth = UIScreen.main.bounds.width
     @State var cardHeight = UIScreen.main.bounds.height
     @State var startingOffsetX: CGFloat = UIScreen.main.bounds.width * 0.77
@@ -220,9 +221,7 @@ struct SelectView: View {
                                                         let newView =   GradientFillSelected().environmentObject(vm)
                                                         vm.Save(view: newView)
                                                         
-                                    
                                                         print("saved from preview success")
-//                                                        requestReview()
                                                     }
                                                 }
                                                 .disabled(vm.previewBlocked)

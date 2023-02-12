@@ -10,6 +10,705 @@ import SwiftUI
 
 
 
+struct LinearFillEditor : View {
+    @EnvironmentObject var vm: WallpapersViewModel
+    @EnvironmentObject var sliderVM: SliderViewModel
+    var body: some View {
+        ZStack{
+            Color(red: 0.054, green: 0.093, blue: 0.158)
+                .ignoresSafeArea()
+            Image("mesh")
+                .resizable()
+                .scaledToFit()
+            VStack(spacing: 20){
+                BWSliderStartRadius()
+                    .frame(width: 300, height: vm.gradientSelected == "Linear" ? 0 : 160)
+                    .padding()
+                
+                    VStack{
+                        HStack{
+                            Text("Select colors").foregroundColor(.white)
+                        }
+                        ZStack{
+                            HStack{
+                                Rectangle().fill(vm.pickedColor)
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(10)
+                                    .padding()
+                                    .onTapGesture {
+                                        withAnimation(.spring()){
+                                            vm.pickedColorIndex = 1
+                                            vm.showPalette = true
+                                        }
+                                    }
+                                
+                                Rectangle().fill(vm.pickedColor2)
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(10)
+                                    .padding()
+                                    .onTapGesture {
+                                        withAnimation(.spring()){
+                                            vm.pickedColorIndex = 2
+                                            vm.showPalette = true
+                                        }
+                                    }
+                                
+                                Rectangle().fill(vm.pickedColor3)
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(10)
+                                    .padding()
+                                    .onTapGesture {
+                                        withAnimation(.spring()){
+                                            vm.pickedColorIndex = 3
+                                            vm.showPalette = true
+                                        }
+                                    }
+                                
+                                    
+                            }.scaleEffect(!vm.showPalette ? 1 : 0)
+                                .padding()
+                            ColorPicker()
+                                .scaleEffect(vm.showPalette ? 1 : 0)
+                            
+                            
+                            
+                        }
+                    }.frame(width: 300, height: 170)
+//                    .background(.green)
+                    .padding()
+//             Spacer()
+                HStack{
+                    Button {
+                        withAnimation(){
+                            vm.isShowingEdits = false
+                            vm.previewBlocked = false
+                        }
+                    }label: {
+                        Label("Save", systemImage: "checkmark.circle")
+                    }
+                    .frame(width: 183, height: 50)
+                    .background(Color.blue)
+                        .cornerRadius(40)
+                        .foregroundColor(.white)
+                        .padding(.leading)
+                    
+                        
+                    
+                    Button{
+                        withAnimation(.spring()){
+                            vm.radiusCorner = 40
+                            vm.startRadius = 0
+                            vm.endRadius = 200
+                          
+                        }
+                    } label: {
+                       Image(systemName: "arrow.counterclockwise")
+                    }.frame(width: 50, height: 50)
+                        .background(Color.white)
+                        .cornerRadius(40)
+                        .foregroundColor(.black)
+                        .padding(.trailing)
+                    
+                    
+                    
+                }.frame(width: 300, height: 60)
+//                    .background(.pink)
+                    .padding(10)
+            }
+
+          
+   
+        
+        }
+    }
+        
+}
+
+
+struct RadialFillEditor: View {
+    @EnvironmentObject var vm: WallpapersViewModel
+    @EnvironmentObject var sliderVM: SliderViewModel
+    var body: some View {
+        ZStack{
+            Color(red: 0.054, green: 0.093, blue: 0.158)
+                .ignoresSafeArea()
+            Image("mesh")
+                .resizable()
+                .scaledToFit()
+            VStack(spacing: 20){
+                BWSliderStartRadius()
+                BWSliderEndRadius()
+                    .frame(width: 300, height: 160)
+                    .padding()
+                
+                    VStack{
+                        HStack{
+                            Text("Select colors").foregroundColor(.white)
+                        }
+                        ZStack{
+                            HStack{
+                                Rectangle().fill(vm.pickedColor)
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(10)
+                                    .padding()
+                                    .onTapGesture {
+                                        withAnimation(.spring()){
+                                            vm.pickedColorIndex = 1
+                                            vm.showPalette = true
+                                        }
+                                    }
+                                
+                                Rectangle().fill(vm.pickedColor2)
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(10)
+                                    .padding()
+                                    .onTapGesture {
+                                        withAnimation(.spring()){
+                                            vm.pickedColorIndex = 2
+                                            vm.showPalette = true
+                                        }
+                                    }
+                                
+                                Rectangle().fill(vm.pickedColor3)
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(10)
+                                    .padding()
+                                    .onTapGesture {
+                                        withAnimation(.spring()){
+                                            vm.pickedColorIndex = 3
+                                            vm.showPalette = true
+                                        }
+                                    }
+                                
+                                    
+                            }.scaleEffect(!vm.showPalette ? 1 : 0)
+                                .padding()
+                            ColorPicker()
+                                .scaleEffect(vm.showPalette ? 1 : 0)
+                            
+                            
+                            
+                        }
+                    }.frame(width: 300, height: 170)
+//                    .background(.green)
+                    .padding()
+//             Spacer()
+                HStack{
+                    Button {
+                        withAnimation(){
+                            vm.isShowingEdits = false
+                            vm.previewBlocked = false
+                        }
+                    }label: {
+                        Label("Save", systemImage: "checkmark.circle")
+                    }
+                    .frame(width: 183, height: 50)
+                    .background(Color.blue)
+                        .cornerRadius(40)
+                        .foregroundColor(.white)
+                        .padding(.leading)
+                    
+                    Button{
+                        withAnimation(.spring()){
+                            vm.radiusCorner = 40
+                            vm.startRadius = 0
+                            vm.endRadius = 200
+                        }
+                    } label: {
+                       Image(systemName: "arrow.counterclockwise")
+                    }.frame(width: 50, height: 50)
+                        .background(Color.white)
+                        .cornerRadius(40)
+                        .foregroundColor(.black)
+                        .padding(.trailing)
+                    
+                    
+                    
+                }.frame(width: 300, height: 60)
+//                    .background(.pink)
+                    .padding(10)
+            }
+
+          
+   
+        
+        }
+    }
+}
+
+struct AngularFillEditor: View {
+    @EnvironmentObject var vm: WallpapersViewModel
+    @EnvironmentObject var sliderVM: SliderViewModel
+    var body: some View {
+        ZStack{
+            Color(red: 0.054, green: 0.093, blue: 0.158)
+                .ignoresSafeArea()
+            Image("mesh")
+                .resizable()
+                .scaledToFit()
+            VStack(spacing: 20){
+                
+                BWSliderStartRadius()
+                BWSliderEndRadius()
+                    .frame(width: 300, height: 160)
+//                    .background(.red)
+                    .padding()
+                
+                    VStack{
+                        HStack{
+                            Text("Select colors").foregroundColor(.white)
+                        }
+                        ZStack{
+                            HStack{
+                                Rectangle().fill(vm.pickedColor)
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(10)
+                                    .padding()
+                                    .onTapGesture {
+                                        withAnimation(.spring()){
+                                            vm.pickedColorIndex = 1
+                                            vm.showPalette = true
+                                        }
+                                    }
+                                
+                                Rectangle().fill(vm.pickedColor2)
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(10)
+                                    .padding()
+                                    .onTapGesture {
+                                        withAnimation(.spring()){
+                                            vm.pickedColorIndex = 2
+                                            vm.showPalette = true
+                                        }
+                                    }
+                                
+                                Rectangle().fill(vm.pickedColor3)
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(10)
+                                    .padding()
+                                    .onTapGesture {
+                                        withAnimation(.spring()){
+                                            vm.pickedColorIndex = 3
+                                            vm.showPalette = true
+                                        }
+                                    }
+                                
+                                    
+                            }.scaleEffect(!vm.showPalette ? 1 : 0)
+                                .padding()
+                            ColorPicker()
+                                .scaleEffect(vm.showPalette ? 1 : 0)
+                            
+                            
+                            
+                        }
+                    }.frame(width: 300, height: 170)
+//                    .background(.green)
+                    .padding()
+//             Spacer()
+                HStack{
+                    Button {
+                        withAnimation(){
+                            vm.isShowingEdits = false
+                            vm.previewBlocked = false
+                        }
+                    }label: {
+                        Label("Save", systemImage: "checkmark.circle")
+                    }
+                    .frame(width: 183, height: 50)
+                    .background(Color.blue)
+                        .cornerRadius(40)
+                        .foregroundColor(.white)
+                        .padding(.leading)
+                    
+                        
+                    
+                    Button{
+                        withAnimation(.spring()){
+                            vm.radiusCorner = 40
+                            vm.startRadius = 0
+                            vm.endRadius = 200
+                          
+                        }
+                    } label: {
+                       Image(systemName: "arrow.counterclockwise")
+                    }.frame(width: 50, height: 50)
+                        .background(Color.white)
+                        .cornerRadius(40)
+                        .foregroundColor(.black)
+                        .padding(.trailing)
+                    
+                    
+                    
+                }.frame(width: 300, height: 60)
+//                    .background(.pink)
+                    .padding(10)
+            }
+
+          
+   
+        
+        }
+    }
+}
+
+
+struct LinearBorderEditor: View {
+    @EnvironmentObject var vm: WallpapersViewModel
+    @EnvironmentObject var sliderVM: SliderViewModel
+    
+    var body: some View {
+        ZStack{
+            Color(red: 0.054, green: 0.093, blue: 0.158)
+                .ignoresSafeArea()
+            
+            Image("mesh")
+                .resizable()
+                .scaledToFit()
+            VStack (spacing: 20){
+                Spacer()
+              
+                VStack (alignment: .center){
+                    HStack(alignment: .center){
+                        Text("Select gradient type").foregroundColor(.white)
+                            .padding(.vertical)
+                    }
+                    
+                }
+
+                
+                
+                VStack (spacing: 20){
+                    HStack{
+                        Text("Adjust parameters").foregroundColor(.white)
+                    }.padding(.vertical)
+                    
+                    BWSliderCornerRadius()
+                    BWSliderStrokeWidth()
+                        
+                   
+                }
+                .frame(width: vm.cgWidth * 0.9, height:  vm.cgHeight * 0.25)
+//                    .background(.red)
+                    .padding()
+                
+                    VStack{
+                        HStack{
+                            Text("Select colors").foregroundColor(.white)
+                        }
+                        ZStack{
+                            HStack{
+                                Rectangle().fill(vm.pickedColor)
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(10)
+                                    .padding()
+                                    .onTapGesture {
+                                        withAnimation(.spring()){
+                                            vm.pickedColorIndex = 1
+                                            vm.showPalette = true
+                                        }
+                                    }
+                                Rectangle().fill(vm.pickedColor2)
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(10)
+                                    .padding()
+                                    .onTapGesture {
+                                        withAnimation(.spring()){
+                                            vm.pickedColorIndex = 2
+                                            vm.showPalette = true
+                                        }
+                                    }
+                                
+                                Rectangle().fill(vm.pickedColor3)
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(10)
+                                    .padding()
+                                    .onTapGesture {
+                                        withAnimation(.spring()){
+                                            vm.pickedColorIndex = 3
+                                            vm.showPalette = true
+                                        }
+                                    }
+                            }.scaleEffect(!vm.showPalette ? 1 : 0)
+                                .padding()
+                            ColorPicker()
+                                .scaleEffect(vm.showPalette ? 1 : 0)
+                        }
+                    }.frame(width: vm.cgWidth * 0.7, height: vm.cgHeight * 0.1)
+//                    .background(.green.opacity(0.5))
+                    .padding(.vertical, 60)
+             Spacer()
+                HStack{
+                    Button {
+                        withAnimation(){
+                            vm.isShowingEdits = false
+                            vm.previewBlocked = false
+                        }
+                    }label: {
+                        Label("Save", systemImage: "checkmark.circle")
+                    }
+                    .frame(width: 183, height: 50)
+                    .background(Color.blue)
+                        .cornerRadius(40)
+                        .foregroundColor(.white)
+                        .padding(.leading)
+                    Button{
+                        withAnimation(.spring()){
+                            vm.radiusCorner = 40
+                            vm.startRadius = 0
+                            vm.endRadius = 200
+                        }
+                    } label: {
+                       Image(systemName: "arrow.counterclockwise")
+                    }.frame(width: 50, height: 50)
+                        .background(Color.white)
+                        .cornerRadius(40)
+                        .foregroundColor(.black)
+                        .padding(.trailing)
+                }.frame(width: 300, height: 60)
+                    .padding(10)
+            }
+          
+   
+        
+        }
+    }
+}
+
+struct RadialBorderEditor : View {
+    @EnvironmentObject var vm: WallpapersViewModel
+    @EnvironmentObject var sliderVM: SliderViewModel
+    
+    var body: some View {
+        ZStack{
+            Color(red: 0.054, green: 0.093, blue: 0.158)
+                .ignoresSafeArea()
+            
+            Image("mesh")
+                .resizable()
+                .scaledToFit()
+            VStack (spacing: 20){
+                Spacer()
+              
+
+                
+                VStack (spacing: 20){
+                    HStack{
+                        Text("Adjust parameters").foregroundColor(.white)
+                    }.padding(.vertical)
+                    
+                    BWSliderCornerRadius()
+                    BWSliderStrokeWidth()
+                        
+                        
+                    BWSliderStartRadius()
+                    BWSliderEndRadius()
+                   
+                }.frame(width: vm.cgWidth * 0.9, height:  vm.cgHeight * 0.25)
+//                    .background(.red)
+                    .padding()
+                
+                    VStack{
+                        HStack{
+                            Text("Select colors").foregroundColor(.white)
+                        }
+                        ZStack{
+                            HStack{
+                                Rectangle().fill(vm.pickedColor)
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(10)
+                                    .padding()
+                                    .onTapGesture {
+                                        withAnimation(.spring()){
+                                            vm.pickedColorIndex = 1
+                                            vm.showPalette = true
+                                        }
+                                    }
+                                Rectangle().fill(vm.pickedColor2)
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(10)
+                                    .padding()
+                                    .onTapGesture {
+                                        withAnimation(.spring()){
+                                            vm.pickedColorIndex = 2
+                                            vm.showPalette = true
+                                        }
+                                    }
+                                
+                                Rectangle().fill(vm.pickedColor3)
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(10)
+                                    .padding()
+                                    .onTapGesture {
+                                        withAnimation(.spring()){
+                                            vm.pickedColorIndex = 3
+                                            vm.showPalette = true
+                                        }
+                                    }
+                            }.scaleEffect(!vm.showPalette ? 1 : 0)
+                                .padding()
+                            ColorPicker()
+                                .scaleEffect(vm.showPalette ? 1 : 0)
+                        }
+                    }.frame(width: vm.cgWidth * 0.7, height: vm.cgHeight * 0.1)
+//                    .background(.green.opacity(0.5))
+                    .padding(.vertical, 60)
+             Spacer()
+                HStack{
+                    Button {
+                        withAnimation(){
+                            vm.isShowingEdits = false
+                            vm.previewBlocked = false
+                        }
+                    }label: {
+                        Label("Save", systemImage: "checkmark.circle")
+                    }
+                    .frame(width: 183, height: 50)
+                    .background(Color.blue)
+                        .cornerRadius(40)
+                        .foregroundColor(.white)
+                        .padding(.leading)
+                    Button{
+                        withAnimation(.spring()){
+                            vm.radiusCorner = 40
+                            vm.startRadius = 0
+                            vm.endRadius = 200
+                        }
+                    } label: {
+                       Image(systemName: "arrow.counterclockwise")
+                    }.frame(width: 50, height: 50)
+                        .background(Color.white)
+                        .cornerRadius(40)
+                        .foregroundColor(.black)
+                        .padding(.trailing)
+                }.frame(width: 300, height: 60)
+                    .padding(10)
+            }
+          
+   
+        
+        }
+    }
+}
+struct AngularBorderEditor : View {
+    @EnvironmentObject var vm: WallpapersViewModel
+    @EnvironmentObject var sliderVM: SliderViewModel
+    
+    var body: some View {
+        ZStack{
+            Color(red: 0.054, green: 0.093, blue: 0.158)
+                .ignoresSafeArea()
+            
+            Image("mesh")
+                .resizable()
+                .scaledToFit()
+            VStack (spacing: 20){
+                Spacer()
+              
+
+                
+                
+                VStack (spacing: 20){
+                    HStack{
+                        Text("Adjust parameters").foregroundColor(.white)
+                    }.padding(.vertical)
+                    
+                    BWSliderCornerRadius()
+                    BWSliderStrokeWidth()
+                        
+                        
+                    BWSliderStartRadius()
+                    BWSliderEndRadius()
+                   
+                }.frame(width: vm.cgWidth * 0.9, height:  vm.cgHeight * 0.25)
+//                    .background(.red)
+                    .padding()
+                
+                    VStack{
+                        HStack{
+                            Text("Select colors").foregroundColor(.white)
+                        }
+                        ZStack{
+                            HStack{
+                                Rectangle().fill(vm.pickedColor)
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(10)
+                                    .padding()
+                                    .onTapGesture {
+                                        withAnimation(.spring()){
+                                            vm.pickedColorIndex = 1
+                                            vm.showPalette = true
+                                        }
+                                    }
+                                Rectangle().fill(vm.pickedColor2)
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(10)
+                                    .padding()
+                                    .onTapGesture {
+                                        withAnimation(.spring()){
+                                            vm.pickedColorIndex = 2
+                                            vm.showPalette = true
+                                        }
+                                    }
+                                
+                                Rectangle().fill(vm.pickedColor3)
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(10)
+                                    .padding()
+                                    .onTapGesture {
+                                        withAnimation(.spring()){
+                                            vm.pickedColorIndex = 3
+                                            vm.showPalette = true
+                                        }
+                                    }
+                            }.scaleEffect(!vm.showPalette ? 1 : 0)
+                                .padding()
+                            ColorPicker()
+                                .scaleEffect(vm.showPalette ? 1 : 0)
+                        }
+                    }.frame(width: vm.cgWidth * 0.7, height: vm.cgHeight * 0.1)
+//                    .background(.green.opacity(0.5))
+                    .padding(.vertical, 60)
+             Spacer()
+                HStack{
+                    Button {
+                        withAnimation(){
+                            vm.isShowingEdits = false
+                            vm.previewBlocked = false
+                        }
+                    }label: {
+                        Label("Save", systemImage: "checkmark.circle")
+                    }
+                    .frame(width: 183, height: 50)
+                    .background(Color.blue)
+                        .cornerRadius(40)
+                        .foregroundColor(.white)
+                        .padding(.leading)
+                    Button{
+                        withAnimation(.spring()){
+                            vm.radiusCorner = 40
+                            vm.startRadius = 0
+                            vm.endRadius = 200
+                        }
+                    } label: {
+                       Image(systemName: "arrow.counterclockwise")
+                    }.frame(width: 50, height: 50)
+                        .background(Color.white)
+                        .cornerRadius(40)
+                        .foregroundColor(.black)
+                        .padding(.trailing)
+                }.frame(width: 300, height: 60)
+                    .padding(10)
+            }
+          
+   
+        
+        }
+    }
+}
+
+
+
 struct NewSettings: View {
     @EnvironmentObject var vm: WallpapersViewModel
     @EnvironmentObject var sliderVM: SliderViewModel

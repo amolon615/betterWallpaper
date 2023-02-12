@@ -20,8 +20,6 @@ struct ContentView: View {
     @Environment(\.requestReview) var requestReview
     
 
-    
-    
     var body: some View {
         SelectView()
             .overlay(
@@ -163,7 +161,8 @@ struct StrokeLinearGradientView: View {
                 .cornerRadius(vm.radiusCorner)
                 .padding(vm.paddingEdits)
                 .ignoresSafeArea()
-        } .ignoresSafeArea()
+        }
+        .ignoresSafeArea()
         
     }
 }

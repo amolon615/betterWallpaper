@@ -18,6 +18,15 @@
 		AC478020296831CF00A615D6 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47801F296831CF00A615D6 /* PreviewView.swift */; };
 		AC7428652957946B007E83F7 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7428642957946B007E83F7 /* OnboardingView.swift */; };
 		AC7428672957A14D007E83F7 /* ViewFlows.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7428662957A14D007E83F7 /* ViewFlows.swift */; };
+		ACA5437A2998663200EAC7DB /* WallpaperModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA543792998663200EAC7DB /* WallpaperModel.swift */; };
+		ACA5437C29986FAB00EAC7DB /* GeometryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA5437B29986FAB00EAC7DB /* GeometryView.swift */; };
+		ACA5437F299958AE00EAC7DB /* Cubes.usdz in Resources */ = {isa = PBXBuildFile; fileRef = ACA5437E299958AE00EAC7DB /* Cubes.usdz */; };
+		ACA5438129995B0400EAC7DB /* 3dModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA5438029995B0400EAC7DB /* 3dModelManager.swift */; };
+		ACA5438329995BB700EAC7DB /* 3dView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA5438229995BB700EAC7DB /* 3dView.swift */; };
+		ACA543852999943D00EAC7DB /* Swirl.usdz in Resources */ = {isa = PBXBuildFile; fileRef = ACA543842999943D00EAC7DB /* Swirl.usdz */; };
+		ACA54387299996C100EAC7DB /* Lazers.usdz in Resources */ = {isa = PBXBuildFile; fileRef = ACA54386299996C100EAC7DB /* Lazers.usdz */; };
+		ACA54389299998D600EAC7DB /* Ribbons.usdz in Resources */ = {isa = PBXBuildFile; fileRef = ACA54388299998D600EAC7DB /* Ribbons.usdz */; };
+		ACA5438B2999999200EAC7DB /* Blob.usdz in Resources */ = {isa = PBXBuildFile; fileRef = ACA5438A2999999200EAC7DB /* Blob.usdz */; };
 		ACC0F10129561E2A00264A0A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC0F10029561E2A00264A0A /* SettingsView.swift */; };
 		ACD376D92965C712004E6322 /* WallpaperViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD376D82965C712004E6322 /* WallpaperViewModel.swift */; };
 		ACD376E22965DFB3004E6322 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD376E12965DFB3004E6322 /* CarouselView.swift */; };
@@ -40,6 +49,15 @@
 		AC47801F296831CF00A615D6 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		AC7428642957946B007E83F7 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		AC7428662957A14D007E83F7 /* ViewFlows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFlows.swift; sourceTree = "<group>"; };
+		ACA543792998663200EAC7DB /* WallpaperModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperModel.swift; sourceTree = "<group>"; };
+		ACA5437B29986FAB00EAC7DB /* GeometryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryView.swift; sourceTree = "<group>"; };
+		ACA5437E299958AE00EAC7DB /* Cubes.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Cubes.usdz; sourceTree = "<group>"; };
+		ACA5438029995B0400EAC7DB /* 3dModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 3dModelManager.swift; sourceTree = "<group>"; };
+		ACA5438229995BB700EAC7DB /* 3dView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 3dView.swift; sourceTree = "<group>"; };
+		ACA543842999943D00EAC7DB /* Swirl.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Swirl.usdz; sourceTree = "<group>"; };
+		ACA54386299996C100EAC7DB /* Lazers.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Lazers.usdz; sourceTree = "<group>"; };
+		ACA54388299998D600EAC7DB /* Ribbons.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Ribbons.usdz; sourceTree = "<group>"; };
+		ACA5438A2999999200EAC7DB /* Blob.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Blob.usdz; sourceTree = "<group>"; };
 		ACC0F10029561E2A00264A0A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		ACD376D82965C712004E6322 /* WallpaperViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperViewModel.swift; sourceTree = "<group>"; };
 		ACD376E12965DFB3004E6322 /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
@@ -69,12 +87,13 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		AC2532B82994FDF700230C2F /* AdManager */ = {
+		AC2532B82994FDF700230C2F /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 				AC2532B92994FE0A00230C2F /* AdManager.swift */,
+				ACA5438029995B0400EAC7DB /* 3dModelManager.swift */,
 			);
-			name = AdManager;
+			name = Managers;
 			sourceTree = "<group>";
 		};
 		AC2DD345294A7D7600E64523 = {
@@ -100,7 +119,9 @@
 			children = (
 				AC12AB122995093400599179 /* Info.plist */,
 				AC2DD351294A7D7600E64523 /* betterWallpapers.swift */,
-				AC2532B82994FDF700230C2F /* AdManager */,
+				ACA5437D2999589E00EAC7DB /* 3dModels */,
+				AC2532B82994FDF700230C2F /* Managers */,
+				ACA543782998660C00EAC7DB /* Models */,
 				ACD376DB2965C9FE004E6322 /* ViewModels */,
 				ACD376DA2965C9E5004E6322 /* Views */,
 				AC2DD355294A7D7700E64523 /* Assets.xcassets */,
@@ -117,6 +138,26 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		ACA543782998660C00EAC7DB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ACA543792998663200EAC7DB /* WallpaperModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		ACA5437D2999589E00EAC7DB /* 3dModels */ = {
+			isa = PBXGroup;
+			children = (
+				ACA5437E299958AE00EAC7DB /* Cubes.usdz */,
+				ACA543842999943D00EAC7DB /* Swirl.usdz */,
+				ACA54386299996C100EAC7DB /* Lazers.usdz */,
+				ACA54388299998D600EAC7DB /* Ribbons.usdz */,
+				ACA5438A2999999200EAC7DB /* Blob.usdz */,
+			);
+			path = 3dModels;
+			sourceTree = "<group>";
+		};
 		ACD376DA2965C9E5004E6322 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +170,8 @@
 				AC47801F296831CF00A615D6 /* PreviewView.swift */,
 				ACEB758929763449004C23BC /* SliderView.swift */,
 				AC40E32C29945011001EF10F /* TestView.swift */,
+				ACA5438229995BB700EAC7DB /* 3dView.swift */,
+				ACA5437B29986FAB00EAC7DB /* GeometryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -211,7 +254,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC2DD359294A7D7700E64523 /* Preview Assets.xcassets in Resources */,
+				ACA54389299998D600EAC7DB /* Ribbons.usdz in Resources */,
 				AC2DD356294A7D7700E64523 /* Assets.xcassets in Resources */,
+				ACA5437F299958AE00EAC7DB /* Cubes.usdz in Resources */,
+				ACA543852999943D00EAC7DB /* Swirl.usdz in Resources */,
+				ACA54387299996C100EAC7DB /* Lazers.usdz in Resources */,
+				ACA5438B2999999200EAC7DB /* Blob.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,9 +314,13 @@
 			files = (
 				AC40E32D29945011001EF10F /* TestView.swift in Sources */,
 				ACEB758A29763449004C23BC /* SliderView.swift in Sources */,
+				ACA5438329995BB700EAC7DB /* 3dView.swift in Sources */,
+				ACA5438129995B0400EAC7DB /* 3dModelManager.swift in Sources */,
+				ACA5437A2998663200EAC7DB /* WallpaperModel.swift in Sources */,
 				ACD376D92965C712004E6322 /* WallpaperViewModel.swift in Sources */,
 				AC2532BA2994FE0A00230C2F /* AdManager.swift in Sources */,
 				ACD376E22965DFB3004E6322 /* CarouselView.swift in Sources */,
+				ACA5437C29986FAB00EAC7DB /* GeometryView.swift in Sources */,
 				AC478020296831CF00A615D6 /* PreviewView.swift in Sources */,
 				AC2DD354294A7D7600E64523 /* ContentView.swift in Sources */,
 				AC3656B12968BB7300362494 /* EditorView.swift in Sources */,
@@ -420,9 +472,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = betterWallpapers/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = betterWallpapers;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need this to save your wallpaper";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need your permission to save the wallpaper to the photos";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "We need your permission to serve you with relevant ads.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -463,9 +516,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = betterWallpapers/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = betterWallpapers;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need this to save your wallpaper";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need your permission to save the wallpaper to the photos";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "We need your permission to serve you with relevant ads.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

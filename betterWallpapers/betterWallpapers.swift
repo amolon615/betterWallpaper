@@ -18,7 +18,7 @@ struct BetterWallpapers: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TestView()
                 .environmentObject(WallpapersViewModel())
                 .environmentObject(SliderViewModel())
                 .environmentObject(SliderCornerRadius())
@@ -27,8 +27,9 @@ struct BetterWallpapers: App {
         }
         .onChange(of: scenePhase) { phase in
                   if phase == .active {
-                      ad.tryToPresentAd()
-                  }
+                     ad.tryToPresentAd()
+                      }
+                  
             }
     }
 }
