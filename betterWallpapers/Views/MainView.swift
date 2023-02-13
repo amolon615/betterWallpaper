@@ -14,7 +14,6 @@ import SceneKit
 
 
 
-
 struct ColorView: View {
     @Environment(\.dismiss) var dismiss
     var wallpaper: WallpaperModel? = nil
