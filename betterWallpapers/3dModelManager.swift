@@ -42,6 +42,7 @@ struct WrappedSceneView: UIViewRepresentable {
     @Binding var uiImg: UIImage?
      var sceneName: String?
     var allowControl: Bool = false
+    var bgColor: UIColor = .white
 
     typealias UIViewType = SCNView
     
@@ -52,7 +53,9 @@ struct WrappedSceneView: UIViewRepresentable {
         scnView.allowsCameraControl = false
         scnView.autoenablesDefaultLighting = true
         scnView.antialiasingMode = .multisampling2X
-        scnView.backgroundColor = .clear
+        scnView.backgroundColor = UIColor.purple
+        
+        
         scnView.scene = scene
 
         // 2: Add camera node
@@ -61,7 +64,7 @@ struct WrappedSceneView: UIViewRepresentable {
         // 3: Place camera
         cameraNode.position = SCNVector3(x: 0, y: 10, z: 35)
         // 4: Set camera on scene
-//        scene.rootNode.addChildNode(cameraNode)
+//        scene?.rootNode.addChildNode(cameraNode)
         
         // 5: Adding light to scene
 //        let lightNode = SCNNode()
@@ -74,7 +77,7 @@ struct WrappedSceneView: UIViewRepresentable {
         let ambientLightNode = SCNNode()
         ambientLightNode.light = SCNLight()
         ambientLightNode.light?.type = .ambient
-        ambientLightNode.light?.color = UIColor.blue
+        ambientLightNode.light?.color = UIColor.purple
         scene?.rootNode.addChildNode(ambientLightNode)
         
         // Allow user to manipulate camera
@@ -84,7 +87,7 @@ struct WrappedSceneView: UIViewRepresentable {
         // sceneView.showsStatistics = true
         
         // Set background color
-        scnView.backgroundColor = UIColor.white
+        scnView.backgroundColor = bgColor
         
         // Allow user translate image
         scnView.cameraControlConfiguration.allowsTranslation = false

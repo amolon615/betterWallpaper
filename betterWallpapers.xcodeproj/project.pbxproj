@@ -31,7 +31,6 @@
 		ACA5438329995BB700EAC7DB /* 3dView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA5438229995BB700EAC7DB /* 3dView.swift */; };
 		ACA543852999943D00EAC7DB /* Swirl.usdz in Resources */ = {isa = PBXBuildFile; fileRef = ACA543842999943D00EAC7DB /* Swirl.usdz */; };
 		ACA54387299996C100EAC7DB /* Lazers.usdz in Resources */ = {isa = PBXBuildFile; fileRef = ACA54386299996C100EAC7DB /* Lazers.usdz */; };
-		ACA54389299998D600EAC7DB /* Ribbons.usdz in Resources */ = {isa = PBXBuildFile; fileRef = ACA54388299998D600EAC7DB /* Ribbons.usdz */; };
 		ACA5438B2999999200EAC7DB /* Blob.usdz in Resources */ = {isa = PBXBuildFile; fileRef = ACA5438A2999999200EAC7DB /* Blob.usdz */; };
 		ACC0F10129561E2A00264A0A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC0F10029561E2A00264A0A /* SettingsView.swift */; };
 		ACD376D92965C712004E6322 /* WallpaperViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD376D82965C712004E6322 /* WallpaperViewModel.swift */; };
@@ -68,7 +67,6 @@
 		ACA5438229995BB700EAC7DB /* 3dView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 3dView.swift; sourceTree = "<group>"; };
 		ACA543842999943D00EAC7DB /* Swirl.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Swirl.usdz; sourceTree = "<group>"; };
 		ACA54386299996C100EAC7DB /* Lazers.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Lazers.usdz; sourceTree = "<group>"; };
-		ACA54388299998D600EAC7DB /* Ribbons.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Ribbons.usdz; sourceTree = "<group>"; };
 		ACA5438A2999999200EAC7DB /* Blob.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Blob.usdz; sourceTree = "<group>"; };
 		ACC0F10029561E2A00264A0A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		ACD376D82965C712004E6322 /* WallpaperViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperViewModel.swift; sourceTree = "<group>"; };
@@ -164,7 +162,6 @@
 				ACA5437E299958AE00EAC7DB /* Cubes.usdz */,
 				ACA543842999943D00EAC7DB /* Swirl.usdz */,
 				ACA54386299996C100EAC7DB /* Lazers.usdz */,
-				ACA54388299998D600EAC7DB /* Ribbons.usdz */,
 				ACA5438A2999999200EAC7DB /* Blob.usdz */,
 				AC4174702999A93700E006C4 /* Mondrian.usdz */,
 				AC4174722999AA2700E006C4 /* Ball.usdz */,
@@ -273,7 +270,6 @@
 			files = (
 				AC4174732999AA2700E006C4 /* Ball.usdz in Resources */,
 				AC2DD359294A7D7700E64523 /* Preview Assets.xcassets in Resources */,
-				ACA54389299998D600EAC7DB /* Ribbons.usdz in Resources */,
 				AC2DD356294A7D7700E64523 /* Assets.xcassets in Resources */,
 				AC09BD462999B5B5000645EF /* Mega_Swirl.usdz in Resources */,
 				ACA5437F299958AE00EAC7DB /* Cubes.usdz in Resources */,

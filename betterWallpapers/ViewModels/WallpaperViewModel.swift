@@ -36,7 +36,7 @@ import StoreKit
     @Published var strokeSelected = "Linear"
     
 //     43.89
-    @Published var radiusCorner: CGFloat =  10
+     @Published var radiusCorner: CGFloat =  43.89
     @Published var paddingEdits: CGFloat = 6.43
     
     @Published var editButtonAnimated = false

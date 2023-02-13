@@ -130,7 +130,7 @@ struct ObjectView: View {
 
     @State var isScreenShot: Bool = false
     @State var uiImg: UIImage? = nil
-
+    @State var bgColor: UIColor = .white
     var body: some View {
         ZStack{
             fetchView()
@@ -150,6 +150,12 @@ struct ObjectView: View {
                         }
                 } label: {
                     Text("Save wallpaper")
+                }
+                
+                Button {
+                    self.bgColor = .red
+                } label: {
+                    Text("Change color")
                 }
             }
         }
@@ -195,6 +201,8 @@ struct TestView: View {
                        }
                    } header: {
                        Text("Gradient Edges & Fills")
+                           .font(.system(size: 18, weight: .bold, design: .rounded))
+                           .foregroundColor(.gray)
                    }
                    
                    Section{
@@ -217,50 +225,19 @@ struct TestView: View {
                        }
                    } header: {
                        Text("3d Models")
+                           .font(.system(size: 18, weight: .bold, design: .rounded))
+                           .foregroundColor(.gray)
                    }
+               
                    Section{
                        ScrollView(.horizontal, showsIndicators: false) {
                            HStack{
-                               ForEach(ObjectModel.objectModels){model in
-                                   WrappedSceneView(isScreenShot: self.$isScreenShot, uiImg: self.$uiImg, sceneName: model.modelName)
+                               ForEach(1...10, id:\.self){_ in
+                                   Rectangle()
+                                       .fill(.pink)
                                        .frame(width: 250, height: 350)
-                                       .cornerRadius(43)
-                                  
-                                       
-                               }
-                               .fullScreenCover(item: $wallpaperModel) { item in
-                                   ColorView(wallpaper: item)
-                               }
-                           }
-                       }
-                   } header: {
-                       Text("Red")
-                   }
-                   Section{
-                       ScrollView(.horizontal, showsIndicators: false) {
-                           HStack{
-                               ForEach(1...10, id:\.self){_ in
-                                   ObjectModelView()
-//                                   Rectangle()
-//                                       .fill(.purple)
-//                                       .frame(width: 150, height: 200)
-//                                       .cornerRadius(10)
-                               }
-                               
-                           }
-                       }
-                   } header: {
-                       Text("Purple")
-                   }
-                   Section{
-                       ScrollView(.horizontal, showsIndicators: false) {
-                           HStack{
-                               ForEach(1...10, id:\.self){_ in
-//                                   Rectangle()
-//                                       .fill(.pink)
-//                                       .frame(width: 150, height: 200)
-//                                       .cornerRadius(10)
-                                   ObjectModelView()
+                                       .cornerRadius(10)
+                                 
                                }
                                
                            }
