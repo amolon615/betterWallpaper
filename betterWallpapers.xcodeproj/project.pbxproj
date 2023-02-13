@@ -15,7 +15,7 @@
 		AC2DD356294A7D7700E64523 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC2DD355294A7D7700E64523 /* Assets.xcassets */; };
 		AC2DD359294A7D7700E64523 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC2DD358294A7D7700E64523 /* Preview Assets.xcassets */; };
 		AC3656B12968BB7300362494 /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3656B02968BB7300362494 /* EditorView.swift */; };
-		AC40E32D29945011001EF10F /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40E32C29945011001EF10F /* TestView.swift */; };
+		AC40E32D29945011001EF10F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40E32C29945011001EF10F /* MainView.swift */; };
 		AC4174712999A93700E006C4 /* Mondrian.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AC4174702999A93700E006C4 /* Mondrian.usdz */; };
 		AC4174732999AA2700E006C4 /* Ball.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AC4174722999AA2700E006C4 /* Ball.usdz */; };
 		AC4174752999B1EE00E006C4 /* Abstract_Cube.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AC4174742999B1EE00E006C4 /* Abstract_Cube.usdz */; };
@@ -51,7 +51,7 @@
 		AC2DD355294A7D7700E64523 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC2DD358294A7D7700E64523 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AC3656B02968BB7300362494 /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
-		AC40E32C29945011001EF10F /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		AC40E32C29945011001EF10F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		AC4174702999A93700E006C4 /* Mondrian.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Mondrian.usdz; sourceTree = "<group>"; };
 		AC4174722999AA2700E006C4 /* Ball.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Ball.usdz; sourceTree = "<group>"; };
 		AC4174742999B1EE00E006C4 /* Abstract_Cube.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Abstract_Cube.usdz; sourceTree = "<group>"; };
@@ -178,13 +178,13 @@
 			children = (
 				AC7428662957A14D007E83F7 /* ViewFlows.swift */,
 				AC7428642957946B007E83F7 /* OnboardingView.swift */,
+				AC40E32C29945011001EF10F /* MainView.swift */,
 				AC2DD353294A7D7600E64523 /* ContentView.swift */,
 				ACD376E12965DFB3004E6322 /* CarouselView.swift */,
 				ACC0F10029561E2A00264A0A /* SettingsView.swift */,
 				AC3656B02968BB7300362494 /* EditorView.swift */,
 				AC47801F296831CF00A615D6 /* PreviewView.swift */,
 				ACEB758929763449004C23BC /* SliderView.swift */,
-				AC40E32C29945011001EF10F /* TestView.swift */,
 				ACA5438229995BB700EAC7DB /* 3dView.swift */,
 				ACA5437B29986FAB00EAC7DB /* GeometryView.swift */,
 			);
@@ -332,7 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC40E32D29945011001EF10F /* TestView.swift in Sources */,
+				AC40E32D29945011001EF10F /* MainView.swift in Sources */,
 				ACEB758A29763449004C23BC /* SliderView.swift in Sources */,
 				ACA5438329995BB700EAC7DB /* 3dView.swift in Sources */,
 				ACA5438129995B0400EAC7DB /* 3dModelManager.swift in Sources */,
