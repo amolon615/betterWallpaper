@@ -25,11 +25,11 @@ struct BetterWallpapers: App {
                 .environmentObject(SliderStartRadius())
                 .environmentObject(SliderEndRadius())
         }
-        .onChange(of: scenePhase) { phase in
-                  if phase == .active {
-                     ad.tryToPresentAd()
-                      }
-                  
-            }
+//        .onChange(of: scenePhase) { phase in
+//                  if phase == .active {
+//                     ad.tryToPresentAd()
+//                      }
+//
+//            }
     }
 }

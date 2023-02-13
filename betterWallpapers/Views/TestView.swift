@@ -95,6 +95,68 @@ struct ColorView: View {
 }
 
 
+struct ObjectView: View {
+    @Environment(\.dismiss) var dismiss
+    var objectModel: ObjectModel? = nil
+    @EnvironmentObject var vm: WallpapersViewModel
+    @State var showEditor: Bool = false
+    
+    @ViewBuilder
+    func fetchView() -> some View {
+        switch objectModel?.name {
+        case "Cubes":
+            WrappedSceneView(isScreenShot: self.$isScreenShot, uiImg: self.$uiImg, sceneName: "Cubes.usdz", allowControl: true).ignoresSafeArea()
+        case "Mondrian":
+            WrappedSceneView(isScreenShot: self.$isScreenShot, uiImg: self.$uiImg, sceneName: "Mondrian.usdz", allowControl: true).ignoresSafeArea()
+        case  "Lazers":
+            WrappedSceneView(isScreenShot: self.$isScreenShot, uiImg: self.$uiImg, sceneName: "Lazers.usdz", allowControl: true).ignoresSafeArea()
+        case "Ball":
+            WrappedSceneView(isScreenShot: self.$isScreenShot, uiImg: self.$uiImg, sceneName: "Ball.usdz", allowControl: true).ignoresSafeArea()
+        case "Blob":
+            WrappedSceneView(isScreenShot: self.$isScreenShot, uiImg: self.$uiImg, sceneName: "Blob.usdz", allowControl: true).ignoresSafeArea()
+        case "Swirl":
+            WrappedSceneView(isScreenShot: self.$isScreenShot, uiImg: self.$uiImg, sceneName: "Swirl.usdz", allowControl: true).ignoresSafeArea()
+        case "Abstract_Cube":
+            WrappedSceneView(isScreenShot: self.$isScreenShot, uiImg: self.$uiImg, sceneName: "Abstract_Cube.usdz", allowControl: true).ignoresSafeArea()
+        case "Green_Bananas":
+            WrappedSceneView(isScreenShot: self.$isScreenShot, uiImg: self.$uiImg, sceneName: "Green_Bananas.usdz", allowControl: true).ignoresSafeArea()
+        case "Abstract_Art":
+            WrappedSceneView(isScreenShot: self.$isScreenShot, uiImg: self.$uiImg, sceneName: "Abstract_Art.usdz", allowControl: true).ignoresSafeArea()
+        default:
+            WrappedSceneView(isScreenShot: self.$isScreenShot, uiImg: self.$uiImg, sceneName: "Mega_Swirl.usdz", allowControl: true).ignoresSafeArea()
+        }
+   }
+    
+
+    @State var isScreenShot: Bool = false
+    @State var uiImg: UIImage? = nil
+
+    var body: some View {
+        ZStack{
+            fetchView()
+            VStack{
+                Button{
+                    dismiss()
+                } label: {
+                    Text("Dismiss!")
+                        .foregroundColor(.white)
+                        .background(.black)
+                }
+                Button {
+                        self.isScreenShot = true
+                        if let savedImage = self.uiImg {
+                            UIImageWriteToSavedPhotosAlbum(savedImage, nil, nil, nil)
+                            print("image saved")
+                        }
+                } label: {
+                    Text("Save wallpaper")
+                }
+            }
+        }
+    }
+}
+
+
 struct TestView: View {
 
         @EnvironmentObject var vm: WallpapersViewModel
@@ -104,6 +166,7 @@ struct TestView: View {
         @State private var navPath = NavigationPath()
         @State var showCover: Int? = nil
         @State var wallpaperModel: WallpaperModel? = nil
+        @State var objectModel: ObjectModel? = nil
     
         @State var isScreenShot: Bool = false
         @State var uiImg: UIImage? = nil
@@ -141,11 +204,14 @@ struct TestView: View {
                                    WrappedSceneView(isScreenShot: self.$isScreenShot, uiImg: self.$uiImg, sceneName: model.modelName)
                                        .frame(width: 250, height: 350)
                                        .cornerRadius(43)
+                                       .onTapGesture {
+                                           objectModel = model
+                                       }
                                   
                                        
                                }
-                               .fullScreenCover(item: $wallpaperModel) { item in
-                                   ColorView(wallpaper: item)
+                               .fullScreenCover(item: $objectModel) { item in
+                                   ObjectView(objectModel: item)
                                }
                            }
                        }

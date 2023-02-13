@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		03159603A30F8B9A34C533C8 /* Pods_betterWallpapers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22DF8C502BAF131052E98B1 /* Pods_betterWallpapers.framework */; };
+		AC09BD462999B5B5000645EF /* Mega_Swirl.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AC09BD452999B5B5000645EF /* Mega_Swirl.usdz */; };
 		AC2532BA2994FE0A00230C2F /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2532B92994FE0A00230C2F /* AdManager.swift */; };
 		AC2DD352294A7D7600E64523 /* betterWallpapers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2DD351294A7D7600E64523 /* betterWallpapers.swift */; };
 		AC2DD354294A7D7600E64523 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2DD353294A7D7600E64523 /* ContentView.swift */; };
@@ -15,6 +16,11 @@
 		AC2DD359294A7D7700E64523 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC2DD358294A7D7700E64523 /* Preview Assets.xcassets */; };
 		AC3656B12968BB7300362494 /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3656B02968BB7300362494 /* EditorView.swift */; };
 		AC40E32D29945011001EF10F /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40E32C29945011001EF10F /* TestView.swift */; };
+		AC4174712999A93700E006C4 /* Mondrian.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AC4174702999A93700E006C4 /* Mondrian.usdz */; };
+		AC4174732999AA2700E006C4 /* Ball.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AC4174722999AA2700E006C4 /* Ball.usdz */; };
+		AC4174752999B1EE00E006C4 /* Abstract_Cube.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AC4174742999B1EE00E006C4 /* Abstract_Cube.usdz */; };
+		AC4174772999B22000E006C4 /* Green_Bananas.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AC4174762999B22000E006C4 /* Green_Bananas.usdz */; };
+		AC4174792999B2B800E006C4 /* Abstract_Art.usdz in Resources */ = {isa = PBXBuildFile; fileRef = AC4174782999B2B800E006C4 /* Abstract_Art.usdz */; };
 		AC478020296831CF00A615D6 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47801F296831CF00A615D6 /* PreviewView.swift */; };
 		AC7428652957946B007E83F7 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7428642957946B007E83F7 /* OnboardingView.swift */; };
 		AC7428672957A14D007E83F7 /* ViewFlows.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7428662957A14D007E83F7 /* ViewFlows.swift */; };
@@ -37,6 +43,7 @@
 /* Begin PBXFileReference section */
 		05C5B768AC11BF49A2E0A48D /* Pods-betterWallpapers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-betterWallpapers.debug.xcconfig"; path = "Target Support Files/Pods-betterWallpapers/Pods-betterWallpapers.debug.xcconfig"; sourceTree = "<group>"; };
 		31BE3A11118CCEE8D21CD282 /* Pods-betterWallpapers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-betterWallpapers.release.xcconfig"; path = "Target Support Files/Pods-betterWallpapers/Pods-betterWallpapers.release.xcconfig"; sourceTree = "<group>"; };
+		AC09BD452999B5B5000645EF /* Mega_Swirl.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Mega_Swirl.usdz; sourceTree = "<group>"; };
 		AC12AB122995093400599179 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AC2532B92994FE0A00230C2F /* AdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManager.swift; sourceTree = "<group>"; };
 		AC2DD34E294A7D7600E64523 /* betterWallpapers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = betterWallpapers.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +53,11 @@
 		AC2DD358294A7D7700E64523 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AC3656B02968BB7300362494 /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
 		AC40E32C29945011001EF10F /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		AC4174702999A93700E006C4 /* Mondrian.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Mondrian.usdz; sourceTree = "<group>"; };
+		AC4174722999AA2700E006C4 /* Ball.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Ball.usdz; sourceTree = "<group>"; };
+		AC4174742999B1EE00E006C4 /* Abstract_Cube.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Abstract_Cube.usdz; sourceTree = "<group>"; };
+		AC4174762999B22000E006C4 /* Green_Bananas.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Green_Bananas.usdz; sourceTree = "<group>"; };
+		AC4174782999B2B800E006C4 /* Abstract_Art.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Abstract_Art.usdz; sourceTree = "<group>"; };
 		AC47801F296831CF00A615D6 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		AC7428642957946B007E83F7 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		AC7428662957A14D007E83F7 /* ViewFlows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFlows.swift; sourceTree = "<group>"; };
@@ -154,6 +166,12 @@
 				ACA54386299996C100EAC7DB /* Lazers.usdz */,
 				ACA54388299998D600EAC7DB /* Ribbons.usdz */,
 				ACA5438A2999999200EAC7DB /* Blob.usdz */,
+				AC4174702999A93700E006C4 /* Mondrian.usdz */,
+				AC4174722999AA2700E006C4 /* Ball.usdz */,
+				AC4174742999B1EE00E006C4 /* Abstract_Cube.usdz */,
+				AC4174762999B22000E006C4 /* Green_Bananas.usdz */,
+				AC4174782999B2B800E006C4 /* Abstract_Art.usdz */,
+				AC09BD452999B5B5000645EF /* Mega_Swirl.usdz */,
 			);
 			path = 3dModels;
 			sourceTree = "<group>";
@@ -253,13 +271,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC4174732999AA2700E006C4 /* Ball.usdz in Resources */,
 				AC2DD359294A7D7700E64523 /* Preview Assets.xcassets in Resources */,
 				ACA54389299998D600EAC7DB /* Ribbons.usdz in Resources */,
 				AC2DD356294A7D7700E64523 /* Assets.xcassets in Resources */,
+				AC09BD462999B5B5000645EF /* Mega_Swirl.usdz in Resources */,
 				ACA5437F299958AE00EAC7DB /* Cubes.usdz in Resources */,
 				ACA543852999943D00EAC7DB /* Swirl.usdz in Resources */,
+				AC4174712999A93700E006C4 /* Mondrian.usdz in Resources */,
+				AC4174792999B2B800E006C4 /* Abstract_Art.usdz in Resources */,
 				ACA54387299996C100EAC7DB /* Lazers.usdz in Resources */,
+				AC4174752999B1EE00E006C4 /* Abstract_Cube.usdz in Resources */,
 				ACA5438B2999999200EAC7DB /* Blob.usdz in Resources */,
+				AC4174772999B22000E006C4 /* Green_Bananas.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

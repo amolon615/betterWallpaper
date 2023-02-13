@@ -41,6 +41,7 @@ struct WrappedSceneView: UIViewRepresentable {
     @Binding var isScreenShot: Bool
     @Binding var uiImg: UIImage?
      var sceneName: String?
+    var allowControl: Bool = false
 
     typealias UIViewType = SCNView
     
@@ -77,7 +78,7 @@ struct WrappedSceneView: UIViewRepresentable {
         scene?.rootNode.addChildNode(ambientLightNode)
         
         // Allow user to manipulate camera
-        scnView.allowsCameraControl = true
+        scnView.allowsCameraControl = allowControl
         
         // Show FPS logs and timming
         // sceneView.showsStatistics = true

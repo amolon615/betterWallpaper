@@ -17,10 +17,15 @@ struct ObjectModel: Identifiable {
     
     static let objectModels = [
         ObjectModel(id: 0, name: "Cubes", modelName: "Cubes.usdz"),
-        ObjectModel(id: 1, name: "Swirl", modelName: "Swirl.usdz"),
+        ObjectModel(id: 1, name: "Mondrian", modelName: "Mondrian.usdz"),
         ObjectModel(id: 2, name: "Lazers", modelName: "Lazers.usdz"),
-        ObjectModel(id: 3, name: "Ribbons", modelName: "Ribbons.usdz"),
-        ObjectModel(id: 4, name: "Blob", modelName: "Blob.usdz")
+        ObjectModel(id: 3, name: "Ball", modelName: "Ball.usdz"),
+        ObjectModel(id: 4, name: "Blob", modelName: "Blob.usdz"),
+        ObjectModel(id: 5, name: "Swirl", modelName: "Swirl.usdz"),
+        ObjectModel(id: 6, name: "Abstract_Cube", modelName: "Abstract_Cube.usdz"),
+        ObjectModel(id: 7, name: "Green_Bananas", modelName: "Green_Bananas.usdz"),
+        ObjectModel(id: 8, name: "Abstract_Art", modelName: "Abstract_Art.usdz"),
+        ObjectModel(id: 9, name: "Mega_Swirl", modelName: "Mega_Swirl.usdz")
     ]
     
 }
